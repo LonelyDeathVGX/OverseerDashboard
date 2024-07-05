@@ -1,9 +1,15 @@
 import { KEY } from "@/lib/Constants";
 import type { Nullish } from "@sapphire/utilities";
+import { type ClassValue, clsx } from "clsx";
 import Crypto from "crypto-js";
 import { type JWTPayload, SignJWT, jwtVerify } from "jose";
 import { NextResponse } from "next/server";
+import { twMerge } from "tailwind-merge";
 import type { Session } from "./Server";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 export function encrypt(data: string): string {
   return Crypto.AES.encrypt(data, process.env.KEY ?? "").toString();
