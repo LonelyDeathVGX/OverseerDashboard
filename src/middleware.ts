@@ -1,6 +1,6 @@
 import { fetchSession } from "@/lib/Server";
 import { nextRedirect } from "@/lib/Util";
-import type { MiddlewareConfig, NextRequest } from "next/server";
+import { type MiddlewareConfig, type NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
   const url = new URL(request.url);
@@ -9,6 +9,8 @@ export async function middleware(request: NextRequest) {
   if (!session) {
     return nextRedirect(url.origin);
   }
+
+  return NextResponse.next();
 }
 
 export const config: MiddlewareConfig = {
