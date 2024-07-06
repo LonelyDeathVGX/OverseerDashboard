@@ -11,10 +11,6 @@ const config: Config = {
   ],
   prefix: "",
   theme: {
-    fontFamily: {
-      bold: ["Bold"],
-      medium: ["Medium"],
-    },
     container: {
       center: true,
       padding: "2rem",
@@ -23,6 +19,10 @@ const config: Config = {
       },
     },
     extend: {
+      fontFamily: {
+        bold: ["Bold"],
+        medium: ["Medium"],
+      },
       screens: {
         xs: "512px",
       },
