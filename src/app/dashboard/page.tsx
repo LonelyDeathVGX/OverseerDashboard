@@ -8,9 +8,9 @@ export default function Page() {
     <main>
       <NavbarComponent isDashboard={false} />
       <div className="py-12 flex items-center justify-center">
-        <div className="max-w-[1024px] w-full px-6 flex flex-col gap-6">
-          <h1 className="font-bold text-3xl text-white text-center">Manage a Server</h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="max-w-[1024px] w-full px-7 flex flex-col gap-6">
+          <h1 className="font-bold text-3xl text-white text-center">Manage a server</h1>
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
             <Suspense fallback={<GuildListSkeletonComponent />}>
               <GuildListComponent />
             </Suspense>
