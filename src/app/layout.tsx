@@ -1,6 +1,5 @@
 import "./globals.css";
 
-import { Providers } from "@/components/Providers";
 import { BASE_URL } from "@/lib/Constants";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
@@ -21,7 +20,7 @@ export const metadata: Metadata = {
     },
   },
 };
-// export const runtime = "edge";
+export const runtime = "edge";
 
 export default function RootLayout({
   children,
@@ -30,9 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body>
-        <Providers>{children}</Providers>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
