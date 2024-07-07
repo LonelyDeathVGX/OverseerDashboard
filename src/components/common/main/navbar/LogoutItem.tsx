@@ -15,7 +15,7 @@ export function LogoutItemComponent() {
   return (
     <DropdownMenuItem
       onClick={handleLogout}
-      className="font-medium flex gap-2 items-center text-danger-400 focus:bg-danger-800/75 focus:text-danger-400"
+      className="flex items-center gap-2 font-medium text-rose-400 focus:bg-rose-900/75 focus:text-danger-400"
     >
       <Exit className="size-5" />
       Logout
