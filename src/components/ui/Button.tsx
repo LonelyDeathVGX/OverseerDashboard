@@ -4,7 +4,7 @@ import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-lg font-medium text-sm transition-colors disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default: "bg-white text-black hover:bg-white/75",
         ghost: "text-white hover:bg-default-900/75",
         link: "text-white underline-offset-4 hover:underline",
-        outline: "text-white border border-default-800 hover:bg-default-900/75 hover:border-transparent",
+        outline: "border border-default-800 text-white hover:border-transparent hover:bg-default-900/75",
         secondary: "bg-default-900 text-white hover:bg-default-900/75",
         success: "bg-emerald-900/50 text-emerald-400 hover:bg-emerald-900/25",
         warning: "bg-amber-900/50 text-amber-400 hover:bg-amber-900/25",
