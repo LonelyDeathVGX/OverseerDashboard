@@ -40,7 +40,7 @@ export async function fetchUserGuilds(): Promise<FetchUserGuildsResponse> {
     };
   }
 
-  const guildsResponse = <RESTGetAPICurrentUserGuildsResult>await guildsRequest.json();
+  const guildsResponse = (await guildsRequest.json()) as RESTGetAPICurrentUserGuildsResult;
   const filteredGuilds = guildsResponse.filter((guild) =>
     new BitField(Number.parseInt(guild.permissions)).has(Number.parseInt(PermissionFlagsBits.ManageGuild.toString())),
   );
@@ -58,6 +58,7 @@ export async function fetchClientGuild(guildId: string): Promise<FetchClientGuil
       Authorization: `Bot ${process.env.CLIENT_TOKEN}`,
       "Content-Type": "application/json",
     },
+    cache: "no-store",
   });
   const guildResponse = await guildRequest.json();
 
