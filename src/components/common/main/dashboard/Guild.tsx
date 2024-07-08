@@ -1,29 +1,43 @@
-"use client";
-
-import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import { Card, CardContent } from "@/components/ui/Card";
 import { cutText } from "@sapphire/utilities";
 import { type RESTAPIPartialCurrentUserGuild, RouteBases } from "discord-api-types/v10";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 
 export function GuildComponent({ guild }: { guild: RESTAPIPartialCurrentUserGuild }) {
-  const router = useRouter();
-  const handleRedirect = () => {
-    router.push(`/dashboard/${guild.id}`);
-  };
-
   return (
-    <Card isPressable={true} onPress={handleRedirect}>
-      <CardBody className="p-0 overflow-hidden">
-        <Image
-          width="100%"
-          alt={guild.name}
-          className="w-full object-cover h-[140px] rounded-b-none"
-          src={guild.icon ? `${RouteBases.cdn}/icons/${guild.id}/${guild.icon}.png?size=1024` : "/assets/Discord.webp"}
-        />
-      </CardBody>
-      <CardFooter>
-        <p className="font-medium text-center text-small w-full">{cutText(guild.name, 25)}</p>
-      </CardFooter>
-    </Card>
+    <Link href={`/dashboard/${guild.id}`}>
+      <Card className="overflow-hidden">
+        <CardContent className="relative">
+          <Image
+            width={1024}
+            height={1024}
+            alt={`${guild.name} Icon`}
+            src={
+              guild.icon ? `${RouteBases.cdn}/icons/${guild.id}/${guild.icon}.png?size=1024` : "/assets/Discord.webp"
+            }
+            className="h-48 w-full select-none object-cover blur-xl"
+          />
+          <div className="absolute top-0 flex h-full w-full flex-col items-center justify-center gap-4 p-4">
+            <div className="size-24 rounded-full bg-default-900/50 p-2 backdrop-blur-sm">
+              <Image
+                width={1024}
+                height={1024}
+                alt={`${guild.name} Icon`}
+                src={
+                  guild.icon
+                    ? `${RouteBases.cdn}/icons/${guild.id}/${guild.icon}.png?size=1024`
+                    : "/assets/Discord.webp"
+                }
+                className="size-full rounded-full"
+              />
+            </div>
+            <div className="w-full rounded-lg bg-default-900/50 p-2 text-center font-medium text-xs backdrop-blur-sm">
+              {cutText(guild.name, 20)}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
   );
 }
