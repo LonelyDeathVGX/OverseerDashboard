@@ -1,3 +1,5 @@
+import { BitField } from "@/lib/BitField";
+import { fetchSession } from "@/lib/Server";
 import { decrypt } from "@/lib/Util";
 import {
   type APIGuild,
@@ -8,8 +10,6 @@ import {
   RouteBases,
   Routes,
 } from "discord-api-types/v10";
-import { BitField } from "./BitField";
-import { fetchSession } from "./Server";
 
 export async function fetchUserGuilds(): Promise<FetchUserGuildsResponse> {
   const session = await fetchSession();
