@@ -1,14 +1,25 @@
-import { fetchUserGuilds } from "@/lib/Server";
-import { GuildComponent } from "./Guild";
+import { CloseCircle, Warning } from "@/components/Icons";
+import { GuildComponent } from "@/components/common/main/dashboard/Guild";
+import { Alert, AlertDescription } from "@/components/ui/Alert";
+import { fetchUserGuilds } from "@/lib/Requests";
 
 export async function GuildListComponent() {
   const { guilds, rateLimited } = await fetchUserGuilds();
 
   return guilds?.length ? (
     guilds.map((guild) => <GuildComponent key={guild.id} guild={guild} />)
+  ) : rateLimited ? (
+    <Alert variant="danger" className="col-span-1 xs:col-span-2 sm:col-span-3 md:col-span-4">
+      <CloseCircle className="size-5 shrink-0" />
+      <AlertDescription>You have sent too many requests to Discord and have been limited.</AlertDescription>
+    </Alert>
   ) : (
-    <p className="font-medium text-center text-foreground-500 col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4">
-      {rateLimited ? "You are being limited from Discord" : "No servers have been found"}
-    </p>
+    <Alert variant="warning" className="col-span-1 xs:col-span-2 sm:col-span-3 md:col-span-4">
+      <Warning className="size-5 shrink-0" />
+      <AlertDescription>
+        You do not have servers with the <code className="rounded-lg bg-amber-900/25 p-1 font-bold">Manage Server</code>
+        permission.
+      </AlertDescription>
+    </Alert>
   );
 }
