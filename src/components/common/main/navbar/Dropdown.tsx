@@ -41,7 +41,7 @@ export function DropdownComponent({ session }: { session: Session }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild={true}>
-        <Avatar className="size-10 cursor-pointer rounded-full ring ring-default-800">
+        <Avatar className="size-10 cursor-pointer rounded-full ring ring-default-700">
           <AvatarImage
             alt={`${session.username}'s Avatar`}
             src={`${`${RouteBases.cdn}/avatars/${session.userId}/${session.avatarHash}.png`}`}

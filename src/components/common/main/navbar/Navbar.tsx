@@ -32,7 +32,7 @@ export async function NavbarComponent({ isDashboard }: { isDashboard: boolean })
   const session = await fetchSession();
 
   return (
-    <nav className="sticky top-0 z-50 flex h-16 w-full items-center justify-center border-default-800 border-b bg-black/50 backdrop-blur-xl">
+    <nav className="sticky top-0 z-50 flex h-16 w-full items-center justify-center border-default-700 border-b bg-black/50 backdrop-blur-xl">
       <header className="flex w-full max-w-5xl items-center justify-between px-5">
         <Link href="/" className="font-bold text-white text-xl">
           Overseer

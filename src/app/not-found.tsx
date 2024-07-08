@@ -9,7 +9,7 @@ export default function Page() {
       <NavbarComponent isDashboard={false} />
       <div className="full-page flex items-center justify-center py-12">
         <div className=" flex w-full max-w-[1024px] flex-col items-center justify-center gap-6 px-7">
-          <div className="rounded-lg border border-default-800 p-6">
+          <div className="rounded-lg border border-default-700 p-6">
             <Unlink className="size-36 text-white" />
           </div>
           <h1 className="text-center font-bold text-white text-xl">This page could not be found</h1>
