@@ -49,7 +49,7 @@ export function DropdownComponent({ session }: { session: Session }) {
           <AvatarFallback>{session.name}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-fit shadow-lg">
+      <DropdownMenuContent className="w-fit">
         <DropdownMenuGroup className="p-2">
           <DropdownMenuLabel className="flex items-center gap-2">
             <Avatar className="size-8 rounded-lg">
