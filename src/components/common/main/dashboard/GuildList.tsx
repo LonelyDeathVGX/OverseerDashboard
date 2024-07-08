@@ -1,7 +1,7 @@
-import { CloseCircle, Warning } from "@/components/Icons";
 import { GuildComponent } from "@/components/common/main/dashboard/Guild";
 import { Alert, AlertDescription } from "@/components/ui/Alert";
 import { fetchUserGuilds } from "@/lib/Requests";
+import { CircleAlert, CircleX } from "lucide-react";
 
 export async function GuildListComponent() {
   const { guilds, rateLimited } = await fetchUserGuilds();
@@ -10,12 +10,12 @@ export async function GuildListComponent() {
     guilds.map((guild) => <GuildComponent key={guild.id} guild={guild} />)
   ) : rateLimited ? (
     <Alert variant="danger" className="col-span-1 xs:col-span-2 sm:col-span-3 md:col-span-4">
-      <CloseCircle className="size-5 shrink-0" />
+      <CircleX className="size-5 shrink-0" />
       <AlertDescription>You have sent too many requests to Discord and have been limited.</AlertDescription>
     </Alert>
   ) : (
     <Alert variant="warning" className="col-span-1 xs:col-span-2 sm:col-span-3 md:col-span-4">
-      <Warning className="size-5 shrink-0" />
+      <CircleAlert className="size-5 shrink-0" />
       <AlertDescription>
         You do not have servers with the <code className="rounded-lg bg-amber-900/25 p-1 font-bold">Manage Server</code>
         permission.

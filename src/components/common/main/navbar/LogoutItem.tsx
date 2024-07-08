@@ -1,8 +1,8 @@
 "use client";
 
-import { Exit } from "@/components/Icons";
 import { DropdownMenuItem } from "@/components/ui/DropdownMenu";
 import { deleteSession } from "@/lib/Server";
+import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export function LogoutItemComponent() {
@@ -14,7 +14,7 @@ export function LogoutItemComponent() {
 
   return (
     <DropdownMenuItem onClick={handleLogout} className="flex items-center gap-2 text-rose-400">
-      <Exit className="size-5" />
+      <LogOut className="size-5" />
       Logout
     </DropdownMenuItem>
   );

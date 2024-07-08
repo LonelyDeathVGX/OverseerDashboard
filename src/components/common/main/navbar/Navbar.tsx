@@ -1,8 +1,8 @@
-import { Entrance } from "@/components/Icons";
 import { DropdownComponent } from "@/components/common/main/navbar/Dropdown";
 import { Button } from "@/components/ui/Button";
 import { ADD_TO_DISCORD_URL, OAUTH2_URL, SUPPORT_SERVER_URL } from "@/lib/Constants";
 import { fetchSession } from "@/lib/Server";
+import { LogIn } from "lucide-react";
 import Link from "next/link";
 import type { HTMLAttributeAnchorTarget } from "react";
 
@@ -55,7 +55,7 @@ export async function NavbarComponent({ isDashboard }: { isDashboard: boolean })
         ) : (
           <Button asChild={true} variant="outline">
             <Link href={OAUTH2_URL} className="flex items-center gap-2">
-              <Entrance className="size-5" />
+              <LogIn className="size-5" />
               <span className="xs:block hidden">Login with Discord</span>
             </Link>
           </Button>
