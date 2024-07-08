@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     },
     body: new URLSearchParams({
       client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
+      client_secret: String(CLIENT_SECRET),
       grant_type: "authorization_code",
       code: code,
       redirect_uri: CALLBACK_URL,
@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
     return nextRedirect(url.origin);
   }
 
-  const exchangeCodeResponse = <RESTPostOAuth2AccessTokenResult>await exchangeCodeRequest.json();
+  const exchangeCodeResponse = (await exchangeCodeRequest.json()) as RESTPostOAuth2AccessTokenResult;
   const userRequest = await fetch(`${RouteBases.api}/${Routes.user()}`, {
     method: "GET",
     headers: {
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
     return nextRedirect(url.origin);
   }
 
-  const userResponse = <APIUser>await userRequest.json();
+  const userResponse = (await userRequest.json()) as APIUser;
   const authorization = await encryptJWT({
     userId: userResponse.id,
     username: userResponse.username,
