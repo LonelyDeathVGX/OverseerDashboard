@@ -2,7 +2,7 @@ import { cn } from "@/lib/Util";
 import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
 
-const alertVariants = cva("w-full rounded-lg p-4 flex gap-2", {
+const alertVariants = cva("flex w-full gap-2 rounded-lg p-4 font-medium", {
   variants: {
     variant: {
       danger: "bg-rose-900/50 text-rose-400",
@@ -31,7 +31,7 @@ const AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<H
 AlertTitle.displayName = "AlertTitle";
 
 const AlertDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
-  ({ className, ...props }, ref) => <div ref={ref} className={cn("text-sm font-medium", className)} {...props} />,
+  ({ className, ...props }, ref) => <div ref={ref} className={cn("text-sm", className)} {...props} />,
 );
 AlertDescription.displayName = "AlertDescription";
 
