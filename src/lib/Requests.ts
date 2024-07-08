@@ -58,7 +58,9 @@ export async function fetchClientGuild(guildId: string): Promise<FetchClientGuil
       Authorization: `Bot ${process.env.CLIENT_TOKEN}`,
       "Content-Type": "application/json",
     },
-    cache: "no-store",
+    next: {
+      revalidate: 5,
+    },
   });
   const guildResponse = await guildRequest.json();
 
