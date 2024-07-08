@@ -19,3 +19,13 @@
 *:focus {
   outline: none;
 }
+
+.full-page {
+  height: calc(100vh - 4rem);
+}
+
+@media (max-height: 650px) {
+  .full-page {
+    height: calc(650px - 4rem);
+  }
+}
