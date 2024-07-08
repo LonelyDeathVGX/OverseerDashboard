@@ -1,26 +1,30 @@
+import { Entrance } from "@/components/Icons";
+import { DropdownComponent } from "@/components/common/main/navbar/Dropdown";
+import { Button } from "@/components/ui/Button";
 import { ADD_TO_DISCORD_URL, OAUTH2_URL, SUPPORT_SERVER_URL } from "@/lib/Constants";
 import { fetchSession } from "@/lib/Server";
-import { Button, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
-import { DropdownComponent } from "./Dropdown";
+import Link from "next/link";
+import type { HTMLAttributeAnchorTarget } from "react";
 
 const Items: {
   name: string;
   href: string;
-  isExternal?: boolean;
+  target: HTMLAttributeAnchorTarget;
 }[] = [
   {
     name: "Invite",
     href: ADD_TO_DISCORD_URL,
-    isExternal: true,
+    target: "_blank",
   },
   {
     name: "Server",
     href: SUPPORT_SERVER_URL,
-    isExternal: true,
+    target: "_blank",
   },
   {
     name: "Dashboard",
     href: "/dashboard",
+    target: "_self",
   },
 ];
 
@@ -28,34 +32,35 @@ export async function NavbarComponent({ isDashboard }: { isDashboard: boolean })
   const session = await fetchSession();
 
   return (
-    <Navbar isBordered={true} isBlurred={true}>
-      <NavbarContent justify="start">
-        <NavbarBrand>
-          <Link href="/" className="font-bold text-xl text-white">
-            Overseer
-          </Link>
-        </NavbarBrand>
-      </NavbarContent>
-      {isDashboard ? null : (
-        <NavbarContent className="hidden sm:flex gap-6" justify="center">
-          {Items.map((item) => (
-            <NavbarItem key={item.name}>
-              <Link isExternal={item.isExternal} color="foreground" href={item.href} className="font-medium text-sm">
-                {item.name}
-              </Link>
-            </NavbarItem>
-          ))}
-        </NavbarContent>
-      )}
-      <NavbarContent justify="end">
+    <nav className="sticky top-0 z-50 flex h-16 w-full items-center justify-center border-default-800 border-b bg-black/50 backdrop-blur-xl">
+      <header className="flex w-full max-w-5xl items-center justify-between px-5">
+        <Link href="/" className="font-bold text-white text-xl">
+          Overseer
+        </Link>
+        {!isDashboard && (
+          <ul className="hidden gap-4 md:flex">
+            {Items.map((item) => (
+              <li key={item.name} className="font-medium text-sm">
+                <Button asChild={true} variant="link">
+                  <Link target={item.target} href={item.href}>
+                    {item.name}
+                  </Link>
+                </Button>
+              </li>
+            ))}
+          </ul>
+        )}
         {session ? (
           <DropdownComponent session={session} />
         ) : (
-          <Button as={Link} href={OAUTH2_URL} className="font-medium">
-            Login
+          <Button asChild={true} variant="outline">
+            <Link href={OAUTH2_URL} className="flex items-center gap-2">
+              <Entrance className="size-5" />
+              <span className="xs:block hidden">Login with Discord</span>
+            </Link>
           </Button>
         )}
-      </NavbarContent>
-    </Navbar>
+      </header>
+    </nav>
   );
 }
