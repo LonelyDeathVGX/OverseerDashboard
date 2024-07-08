@@ -1,3 +1,4 @@
+import { LogoutItemComponent } from "@/components/common/main/navbar/LogoutItem";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import {
   DropdownMenu,
@@ -13,7 +14,6 @@ import type { Session } from "@/lib/Server";
 import { RouteBases } from "discord-api-types/v10";
 import Link from "next/link";
 import type { HTMLAttributeAnchorTarget } from "react";
-import { LogoutItemComponent } from "./LogoutItem";
 
 const Items: {
   name: string;
@@ -61,14 +61,14 @@ export function DropdownComponent({ session }: { session: Session }) {
             </Avatar>
             <span className="flex flex-col">
               <h1 className="font-bold text-sm text-white">@{session.username}</h1>
-              <p className="font-medium text-default-400 text-xs ">{session.userId}</p>
+              <p className="font-medium text-default-400 text-xs">{session.userId}</p>
             </span>
           </DropdownMenuLabel>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup className="p-2">
           {Items.map((item) => (
-            <DropdownMenuItem key={item.name} asChild={true} className="font-medium">
+            <DropdownMenuItem key={item.name} asChild={true}>
               <Link target={item.target} href={item.href}>
                 {item.name}
               </Link>
