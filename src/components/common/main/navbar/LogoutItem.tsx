@@ -15,7 +15,7 @@ export function LogoutItemComponent() {
   return (
     <DropdownMenuItem onClick={handleLogout} className="flex items-center gap-2 text-rose-400">
       <LogOut className="size-5" />
-      Logout
+      <span>Logout</span>
     </DropdownMenuItem>
   );
 }
