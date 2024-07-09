@@ -1,6 +1,6 @@
 import { NavbarComponent } from "@/components/common/main/navbar/Navbar";
 import { Button } from "@/components/ui/Button";
-import { Unlink } from "lucide-react";
+import { House, Unlink } from "lucide-react";
 import Link from "next/link";
 
 export default function Page() {
@@ -14,8 +14,9 @@ export default function Page() {
           </div>
           <h1 className="text-center font-bold text-white text-xl">This page could not be found</h1>
           <Button asChild={true} variant="outline">
-            <Link target="_self" href="/">
-              Go to main page
+            <Link target="_self" href="/" className="flex items-center gap-2">
+              <House className="size-5" />
+              <span>Go to main page</span>
             </Link>
           </Button>
         </div>

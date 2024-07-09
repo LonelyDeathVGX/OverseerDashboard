@@ -19,7 +19,7 @@ export function GuildComponent({ guild }: { guild: RESTAPIPartialCurrentUserGuil
             className="h-48 w-full select-none object-cover blur-xl"
           />
           <div className="absolute top-0 flex h-full w-full flex-col items-center justify-center gap-4 p-4">
-            <div className="size-24 rounded-full border border-default-700 bg-default-950/50 p-2 backdrop-blur-sm">
+            <div className="size-24 rounded-full bg-default-950/50 p-2 backdrop-blur-sm">
               <Image
                 width={1024}
                 height={1024}
@@ -32,7 +32,7 @@ export function GuildComponent({ guild }: { guild: RESTAPIPartialCurrentUserGuil
                 className="size-full rounded-full"
               />
             </div>
-            <div className="w-full rounded-lg border border-default-700 bg-default-950/50 p-2 text-center font-medium text-xs backdrop-blur-sm">
+            <div className="w-full rounded-lg bg-default-950/50 p-2 text-center font-medium text-xs backdrop-blur-sm">
               {cutText(guild.name, 20)}
             </div>
           </div>

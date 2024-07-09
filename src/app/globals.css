@@ -24,6 +24,10 @@
   height: calc(100vh - 4rem);
 }
 
+svg {
+  flex-shrink: 0;
+}
+
 @media (max-height: 650px) {
   .full-page {
     height: calc(650px - 4rem);
