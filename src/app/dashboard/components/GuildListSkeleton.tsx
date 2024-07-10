@@ -4,9 +4,9 @@ import { Card, CardContent } from "#ui/Card";
 export function GuildListSkeletonComponent() {
   return Array(4)
     .fill(undefined)
-    .map((index) => (
+    .map((_, index) => (
       <Card
-        key={index}
+        key={index.toString()}
         style={{
           backgroundImage: `url("/assets/Discord.webp")`,
         }}
