@@ -1,7 +1,7 @@
-import { GuildComponent } from "@/components/common/main/dashboard/Guild";
 import { Alert, AlertDescription } from "@/components/ui/Alert";
 import { fetchUserGuilds } from "@/lib/Requests";
 import { CircleAlert, CircleX } from "lucide-react";
+import { GuildComponent } from "./Guild";
 
 export async function GuildListComponent() {
   const { guilds, rateLimited } = await fetchUserGuilds();

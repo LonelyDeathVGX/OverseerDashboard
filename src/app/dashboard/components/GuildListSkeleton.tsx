@@ -1,5 +1,5 @@
-import { Card, CardContent } from "@/components/ui/Card";
-import { Skeleton } from "@/components/ui/Skeleton";
+import { Card, CardContent } from "#ui/Card";
+import { Skeleton } from "#ui/Skeleton";
 
 export function GuildListSkeletonComponent() {
   return Array(4)
