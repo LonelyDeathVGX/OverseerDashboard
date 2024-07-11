@@ -1,15 +1,15 @@
 "use server";
 
-import { decryptJWT } from "@/lib/Util";
 import type { Nullish } from "@sapphire/utilities";
 import type { JWTPayload } from "jose";
 import { cookies } from "next/headers";
+import { decryptJWT } from "./Util";
 
 export async function fetchSession(): Promise<Session | Nullish> {
   const authorization = cookies().get("authorization")?.value ?? "";
   const payload = await decryptJWT(authorization);
 
-  return typeof payload === "object" ? <Session>payload : null;
+  return typeof payload === "object" ? (payload as Session) : null;
 }
 
 // biome-ignore lint/suspicious/useAwait:

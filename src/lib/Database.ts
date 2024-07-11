@@ -1,26 +1,28 @@
-import { MONGO_DB_API_KEY, MONGO_DB_DATABASE, MONGO_DB_DATA_SOURCE, MONGO_DB_DATA_URL } from "@/lib/Constants";
-import type { GuildConfiguration, Schemas } from "@/typings/Schemas";
+import type { GuildConfiguration, Schemas } from "#schemas";
 
 const headers: HeadersInit = {
   "Access-Control-Allow-Origin": "*",
   "Content-Type": "application/ejson",
-  "api-key": String(MONGO_DB_API_KEY),
+  "api-key": String(process.env.MONGO_DB_API_KEY),
   Accept: "application/json",
 };
 const body = (collection: Collections, data: object): string =>
   JSON.stringify({
     ...data,
     collection,
-    dataSource: String(MONGO_DB_DATA_SOURCE),
-    database: String(MONGO_DB_DATABASE),
+    dataSource: String(process.env.MONGO_DB_DATA_SOURCE),
+    database: String(process.env.MONGO_DB_DATABASE),
   });
 
-async function query<T extends Schemas>(action: Actions, body: string): Promise<Query<T>> {
-  const collectionRequest = await fetch(`${String(MONGO_DB_DATA_URL)}/action/${action}`, {
+async function query<T extends Schemas>(action: Actions, body: string, tags: string[]): Promise<Query<T>> {
+  const collectionRequest = await fetch(`${String(process.env.MONGO_DB_DATA_URL)}/action/${action}`, {
     method: "POST",
     headers,
     body,
     cache: "no-cache",
+    next: {
+      tags,
+    },
   });
   const { document } = await collectionRequest.json();
 
@@ -35,9 +37,23 @@ export async function fetchGuildConfiguration(guildID: string) {
     "findOne",
     body("GuildConfiguration", {
       filter: {
-        guild_id: guildID,
+        guildID,
       },
     }),
+    [`${guildID}_GeneralConfiguration`],
+  );
+}
+
+export async function updateGuildConfiguration(guildID: string, payload: object) {
+  return await query<GuildConfiguration>(
+    "updateOne",
+    body("GuildConfiguration", {
+      filter: {
+        guildID,
+      },
+      update: payload,
+    }),
+    [`${guildID}_GeneralConfiguration`],
   );
 }
 

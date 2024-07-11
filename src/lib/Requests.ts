@@ -1,8 +1,6 @@
-import { BitField } from "@/lib/BitField";
-import { fetchSession } from "@/lib/Server";
-import { decrypt } from "@/lib/Util";
 import {
   type APIGuild,
+  type APIGuildMember,
   PermissionFlagsBits,
   type RESTAPIPartialCurrentUserGuild,
   type RESTGetAPICurrentUserGuildsResult,
@@ -10,6 +8,9 @@ import {
   RouteBases,
   Routes,
 } from "discord-api-types/v10";
+import { BitField } from "./BitField";
+import { fetchSession } from "./Server";
+import { decrypt } from "./Util";
 
 export async function fetchUserGuilds(): Promise<FetchUserGuildsResponse> {
   const session = await fetchSession();
@@ -51,8 +52,8 @@ export async function fetchUserGuilds(): Promise<FetchUserGuildsResponse> {
   };
 }
 
-export async function fetchClientGuild(guildId: string): Promise<FetchClientGuildResponse> {
-  const guildRequest = await fetch(`${RouteBases.api}/${Routes.guild(guildId)}`, {
+export async function fetchClientGuild(guildID: string): Promise<FetchClientGuildResponse> {
+  const guildRequest = await fetch(`${RouteBases.api}/${Routes.guild(guildID)}`, {
     method: "GET",
     headers: {
       Authorization: `Bot ${process.env.CLIENT_TOKEN}`,
@@ -85,6 +86,40 @@ export async function fetchClientGuild(guildId: string): Promise<FetchClientGuil
   };
 }
 
+export async function fetchGuildMember(guildID: string, memberID: string): Promise<FetchGuildMemberResponse> {
+  const memberRequest = await fetch(`${RouteBases.api}/${Routes.guildMember(guildID, memberID)}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bot ${process.env.CLIENT_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    next: {
+      revalidate: 5,
+    },
+  });
+  const memberResponse = await memberRequest.json();
+
+  if ("errors" in memberResponse) {
+    return {
+      found: false,
+      error: true,
+    };
+  }
+
+  if (memberRequest.status === 404 || memberResponse.code === RESTJSONErrorCodes.UnknownGuild) {
+    return {
+      found: false,
+      error: false,
+    };
+  }
+
+  return {
+    found: true,
+    error: false,
+    member: memberResponse,
+  };
+}
+
 interface FetchUserGuildsResponse {
   rateLimited: boolean;
   guilds?: RESTAPIPartialCurrentUserGuild[];
@@ -94,4 +129,10 @@ interface FetchClientGuildResponse {
   found: boolean;
   error: boolean;
   guild?: APIGuild;
+}
+
+interface FetchGuildMemberResponse {
+  found: boolean;
+  error: boolean;
+  member?: APIGuildMember;
 }

@@ -1,9 +1,11 @@
-import type { Session } from "@/lib/Server";
 import type { Nullish } from "@sapphire/utilities";
 import { type ClassValue, clsx } from "clsx";
 import Crypto from "crypto-js";
+import { type APIGuild, type APIRole, PermissionFlagsBits } from "discord-api-types/v10";
 import { type JWTPayload, SignJWT, jwtVerify } from "jose";
 import { twMerge } from "tailwind-merge";
+import { fetchGuildMember } from "./Requests";
+import type { Session } from "./Server";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -39,17 +41,39 @@ export async function decryptJWT(token: string): Promise<Session | Nullish> {
   }
 }
 
-export function bitFieldValues(bitField: number): number[] {
-  const fields = [];
+export async function memberPermissions(guild: APIGuild, memberID: string): Promise<bigint> {
+  const ALL_PERMISSIONS = Object.values(PermissionFlagsBits).reduce((a, b) => a | b, BigInt(0));
 
-  for (let i = 0; i < Math.log2(bitField) + 1; i++) {
-    const power = 2 ** i;
-    const result = bitField & power;
+  if (guild.owner_id === memberID) {
+    return ALL_PERMISSIONS;
+  }
 
-    if (result !== 0) {
-      fields.push(result);
+  const rolesMap: Map<string, APIRole> = new Map();
+
+  for (const role of guild.roles) {
+    rolesMap.set(role.id, role);
+  }
+
+  const { found, error, member } = await fetchGuildMember(guild.id, memberID);
+
+  if (!found || error || !member) {
+    return BigInt(0);
+  }
+
+  const everyoneRole = rolesMap.get(guild.id) as APIRole;
+  let permissions = Number.parseInt(everyoneRole.permissions);
+
+  for (const roleID of member.roles) {
+    const role = rolesMap.get(roleID);
+
+    if (role) {
+      permissions |= Number.parseInt(role.permissions);
     }
   }
 
-  return fields;
+  if (BigInt(permissions) & PermissionFlagsBits.Administrator) {
+    return ALL_PERMISSIONS;
+  }
+
+  return BigInt(permissions);
 }
