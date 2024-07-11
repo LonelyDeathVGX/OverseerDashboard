@@ -5,15 +5,16 @@ import * as React from "react";
 const alertVariants = cva("flex w-full gap-2 rounded-lg p-4 font-medium", {
   variants: {
     variant: {
-      danger: "bg-rose-900/50 text-rose-400",
-      default: "bg-cyan-900/50 text-cyan-400",
-      secondary: "bg-fuchsia-900/50 text-fuchsia-400",
-      success: "bg-emerald-900/50 text-emerald-400",
-      warning: "bg-amber-900/50 text-amber-400",
+      amber: "bg-amber-950 text-amber-400",
+      cyan: "bg-cyan-950 text-cyan-400",
+      emerald: "bg-emerald-950 text-emerald-400",
+      fuchsia: "bg-fuchsia-950 text-fuchsia-400",
+      rose: "bg-rose-950 text-rose-400",
+      white: "bg-white text-black",
     },
   },
   defaultVariants: {
-    variant: "default",
+    variant: "cyan",
   },
 });
 
