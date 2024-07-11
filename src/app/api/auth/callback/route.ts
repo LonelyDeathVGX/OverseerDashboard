@@ -8,12 +8,12 @@ import { NextResponseRedirect } from "#lib/Responses";
 export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest) {
-  const url = new URL(request.url);
-  const code = url.searchParams.get("code");
+  const { searchParams, origin } = request.nextUrl;
+  const code = searchParams.get("code");
 
   if (!code) {
     return NextResponseRedirect({
-      url: url.origin,
+      url: origin,
     });
   }
 
@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
 
   if (!exchangeCodeRequest.ok) {
     return NextResponseRedirect({
-      url: url.origin,
+      url: origin,
     });
   }
 
@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
 
   if (!userRequest.ok) {
     return NextResponseRedirect({
-      url: url.origin,
+      url: origin,
     });
   }
 
@@ -71,6 +71,6 @@ export async function GET(request: NextRequest) {
   });
 
   return NextResponseRedirect({
-    url: url.origin,
+    url: origin,
   });
 }
