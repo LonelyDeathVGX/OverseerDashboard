@@ -3,7 +3,6 @@ import type { Nullish } from "@sapphire/utilities";
 import { type ClassValue, clsx } from "clsx";
 import Crypto from "crypto-js";
 import { type JWTPayload, SignJWT, jwtVerify } from "jose";
-import { NextResponse } from "next/server";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -53,27 +52,4 @@ export function bitFieldValues(bitField: number): number[] {
   }
 
   return fields;
-}
-
-export function nextResponse({
-  data,
-  status,
-  init,
-}: { data: unknown; status: number; init?: ResponseInit }): NextResponse {
-  return NextResponse.json(
-    {
-      data,
-      success: status === 200,
-    },
-    {
-      status,
-      ...init,
-    },
-  );
-}
-
-export function nextRedirect(url: string): NextResponse {
-  return NextResponse.redirect(url, {
-    status: 302,
-  });
 }
