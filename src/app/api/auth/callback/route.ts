@@ -1,8 +1,9 @@
 import { CALLBACK_URL, CLIENT_ID } from "@/lib/Constants";
-import { encrypt, encryptJWT, nextRedirect } from "@/lib/Util";
+import { encrypt, encryptJWT } from "@/lib/Util";
 import { type APIUser, type RESTPostOAuth2AccessTokenResult, RouteBases, Routes } from "discord-api-types/v10";
 import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
+import { NextResponseRedirect } from "#lib/Responses";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +12,9 @@ export async function GET(request: NextRequest) {
   const code = url.searchParams.get("code");
 
   if (!code) {
-    return nextRedirect(url.origin);
+    return NextResponseRedirect({
+      url: url.origin,
+    });
   }
 
   const exchangeCodeRequest = await fetch(`${RouteBases.api}/${Routes.oauth2TokenExchange()}`, {
@@ -25,12 +28,15 @@ export async function GET(request: NextRequest) {
       grant_type: "authorization_code",
       code: code,
       redirect_uri: CALLBACK_URL,
-      scopes: "identity guilds email",
+      scopes: "identity guilds",
     }),
+    cache: "no-store",
   });
 
   if (!exchangeCodeRequest.ok) {
-    return nextRedirect(url.origin);
+    return NextResponseRedirect({
+      url: url.origin,
+    });
   }
 
   const exchangeCodeResponse = (await exchangeCodeRequest.json()) as RESTPostOAuth2AccessTokenResult;
@@ -43,7 +49,9 @@ export async function GET(request: NextRequest) {
   });
 
   if (!userRequest.ok) {
-    return nextRedirect(url.origin);
+    return NextResponseRedirect({
+      url: url.origin,
+    });
   }
 
   const userResponse = (await userRequest.json()) as APIUser;
@@ -53,7 +61,6 @@ export async function GET(request: NextRequest) {
     avatarHash: userResponse.avatar,
     globalName: userResponse.global_name,
     name: userResponse.global_name ?? userResponse.username,
-    email: encrypt(userResponse.email ?? ""),
     accessToken: encrypt(exchangeCodeResponse.access_token),
   });
 
@@ -63,5 +70,7 @@ export async function GET(request: NextRequest) {
     maxAge: 604_800,
   });
 
-  return nextRedirect(url.origin);
+  return NextResponseRedirect({
+    url: url.origin,
+  });
 }

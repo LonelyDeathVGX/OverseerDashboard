@@ -3,6 +3,7 @@ import "./globals.css";
 import { BASE_URL } from "@/lib/Constants";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Toaster } from "#ui/Toaster";
 
 export const metadata: Metadata = {
   title: "Overseer",
@@ -29,7 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-black">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }
