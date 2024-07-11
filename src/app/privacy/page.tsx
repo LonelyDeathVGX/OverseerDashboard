@@ -10,7 +10,7 @@ export default function Page() {
         <div className="flex w-full max-w-5xl flex-col gap-6 px-5">
           <h1 className="font-bold text-3xl text-white">Privacy Policy</h1>
           <div className="flex flex-col gap-6">
-            <Alert variant="warning">
+            <Alert variant="amber">
               <CircleAlert className="size-5" />
               <AlertDescription>This page is under construction.</AlertDescription>
             </Alert>
