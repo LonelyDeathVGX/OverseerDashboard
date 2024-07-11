@@ -55,7 +55,11 @@ export function bitFieldValues(bitField: number): number[] {
   return fields;
 }
 
-export function nextResponse({ data, status }: { data: unknown; status: number }): NextResponse {
+export function nextResponse({
+  data,
+  status,
+  init,
+}: { data: unknown; status: number; init?: ResponseInit }): NextResponse {
   return NextResponse.json(
     {
       data,
@@ -63,6 +67,7 @@ export function nextResponse({ data, status }: { data: unknown; status: number }
     },
     {
       status,
+      ...init,
     },
   );
 }
