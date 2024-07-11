@@ -18,7 +18,7 @@ export async function deleteSession(): Promise<void> {
 }
 
 export type Session = {
-  userId: string;
+  userID: string;
   username: string;
   avatarHash: string | Nullish;
   globalName: string | Nullish;

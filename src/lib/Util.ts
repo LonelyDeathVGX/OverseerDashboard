@@ -1,4 +1,3 @@
-import { KEY } from "@/lib/Constants";
 import type { Session } from "@/lib/Server";
 import type { Nullish } from "@sapphire/utilities";
 import { type ClassValue, clsx } from "clsx";
@@ -12,11 +11,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function encrypt(data: string): string {
-  return Crypto.AES.encrypt(data, process.env.KEY ?? "").toString();
+  return Crypto.AES.encrypt(data, process.env.ENCRYPT_KEY ?? "").toString();
 }
 
 export function decrypt(data: string): string {
-  return Crypto.AES.decrypt(data, process.env.KEY ?? "").toString(Crypto.enc.Utf8);
+  return Crypto.AES.decrypt(data, process.env.ENCRYPT_KEY ?? "").toString(Crypto.enc.Utf8);
 }
 
 export async function encryptJWT(payload: JWTPayload): Promise<string> {
@@ -26,12 +25,12 @@ export async function encryptJWT(payload: JWTPayload): Promise<string> {
     })
     .setIssuedAt()
     .setExpirationTime("7 days")
-    .sign(KEY);
+    .sign(new TextEncoder().encode(process.env.JWT_KEY));
 }
 
 export async function decryptJWT(token: string): Promise<Session | Nullish> {
   try {
-    const { payload } = await jwtVerify(token, KEY, {
+    const { payload } = await jwtVerify(token, new TextEncoder().encode(process.env.JWT_KEY), {
       algorithms: ["HS256"],
     });
 

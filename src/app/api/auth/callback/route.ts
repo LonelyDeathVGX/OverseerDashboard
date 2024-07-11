@@ -1,4 +1,4 @@
-import { CALLBACK_URL, CLIENT_ID, CLIENT_SECRET } from "@/lib/Constants";
+import { CALLBACK_URL, CLIENT_ID } from "@/lib/Constants";
 import { encrypt, encryptJWT, nextRedirect } from "@/lib/Util";
 import { type APIUser, type RESTPostOAuth2AccessTokenResult, RouteBases, Routes } from "discord-api-types/v10";
 import { cookies } from "next/headers";
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     },
     body: new URLSearchParams({
       client_id: CLIENT_ID,
-      client_secret: String(CLIENT_SECRET),
+      client_secret: String(process.env.CLIENT_SECRET),
       grant_type: "authorization_code",
       code: code,
       redirect_uri: CALLBACK_URL,
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
 
   const userResponse = (await userRequest.json()) as APIUser;
   const authorization = await encryptJWT({
-    userId: userResponse.id,
+    userID: userResponse.id,
     username: userResponse.username,
     avatarHash: userResponse.avatar,
     globalName: userResponse.global_name,
