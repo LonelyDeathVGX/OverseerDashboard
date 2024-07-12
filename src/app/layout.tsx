@@ -2,6 +2,7 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { AdSenseComponent } from "#components/AdSense";
 import { BASE_URL } from "#lib/Constants";
 import { Toaster } from "#ui/Toaster";
 
@@ -30,6 +31,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="bg-black">
+      <head>
+        <AdSenseComponent />
+      </head>
       <body>
         {children}
         <Toaster />
