@@ -1,4 +1,4 @@
-import { cn } from "@/lib/Util";
+import { cn } from "#lib/Util";
 import * as React from "react";
 
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
@@ -24,7 +24,7 @@ const CardDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttribu
 CardDescription.displayName = "CardDescription";
 
 const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => <div ref={ref} className={cn(className)} {...props} />,
+  ({ className, ...props }, ref) => <div ref={ref} className={cn("p-6", className)} {...props} />,
 );
 CardContent.displayName = "CardContent";
 
