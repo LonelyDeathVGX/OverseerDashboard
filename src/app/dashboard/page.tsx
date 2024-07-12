@@ -1,7 +1,7 @@
-import { GuildListComponent } from "@/components/common/main/dashboard/GuildList";
-import { GuildListSkeletonComponent } from "@/components/common/main/dashboard/GuildListSkeleton";
-import { NavbarComponent } from "@/components/common/main/navbar/Navbar";
 import { Suspense } from "react";
+import { NavbarComponent } from "#components/navbar/Navbar";
+import { GuildListComponent } from "./components/GuildList";
+import { GuildListSkeletonComponent } from "./components/GuildListSkeleton";
 
 export default function Page() {
   return (
