@@ -1,5 +1,5 @@
-import { NavbarComponent } from "@/components/common/main/navbar/Navbar";
 import { CircleAlert } from "lucide-react";
+import { NavbarComponent } from "#components/navbar/Navbar";
 import { Alert, AlertDescription } from "#ui/Alert";
 
 export default function Page() {
