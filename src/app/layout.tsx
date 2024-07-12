@@ -1,8 +1,8 @@
 import "./globals.css";
 
-import { BASE_URL } from "@/lib/Constants";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { BASE_URL } from "#lib/Constants";
 import { Toaster } from "#ui/Toaster";
 
 export const metadata: Metadata = {

@@ -1,7 +1,7 @@
-import { NavbarComponent } from "@/components/common/main/navbar/Navbar";
-import { Button } from "@/components/ui/Button";
 import { House, Unlink } from "lucide-react";
 import Link from "next/link";
+import { NavbarComponent } from "#components/navbar/Navbar";
+import { Button } from "#ui/Button";
 
 export default function Page() {
   return (
