@@ -25,9 +25,9 @@ export const runtime = "edge";
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className="bg-black">
       <body>

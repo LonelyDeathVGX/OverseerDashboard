@@ -5,12 +5,12 @@ import { SidebarComponent } from "./components/Sidebar";
 export default function Layout({
   children,
   params,
-}: Readonly<{
+}: {
   children: ReactNode;
   params: {
     id: string;
   };
-}>) {
+}) {
   return (
     <div>
       <NavbarComponent isDashboard={true} />

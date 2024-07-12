@@ -5,11 +5,11 @@ import { Card, CardHeader, CardTitle } from "#ui/Card";
 
 export default async function Page({
   params,
-}: Readonly<{
+}: {
   params: {
     id: string;
   };
-}>) {
+}) {
   const { guild } = await fetchClientGuild(params.id);
 
   return (
