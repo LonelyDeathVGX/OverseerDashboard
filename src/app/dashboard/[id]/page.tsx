@@ -16,7 +16,7 @@ export default async function Page({
     <div className="flex flex-col gap-6">
       <Alert>
         <Info className="size-5" />
-        <div>
+        <div className="flex flex-col gap-1">
           <AlertTitle>Welcome to the Overseer Dashboard</AlertTitle>
           <AlertDescription>
             This Dashboard is still under development, so we welcome feedback from all our users.
