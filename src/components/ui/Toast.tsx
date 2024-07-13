@@ -50,7 +50,7 @@ const ToastClose = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Close
     ref={ref}
-    className={cn("absolute top-2 right-2 group-[.emerald]:text-emerald-400 group-[.rose]:text-rose-400", className)}
+    className={cn("absolute top-4 right-4 group-[.emerald]:text-emerald-400 group-[.rose]:text-rose-400", className)}
     toast-close=""
     {...props}
   >
