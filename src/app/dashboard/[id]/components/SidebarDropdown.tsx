@@ -37,7 +37,7 @@ export async function SidebarDropdownComponent({ guild }: { guild: APIGuild }) {
           </span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-64">
+      <DropdownMenuContent className="w-60">
         {guilds?.length && (
           <DropdownMenuGroup className="p-2">
             {guilds
