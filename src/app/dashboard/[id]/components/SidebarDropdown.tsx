@@ -66,7 +66,7 @@ export async function SidebarDropdownComponent({ guild }: { guild: APIGuild }) {
         <DropdownMenuGroup className="p-2">
           <DropdownMenuItem asChild={true}>
             <Link target="_blank" href={ADD_TO_DISCORD_URL} className="flex items-center gap-2">
-              <CirclePlus className="size-5" />
+              <CirclePlus className="size-5 text-default-400" />
               Add to a Server
             </Link>
           </DropdownMenuItem>
