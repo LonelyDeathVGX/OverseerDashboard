@@ -1,21 +1,23 @@
-import { cn } from "@/lib/Util";
 import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
+import { cn } from "../Util";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-lg font-medium text-sm transition-colors disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        danger: "bg-rose-900/50 text-rose-400 hover:bg-rose-900/25",
-        default: "bg-white text-black hover:bg-white/75",
-        ghost: "text-white hover:bg-default-900/75",
+        amber: "bg-amber-950 text-amber-400 hover:bg-amber-950/75",
+        cyan: "bg-cyan-950 text-cyan-400 hover:bg-cyan-950/75",
+        default: "bg-default-950 text-white hover:bg-default-950/75",
+        emerald: "bg-emerald-950 text-emerald-400 hover:bg-emerald-950/75",
+        fuchsia: "bg-fuchsia-950 text-fuchsia-400 hover:bg-fuchsia-950/75",
+        ghost: "text-white hover:bg-default-950/75",
         link: "text-white underline-offset-4 hover:underline",
-        outline: "border border-default-800 text-white hover:border-transparent hover:bg-default-900/75",
-        secondary: "bg-default-900 text-white hover:bg-default-900/75",
-        success: "bg-emerald-900/50 text-emerald-400 hover:bg-emerald-900/25",
-        warning: "bg-amber-900/50 text-amber-400 hover:bg-amber-900/25",
+        outline: "border border-default-700 text-white hover:border-transparent hover:bg-default-950/75",
+        rose: "bg-rose-950 text-rose-400 hover:bg-rose-950/75",
+        white: "bg-white text-black hover:bg-white/75",
       },
       size: {
         default: "h-10 p-4",
@@ -23,7 +25,7 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "white",
       size: "default",
     },
   },
