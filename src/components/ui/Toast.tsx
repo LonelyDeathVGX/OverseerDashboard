@@ -26,8 +26,8 @@ const toastVariants = cva(
   {
     variants: {
       variant: {
-        emerald: "group emerald bg-emerald-950 text-emerald-200",
-        rose: "group rose bg-rose-950 text-rose-200",
+        emerald: "group emerald bg-emerald-950 text-emerald-400",
+        rose: "group rose bg-rose-950 text-rose-400",
       },
     },
     defaultVariants: {
@@ -50,7 +50,7 @@ const ToastClose = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Close
     ref={ref}
-    className={cn("absolute top-2 right-2 group-[.emerald]:text-emerald-200 group-[.rose]:text-rose-200", className)}
+    className={cn("absolute top-2 right-2 group-[.emerald]:text-emerald-400 group-[.rose]:text-rose-400", className)}
     toast-close=""
     {...props}
   >
