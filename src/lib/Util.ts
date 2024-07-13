@@ -1,15 +1,9 @@
 import type { Nullish } from "@sapphire/utilities";
-import { type ClassValue, clsx } from "clsx";
 import Crypto from "crypto-js";
 import { type APIGuild, type APIRole, PermissionFlagsBits } from "discord-api-types/v10";
 import { type JWTPayload, SignJWT, jwtVerify } from "jose";
-import { twMerge } from "tailwind-merge";
 import { fetchGuildMember } from "./Requests";
 import type { Session } from "./Server";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 export function encrypt(data: string): string {
   return Crypto.AES.encrypt(data, process.env.ENCRYPT_KEY ?? "").toString();
@@ -77,3 +71,20 @@ export async function memberPermissions(guild: APIGuild, memberID: string): Prom
 
   return BigInt(permissions);
 }
+
+export async function makeRequest<T>({
+  path,
+  method,
+}: {
+  path: string;
+  method: MakeRequestMethods;
+}): Promise<T> {
+  const request = await fetch(path, {
+    method,
+    credentials: "include",
+  });
+
+  return (await request.json()) as T;
+}
+
+type MakeRequestMethods = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";
