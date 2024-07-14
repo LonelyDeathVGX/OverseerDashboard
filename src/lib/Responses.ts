@@ -1,3 +1,5 @@
+import "server-only";
+
 import { NextResponse as ServerNextResponse } from "next/server";
 
 export function NextResponseRedirect({ url, init }: { url: string; init?: ResponseInit }) {
