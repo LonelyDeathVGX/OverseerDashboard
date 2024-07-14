@@ -1,9 +1,9 @@
-import { CALLBACK_URL, CLIENT_ID } from "@/lib/Constants";
-import { encrypt, encryptJWT } from "@/lib/Util";
 import { type APIUser, type RESTPostOAuth2AccessTokenResult, RouteBases, Routes } from "discord-api-types/v10";
 import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
+import { CALLBACK_URL, CLIENT_ID } from "#lib/Constants";
 import { NextResponseRedirect } from "#lib/Responses";
+import { encrypt, encryptJWT } from "#lib/Util";
 
 export const dynamic = "force-dynamic";
 
