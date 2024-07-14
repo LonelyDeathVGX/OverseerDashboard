@@ -1,18 +1,22 @@
-import { fetchSession } from "@/lib/Server";
-import { nextRedirect } from "@/lib/Util";
-import { type MiddlewareConfig, type NextRequest, NextResponse } from "next/server";
+import type { MiddlewareConfig, NextRequest } from "next/server";
+import { NextResponseNext } from "#lib/Responses";
+import { APIDashboardMiddleware } from "./middlewares/APIDashboard";
+import { DashboardMiddleware } from "./middlewares/Dashboard";
 
 export async function middleware(request: NextRequest) {
-  const url = new URL(request.url);
-  const session = await fetchSession();
+  const { pathname } = request.nextUrl;
 
-  if (!session) {
-    return nextRedirect(url.origin);
+  if (pathname.startsWith("/api/dashboard")) {
+    return await APIDashboardMiddleware(request);
   }
 
-  return NextResponse.next();
+  if (pathname.startsWith("/dashboard")) {
+    return await DashboardMiddleware(request);
+  }
+
+  return NextResponseNext({});
 }
 
 export const config: MiddlewareConfig = {
-  matcher: "/dashboard/:path*",
+  matcher: ["/dashboard/:path*", "/api/dashboard/:path*"],
 };
