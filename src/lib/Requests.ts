@@ -34,6 +34,7 @@ export async function fetchUserGuilds(): Promise<FetchUserGuildsResponse> {
     next: {
       revalidate: 5,
     },
+    cache: "force-cache",
   });
 
   if (!guildsRequest.ok) {
