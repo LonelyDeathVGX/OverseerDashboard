@@ -1,7 +1,7 @@
 export const CLIENT_ID = "1228065406196125810";
 
 export const BASE_URL =
-  process.env.NODE_ENV === "production" ? "https://overseer-bot.pages.dev" : "http://localhost:3000";
+  process.env.NODE_ENV === "production" ? "https://overseerbot.pages.dev" : "http://localhost:3000";
 
 export const ADD_TO_DISCORD_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&permissions=117760&scope=bot`;
 export const SUPPORT_SERVER_URL = "https://discord.gg/gud55BjNFC";
