@@ -31,7 +31,6 @@ export async function GET(request: NextRequest) {
         redirect_uri: CALLBACK_URL,
         scopes: "identity guilds",
       }),
-      cache: "no-store",
     });
 
     if (!exchangeCodeRequest.ok) {

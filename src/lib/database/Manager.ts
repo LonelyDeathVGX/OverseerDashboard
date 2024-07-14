@@ -47,7 +47,6 @@ export class DatabaseManager<T, U> {
       method: "POST",
       headers: this.headers(),
       body: this.body(data),
-      cache: "no-store",
     });
     const { document } = await collectionRequest.json();
 
