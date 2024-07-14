@@ -1,3 +1,5 @@
+import "server-only";
+
 import type { Nullish } from "@sapphire/utilities";
 import Crypto from "crypto-js";
 import { type APIGuild, type APIRole, PermissionFlagsBits } from "discord-api-types/v10";
