@@ -31,9 +31,9 @@ export async function PUT(
       });
     }
 
-    const { success, data, error } = GeneralConfigurationSchema.safeParse(body);
+    const { data, error } = GeneralConfigurationSchema.safeParse(body);
 
-    if (!success) {
+    if (error) {
       return NextResponseJSON({
         data: error.issues[0].message,
         status: 422,
