@@ -44,7 +44,12 @@ export async function SidebarDropdownComponent({ guild }: { guild: APIGuild }) {
               .filter((data) => data.id !== guild.id)
               .map((data) => (
                 <DropdownMenuItem key={data.id} asChild={true}>
-                  <Link target="_self" href={`/dashboard/${data.id}`} className="flex items-center gap-2">
+                  <Link
+                    target="_self"
+                    href={`/dashboard/${data.id}`}
+                    aria-label={`${data.name} Dashboard Page`}
+                    className="flex items-center gap-2"
+                  >
                     <Avatar className="size-5 rounded-full">
                       <AvatarImage
                         alt={`${data.name} Icon`}
@@ -65,7 +70,12 @@ export async function SidebarDropdownComponent({ guild }: { guild: APIGuild }) {
         {guilds?.length && <DropdownMenuSeparator />}
         <DropdownMenuGroup className="p-2">
           <DropdownMenuItem asChild={true}>
-            <Link target="_blank" href={ADD_TO_DISCORD_URL} className="flex items-center gap-2">
+            <Link
+              target="_blank"
+              href={ADD_TO_DISCORD_URL}
+              aria-label="Add to a Server"
+              className="flex items-center gap-2"
+            >
               <CirclePlus className="size-5 text-default-400" />
               Add to a Server
             </Link>

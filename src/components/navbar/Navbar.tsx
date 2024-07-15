@@ -34,7 +34,7 @@ export async function NavbarComponent({ isDashboard }: { isDashboard: boolean })
   return (
     <nav className="sticky top-0 z-50 flex h-16 w-full items-center justify-center border-default-700 border-b bg-black/50 backdrop-blur-xl">
       <header className="flex w-full max-w-5xl items-center justify-between px-5">
-        <Link href="/" className="font-bold text-white text-xl">
+        <Link href="/" aria-label="Overseer Main Page" className="font-bold text-white text-xl">
           Overseer
         </Link>
         {!isDashboard && (
@@ -42,7 +42,11 @@ export async function NavbarComponent({ isDashboard }: { isDashboard: boolean })
             {Items.map((item) => (
               <li key={item.name} className="font-medium text-sm">
                 <Button asChild={true} variant="link">
-                  <Link target={item.target} href={item.href}>
+                  <Link
+                    target={item.target}
+                    href={item.href}
+                    aria-label={`${item.name} ${item.target === "_self" ? "Page" : "Link"}`}
+                  >
                     {item.name}
                   </Link>
                 </Button>
@@ -54,7 +58,7 @@ export async function NavbarComponent({ isDashboard }: { isDashboard: boolean })
           <NavbarDropdownComponent session={session} />
         ) : (
           <Button asChild={true} variant="outline">
-            <Link href={OAUTH2_URL} className="flex items-center gap-2">
+            <Link href={OAUTH2_URL} aria-label="Login with Discord" className="flex items-center gap-2">
               <LogIn className="size-5" />
               <span className="xs:block hidden">Login with Discord</span>
             </Link>

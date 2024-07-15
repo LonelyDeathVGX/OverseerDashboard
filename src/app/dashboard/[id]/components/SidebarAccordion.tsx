@@ -33,7 +33,7 @@ export function SidebarAccordionComponent({
               variant={pathname === item.href ? "default" : "ghost"}
               className="flex w-full justify-start"
             >
-              <Link href={item.href} className="flex items-center gap-2">
+              <Link href={item.href} aria-label={`${item.name} Page`} className="flex items-center gap-2">
                 {item.icon}
                 {item.name}
                 {item.badge && <span className="flex w-full justify-end">{item.badge}</span>}

@@ -14,8 +14,8 @@ export default function Page() {
           </div>
           <h1 className="text-center font-bold text-white text-xl">This page could not be found</h1>
           <Button asChild={true} variant="link">
-            <Link target="_self" href="/" className="flex items-center gap-2">
-              Go to main page
+            <Link target="_self" href="/" aria-label="Go to Main Page" className="flex items-center gap-2">
+              Go to Main Page
             </Link>
           </Button>
         </div>

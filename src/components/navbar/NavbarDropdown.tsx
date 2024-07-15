@@ -69,7 +69,11 @@ export function NavbarDropdownComponent({ session }: { session: Session }) {
         <DropdownMenuGroup className="p-2">
           {Items.map((item) => (
             <DropdownMenuItem key={item.name} asChild={true}>
-              <Link target={item.target} href={item.href}>
+              <Link
+                target={item.target}
+                href={item.href}
+                aria-label={`${item.name} ${item.target === "_self" ? "Page" : "Link"}`}
+              >
                 {item.name}
               </Link>
             </DropdownMenuItem>

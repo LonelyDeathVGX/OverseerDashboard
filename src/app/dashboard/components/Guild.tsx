@@ -6,7 +6,7 @@ import { Card, CardContent } from "#ui/Card";
 
 export function GuildComponent({ guild }: { guild: RESTAPIPartialCurrentUserGuild }) {
   return (
-    <Link href={`/dashboard/${guild.id}`}>
+    <Link href={`/dashboard/${guild.id}`} aria-label={`${guild.name} Dashboard Page`}>
       <Card
         style={{
           backgroundImage: `url(${guild.icon ? `${RouteBases.cdn}/icons/${guild.id}/${guild.icon}.webp?size=1024` : "/assets/Discord.webp"})`,
