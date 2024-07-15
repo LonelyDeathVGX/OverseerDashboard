@@ -3,17 +3,23 @@
 @tailwind utilities;
 
 @font-face {
+  font-display: swap;
   font-family: "Bold";
+  font-style: normal;
+  font-weight: 700;
   src: url("/fonts/Bold.ttf");
 }
 
 @font-face {
+  font-display: swap;
   font-family: "Medium";
+  font-style: normal;
+  font-weight: 500;
   src: url("/fonts/Medium.ttf");
 }
 
 * {
-  scrollbar-color: #18181b #000000;
+  scrollbar-color: #0f0f12 #000000;
 }
 
 *:focus {
