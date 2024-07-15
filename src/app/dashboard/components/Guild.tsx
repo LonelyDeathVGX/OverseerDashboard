@@ -20,7 +20,7 @@ export function GuildComponent({ guild }: { guild: RESTAPIPartialCurrentUserGuil
               height={1024}
               alt={`${guild.name} Icon`}
               src={
-                guild.icon ? `${RouteBases.cdn}/icons/${guild.id}/${guild.icon}.png?size=1024` : "/assets/Discord.webp"
+                guild.icon ? `${RouteBases.cdn}/icons/${guild.id}/${guild.icon}.webp?size=1024` : "/assets/Discord.webp"
               }
               className="size-full rounded-full"
             />

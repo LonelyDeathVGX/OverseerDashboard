@@ -26,7 +26,7 @@ export async function SidebarDropdownComponent({ guild }: { guild: APIGuild }) {
             <AvatarImage
               alt={`${guild.name} Icon`}
               src={
-                guild.icon ? `${RouteBases.cdn}/icons/${guild.id}/${guild.icon}.png?size=1024` : "/assets/Discord.webp"
+                guild.icon ? `${RouteBases.cdn}/icons/${guild.id}/${guild.icon}.webp?size=1024` : "/assets/Discord.webp"
               }
             />
             <AvatarFallback>{guild.name}</AvatarFallback>
@@ -55,7 +55,7 @@ export async function SidebarDropdownComponent({ guild }: { guild: APIGuild }) {
                         alt={`${data.name} Icon`}
                         src={
                           data.icon
-                            ? `${RouteBases.cdn}/icons/${data.id}/${data.icon}.png?size=1024`
+                            ? `${RouteBases.cdn}/icons/${data.id}/${data.icon}.webp?size=1024`
                             : "/assets/Discord.webp"
                         }
                       />

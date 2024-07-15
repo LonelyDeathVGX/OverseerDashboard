@@ -44,7 +44,7 @@ export function NavbarDropdownComponent({ session }: { session: Session }) {
         <Avatar className="size-10 cursor-pointer rounded-full ring ring-default-700">
           <AvatarImage
             alt={`${session.username}'s Avatar`}
-            src={`${`${RouteBases.cdn}/avatars/${session.userID}/${session.avatarHash}.png`}`}
+            src={`${`${RouteBases.cdn}/avatars/${session.userID}/${session.avatarHash}.webp`}`}
           />
           <AvatarFallback>{session.name}</AvatarFallback>
         </Avatar>
@@ -55,7 +55,7 @@ export function NavbarDropdownComponent({ session }: { session: Session }) {
             <Avatar className="size-8 rounded-lg">
               <AvatarImage
                 alt={`${session.username}'s Avatar`}
-                src={`${`${RouteBases.cdn}/avatars/${session.userID}/${session.avatarHash}.png`}`}
+                src={`${`${RouteBases.cdn}/avatars/${session.userID}/${session.avatarHash}.webp`}`}
               />
               <AvatarFallback>{session.name}</AvatarFallback>
             </Avatar>
