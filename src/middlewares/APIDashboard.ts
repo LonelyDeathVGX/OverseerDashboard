@@ -58,10 +58,7 @@ export async function APIDashboardMiddleware(request: NextRequest) {
   } catch (rateLimit) {
     if (rateLimit instanceof RateLimiterRes) {
       return NextResponseJSON({
-        data: {
-          message: "Too Many Requests",
-          resets: rateLimit.msBeforeNext,
-        },
+        data: `Too Many Requests. Resets in ${rateLimit.msBeforeNext / 1000} seconds`,
         status: 429,
       });
     }
