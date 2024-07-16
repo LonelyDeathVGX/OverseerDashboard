@@ -35,7 +35,7 @@ export async function NavbarComponent({ isDashboard }: { isDashboard: boolean })
   return (
     <nav className="sticky top-0 z-50 flex h-16 w-full items-center justify-center border-default-700 border-b bg-black/50 backdrop-blur-xl">
       <header className="flex w-full max-w-5xl items-center justify-between px-8">
-        <Link href="/" aria-label="Overseer Main Page" className={`${bold.className} text-white text-xl`}>
+        <Link href="/" aria-label="Overseer Main Page" className={`${bold.className} text-xl`}>
           Overseer
         </Link>
         {!isDashboard && (

@@ -47,7 +47,7 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en" className={`${medium.className} bg-black antialiased`}>
+    <html lang="en" className={`${medium.className} bg-black text-white antialiased`}>
       <head>
         <AdSenseComponent />
       </head>

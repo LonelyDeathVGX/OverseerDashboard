@@ -3,7 +3,7 @@ import { bold } from "#components/Fonts";
 import { cn } from "../Util";
 
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("rounded-lg bg-default-950 text-white", className)} {...props} />
+  <div ref={ref} className={cn("rounded-lg bg-default-950", className)} {...props} />
 ));
 Card.displayName = "Card";
 
