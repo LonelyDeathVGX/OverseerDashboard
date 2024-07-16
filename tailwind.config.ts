@@ -6,7 +6,6 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   prefix: "",
   theme: {
@@ -24,6 +23,9 @@ const config: Config = {
       },
       screens: {
         xs: "512px",
+        "full-screen": {
+          raw: "(max-height: 650px)",
+        },
       },
       colors: {
         default: {

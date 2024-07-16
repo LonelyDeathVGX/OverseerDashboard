@@ -1,7 +1,21 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { NavbarComponent } from "#components/navbar/Navbar";
+import { BASE_URL } from "#lib/Constants";
 import { GuildListComponent } from "./components/GuildList";
 import { GuildListSkeletonComponent } from "./components/GuildListSkeleton";
+
+export function generateMetadata(): Metadata {
+  return {
+    title: "Manage a Server - Overseer",
+    alternates: {
+      canonical: `${BASE_URL}/dashboard`,
+    },
+    openGraph: {
+      title: "Manage a Server - Overseer",
+    },
+  };
+}
 
 export default function Page() {
   return (
