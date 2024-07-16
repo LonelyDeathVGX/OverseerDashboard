@@ -1,6 +1,7 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import * as React from "react";
+import { bold } from "#components/Fonts";
 import { cn } from "../Util";
 
 const Dialog = DialogPrimitive.Root;
@@ -61,7 +62,7 @@ const DialogTitle = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
 >(({ className, ...props }, ref) => (
-  <DialogPrimitive.Title ref={ref} className={cn("font-bold text-white text-xl", className)} {...props} />
+  <DialogPrimitive.Title ref={ref} className={cn(`${bold.className} text-white text-xl`, className)} {...props} />
 ));
 DialogTitle.displayName = DialogPrimitive.Title.displayName;
 

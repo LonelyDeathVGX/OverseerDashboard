@@ -1,5 +1,6 @@
 import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
+import { bold } from "#components/Fonts";
 import { cn } from "../Util";
 
 const alertVariants = cva("flex w-full gap-2 rounded-lg p-4", {
@@ -27,7 +28,7 @@ const Alert = React.forwardRef<
 Alert.displayName = "Alert";
 
 const AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(
-  ({ className, ...props }, ref) => <h5 ref={ref} className={cn("font-bold", className)} {...props} />,
+  ({ className, ...props }, ref) => <h5 ref={ref} className={cn(bold.className, className)} {...props} />,
 );
 AlertTitle.displayName = "AlertTitle";
 

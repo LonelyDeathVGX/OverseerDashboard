@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactElement } from "react";
+import { bold } from "#components/Fonts";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "#ui/Accordion";
 import { Button } from "#ui/Button";
 
@@ -24,7 +25,7 @@ export function SidebarAccordionComponent({
   return (
     <Accordion collapsible={true} type="single" defaultValue={data.category}>
       <AccordionItem value={data.category}>
-        <AccordionTrigger className="font-bold">{data.category.toUpperCase()}</AccordionTrigger>
+        <AccordionTrigger className={`${bold.className}`}>{data.category.toUpperCase()}</AccordionTrigger>
         <AccordionContent>
           {data.items.map((item, _) => (
             <Button

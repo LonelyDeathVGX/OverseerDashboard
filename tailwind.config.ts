@@ -17,9 +17,6 @@ const config: Config = {
       },
     },
     extend: {
-      fontFamily: {
-        bold: ["Bold"],
-      },
       screens: {
         xs: "512px",
         "full-screen": {

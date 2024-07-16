@@ -1,4 +1,5 @@
 import * as React from "react";
+import { bold } from "#components/Fonts";
 import { cn } from "../Util";
 
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
@@ -12,7 +13,7 @@ const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDiv
 CardHeader.displayName = "CardHeader";
 
 const CardTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(
-  ({ className, ...props }, ref) => <h3 ref={ref} className={cn("font-bold text-xl", className)} {...props} />,
+  ({ className, ...props }, ref) => <h3 ref={ref} className={cn(`${bold.className} text-xl`, className)} {...props} />,
 );
 CardTitle.displayName = "CardTitle";
 

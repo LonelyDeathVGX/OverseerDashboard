@@ -2,6 +2,7 @@ import * as ToastPrimitives from "@radix-ui/react-toast";
 import { type VariantProps, cva } from "class-variance-authority";
 import { X } from "lucide-react";
 import * as React from "react";
+import { bold } from "#components/Fonts";
 import { cn } from "../Util";
 
 const ToastProvider = ToastPrimitives.Provider;
@@ -63,7 +64,7 @@ const ToastTitle = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Title>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title>
 >(({ className, ...props }, ref) => (
-  <ToastPrimitives.Title ref={ref} className={cn("font-bold text-sm", className)} {...props} />
+  <ToastPrimitives.Title ref={ref} className={cn(`${bold.className} text-sm`, className)} {...props} />
 ));
 ToastTitle.displayName = ToastPrimitives.Title.displayName;
 

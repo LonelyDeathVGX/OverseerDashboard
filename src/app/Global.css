@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-display: swap;
-  font-family: "Bold";
-  font-style: normal;
-  font-weight: 700;
-  src: url("/fonts/Bold.ttf");
-}
-
 * {
   scrollbar-color: #0f0f12 #000000;
 }
