@@ -15,10 +15,21 @@ export function generateMetadata(): Metadata {
     alternates: {
       canonical: BASE_URL,
     },
+    applicationName: "Overseer",
+    authors: [
+      {
+        name: "FancyStudio",
+      },
+    ],
+    creator: "FancyStudio",
+    keywords: ["Overseer", "FancyStudio", "Discord", "Bot", "Discord Bot", "Overseer Bot"],
     openGraph: {
       title: "Overseer - A better way to manage Discord Servers",
       description:
         "Overseer is a Discord bot created with the purpose of being robust and manage Discord Servers in a better and easy way.",
+      siteName: "Overseer",
+      authors: ["FancyStudio"],
+      creators: ["FancyStudio"],
     },
   };
 }
