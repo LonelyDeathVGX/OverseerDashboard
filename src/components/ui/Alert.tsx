@@ -2,7 +2,7 @@ import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
 import { cn } from "../Util";
 
-const alertVariants = cva("flex w-full gap-2 rounded-lg p-4 font-medium", {
+const alertVariants = cva("flex w-full gap-2 rounded-lg p-4", {
   variants: {
     variant: {
       amber: "bg-amber-950 text-amber-400",

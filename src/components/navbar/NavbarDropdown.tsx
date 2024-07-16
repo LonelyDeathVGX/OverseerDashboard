@@ -61,7 +61,7 @@ export function NavbarDropdownComponent({ session }: { session: Session }) {
             </Avatar>
             <span className="flex flex-col">
               <h1 className="font-bold text-sm text-white">@{session.username}</h1>
-              <p className="font-medium text-default-400 text-xs">{session.userID}</p>
+              <p className="text-default-400 text-xs">{session.userID}</p>
             </span>
           </DropdownMenuLabel>
         </DropdownMenuGroup>

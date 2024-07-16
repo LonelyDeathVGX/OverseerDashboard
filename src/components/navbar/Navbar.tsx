@@ -40,7 +40,7 @@ export async function NavbarComponent({ isDashboard }: { isDashboard: boolean })
         {!isDashboard && (
           <ul className="hidden gap-4 md:flex">
             {Items.map((item) => (
-              <li key={item.name} className="font-medium text-sm">
+              <li key={item.name} className="text-sm">
                 <Button asChild={true} variant="link">
                   <Link
                     target={item.target}

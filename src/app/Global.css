@@ -10,14 +10,6 @@
   src: url("/fonts/Bold.ttf");
 }
 
-@font-face {
-  font-display: swap;
-  font-family: "Medium";
-  font-style: normal;
-  font-weight: 500;
-  src: url("/fonts/Medium.ttf");
-}
-
 * {
   scrollbar-color: #0f0f12 #000000;
 }

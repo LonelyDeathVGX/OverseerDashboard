@@ -22,9 +22,7 @@ export function GuildListSkeletonComponent() {
               className="size-full rounded-full"
             />
           </div>
-          <div className="w-full rounded-lg bg-default-950/50 p-2 text-center font-medium text-xs backdrop-blur-sm">
-            Loading...
-          </div>
+          <div className="w-full rounded-lg bg-default-950/50 p-2 text-center text-xs backdrop-blur-sm">Loading...</div>
         </CardContent>
       </Card>
     ));

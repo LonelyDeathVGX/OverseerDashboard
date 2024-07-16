@@ -19,7 +19,6 @@ const config: Config = {
     extend: {
       fontFamily: {
         bold: ["Bold"],
-        medium: ["Medium"],
       },
       screens: {
         xs: "512px",

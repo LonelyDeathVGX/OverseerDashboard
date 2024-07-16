@@ -25,7 +25,7 @@ export function GuildComponent({ guild }: { guild: RESTAPIPartialCurrentUserGuil
               className="size-full rounded-full"
             />
           </div>
-          <div className="w-full rounded-lg bg-default-950/50 p-2 text-center font-medium text-xs backdrop-blur-sm">
+          <div className="w-full rounded-lg bg-default-950/50 p-2 text-center text-xs backdrop-blur-sm">
             {cutText(guild.name, 20)}
           </div>
         </CardContent>
