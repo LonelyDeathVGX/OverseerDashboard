@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { NavbarComponent } from "#components/navbar/Navbar";
+
+export function generateMetadata(): Metadata {
+  return {
+    title: "Overseer - Privacy Policy",
+  };
+}
 
 export default function Page() {
   return (

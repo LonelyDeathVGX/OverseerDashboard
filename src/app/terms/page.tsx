@@ -1,6 +1,13 @@
 import { CircleAlert } from "lucide-react";
+import type { Metadata } from "next";
 import { NavbarComponent } from "#components/navbar/Navbar";
 import { Alert, AlertDescription } from "#ui/Alert";
+
+export function generateMetadata(): Metadata {
+  return {
+    title: "Overseer - Terms of Service",
+  };
+}
 
 export default function Page() {
   return (
