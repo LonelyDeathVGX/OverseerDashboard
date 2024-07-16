@@ -18,7 +18,7 @@ export async function GuildListComponent() {
     <Alert variant="amber" className="col-span-1 xs:col-span-2 sm:col-span-3 md:col-span-4">
       <CircleAlert className="size-5" />
       <AlertDescription>
-        You do not have servers with the{" "}
+        You do not have servers with the
         <code className={`${bold.className} rounded-lg bg-amber-900/25 p-1`}>Manage Server</code>
         permission.
       </AlertDescription>

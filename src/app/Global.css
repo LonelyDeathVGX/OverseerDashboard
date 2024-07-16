@@ -7,9 +7,13 @@
 }
 
 *:focus {
-  outline: none;
+  @apply outline-0 outline-offset-0 outline-transparent;
+}
+
+*::marker {
+  @apply text-cyan-400;
 }
 
 svg {
-  flex-shrink: 0;
+  @apply shrink-0;
 }
