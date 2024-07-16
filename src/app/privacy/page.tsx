@@ -12,7 +12,7 @@ export default function Page() {
     <main>
       <NavbarComponent isDashboard={false} />
       <div className="flex items-center justify-center py-8">
-        <div className="flex w-full max-w-5xl flex-col gap-6 px-5">
+        <div className="flex w-full max-w-5xl flex-col gap-6 px-8">
           <h1 className="font-bold text-3xl text-white">Privacy Policy</h1>
           <div className="flex flex-col gap-6">
             <p className="font-medium text-default-400">
