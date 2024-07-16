@@ -19,10 +19,10 @@ export default function Page() {
             <Alert variant="cyan">
               <Info className="size-5" />
               <AlertDescription>
-                Join our
+                Join our{" "}
                 <Link href={SUPPORT_SERVER_URL} className={bold.className}>
                   support server
-                </Link>
+                </Link>{" "}
                 for updates.
               </AlertDescription>
             </Alert>
