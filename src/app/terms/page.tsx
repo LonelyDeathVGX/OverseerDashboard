@@ -2,21 +2,11 @@ import { CircleAlert } from "lucide-react";
 import type { Metadata } from "next";
 import { bold } from "#components/Fonts";
 import { NavbarComponent } from "#components/navbar/Navbar";
-import { BASE_URL } from "#lib/Constants";
+import { terms } from "#metadata";
 import { Alert, AlertDescription } from "#ui/Alert";
 
 export function generateMetadata(): Metadata {
-  return {
-    title: "Terms of Service - Overseer",
-    description: "These Terms of Service indicate the rights and obligations of users with the use of our services.",
-    alternates: {
-      canonical: `${BASE_URL}/privacy`,
-    },
-    openGraph: {
-      title: "Terms of Service - Overseer",
-      description: "These Terms of Service indicate the rights and obligations of users with the use of our services.",
-    },
-  };
+  return terms;
 }
 
 export default function Page() {

@@ -1,20 +1,10 @@
 import type { Metadata } from "next";
 import { bold } from "#components/Fonts";
 import { NavbarComponent } from "#components/navbar/Navbar";
-import { BASE_URL } from "#lib/Constants";
+import { privacy } from "#metadata";
 
 export function generateMetadata(): Metadata {
-  return {
-    title: "Privacy Policy - Overseer",
-    description: "This Privacy Policy indicates how we collect, use and protect users' personal information.",
-    alternates: {
-      canonical: `${BASE_URL}/privacy`,
-    },
-    openGraph: {
-      title: "Privacy Policy - Overseer",
-      description: "This Privacy Policy indicates how we collect, use and protect users' personal information.",
-    },
-  };
+  return privacy;
 }
 
 export default function Page() {
