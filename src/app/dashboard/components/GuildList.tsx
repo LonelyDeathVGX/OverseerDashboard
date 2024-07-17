@@ -1,11 +1,13 @@
 import { CircleAlert, CircleX } from "lucide-react";
 import { bold } from "#components/Fonts";
 import { fetchUserGuilds } from "#lib/Requests";
+import { type Session, fetchSession } from "#lib/Server";
 import { Alert, AlertDescription } from "#ui/Alert";
 import { GuildComponent } from "./Guild";
 
 export async function GuildListComponent() {
-  const { guilds, rateLimited } = await fetchUserGuilds();
+  const { accessToken } = (await fetchSession()) as Session;
+  const { guilds, rateLimited } = await fetchUserGuilds(accessToken);
 
   return guilds?.length ? (
     guilds.map((guild) => <GuildComponent key={guild.id} guild={guild} />)

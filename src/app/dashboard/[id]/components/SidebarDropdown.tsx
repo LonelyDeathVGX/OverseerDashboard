@@ -4,6 +4,7 @@ import { ChevronDown, CirclePlus } from "lucide-react";
 import Link from "next/link";
 import { ADD_TO_DISCORD_URL } from "#lib/Constants";
 import { fetchUserGuilds } from "#lib/Requests";
+import { type Session, fetchSession } from "#lib/Server";
 import { Avatar, AvatarFallback, AvatarImage } from "#ui/Avatar";
 import { Button } from "#ui/Button";
 import {
@@ -16,7 +17,8 @@ import {
 } from "#ui/DropdownMenu";
 
 export async function SidebarDropdownComponent({ guild }: { guild: APIGuild }) {
-  const { guilds } = await fetchUserGuilds();
+  const { accessToken } = (await fetchSession()) as Session;
+  const { guilds } = await fetchUserGuilds(accessToken);
 
   return (
     <DropdownMenu>

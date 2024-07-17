@@ -10,21 +10,16 @@ import {
   RouteBases,
   Routes,
 } from "discord-api-types/v10";
+import { unstable_cache } from "next/cache";
 import { BitField } from "./BitField";
-import { fetchSession } from "./Server";
 import { decrypt } from "./Util";
 
-export async function fetchUserGuilds(): Promise<FetchUserGuildsResponse> {
-  const session = await fetchSession();
+export const fetchUserGuilds = unstable_cache((accessToken: string) => internalFetchUserGuilds(accessToken), [], {
+  revalidate: 5,
+});
 
-  if (!session) {
-    return {
-      rateLimited: false,
-      guilds: [],
-    };
-  }
-
-  const decryptedAccessToken = decrypt(session.accessToken);
+export async function internalFetchUserGuilds(accessToken: string): Promise<FetchUserGuildsResponse> {
+  const decryptedAccessToken = decrypt(accessToken);
   const guildsRequest = await fetch(`${RouteBases.api}/${Routes.userGuilds()}`, {
     method: "GET",
     headers: {
