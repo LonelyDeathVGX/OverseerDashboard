@@ -30,6 +30,9 @@ export const layout: Metadata = {
     description:
       "Overseer is a Discord bot created with the purpose of being robust and manage Discord Servers in a better and easy way.",
   },
+  robots: {
+    index: true,
+  },
 };
 
 export const privacy: Metadata = {
