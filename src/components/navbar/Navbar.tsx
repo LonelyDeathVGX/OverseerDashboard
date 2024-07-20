@@ -1,11 +1,11 @@
 import { LogIn } from "lucide-react";
 import Link from "next/link";
 import type { HTMLAttributeAnchorTarget } from "react";
-import { bold } from "#components/Fonts";
 import { ADD_TO_DISCORD_URL, OAUTH2_URL, SUPPORT_SERVER_URL } from "#lib/Constants";
 import { fetchSession } from "#lib/Server";
 import { Button } from "#ui/Button";
 import { NavbarDropdownComponent } from "./NavbarDropdown";
+import { NavbarLogoComponent } from "./NavbarLogo";
 
 const Items: {
   name: string;
@@ -35,9 +35,7 @@ export async function NavbarComponent({ isDashboard }: { isDashboard: boolean })
   return (
     <nav className="sticky top-0 z-50 flex h-16 w-full items-center justify-center border-default-700 border-b bg-black/50 backdrop-blur-xl">
       <header className="flex w-full max-w-5xl items-center justify-between px-8">
-        <Link href="/" aria-label="Overseer Main Page" className={`${bold.className} text-xl`}>
-          Overseer
-        </Link>
+        <NavbarLogoComponent />
         {!isDashboard && (
           <ul className="hidden gap-4 md:flex">
             {Items.map((item) => (
