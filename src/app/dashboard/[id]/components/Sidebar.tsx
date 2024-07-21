@@ -1,5 +1,5 @@
 import type { APIGuild } from "discord-api-types/v10";
-import { Home, Settings, Sparkles } from "lucide-react";
+import { Bolt, Home, Sparkles } from "lucide-react";
 import type { ReactElement } from "react";
 import { Badge } from "#ui/Badge";
 import { SidebarAccordionComponent } from "./SidebarAccordion";
@@ -25,7 +25,7 @@ const Elements: (guildID: string) => {
       {
         name: "Configuration",
         href: `/dashboard/${guildID}/configuration`,
-        icon: <Settings className="size-5 text-default-400" />,
+        icon: <Bolt className="size-5 text-default-400" />,
         badge: (
           <Badge variant="emerald">
             <Sparkles className="size-3" />
