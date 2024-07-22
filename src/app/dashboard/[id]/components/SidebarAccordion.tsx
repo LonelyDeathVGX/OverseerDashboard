@@ -2,30 +2,22 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { ReactElement } from "react";
 import { bold } from "#components/Fonts";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "#ui/Accordion";
 import { Button } from "#ui/Button";
+import type { Category } from "./Sidebar";
 
 export function SidebarAccordionComponent({
   data,
 }: {
-  data: {
-    category: string;
-    items: {
-      name: string;
-      href: string;
-      icon: ReactElement;
-      badge?: ReactElement;
-    }[];
-  };
+  data: Category;
 }) {
   const pathname = usePathname();
 
   return (
-    <Accordion collapsible={true} type="single" defaultValue={data.category}>
-      <AccordionItem value={data.category}>
-        <AccordionTrigger className={bold.className}>{data.category.toUpperCase()}</AccordionTrigger>
+    <Accordion collapsible={true} type="single" defaultValue={data.name}>
+      <AccordionItem value={data.name}>
+        <AccordionTrigger className={bold.className}>{data.name.toUpperCase()}</AccordionTrigger>
         <AccordionContent>
           {data.items.map((item, _) => (
             <Button
