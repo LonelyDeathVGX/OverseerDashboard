@@ -14,7 +14,7 @@ const buttonVariants = cva(
         emerald: "bg-emerald-950 text-emerald-400 hover:bg-emerald-950/75",
         fuchsia: "bg-fuchsia-950 text-fuchsia-400 hover:bg-fuchsia-950/75",
         ghost: "hover:bg-default-950/75",
-        link: "underline-offset-4 hover:underline",
+        link: "underline-color decoration-cyan-400 underline-offset-4 hover:underline",
         outline: "border border-default-700 hover:border-transparent hover:bg-default-950/75",
         rose: "bg-rose-950 text-rose-400 hover:bg-rose-950/75",
         white: "bg-white text-black hover:bg-white/75",
