@@ -1,6 +1,5 @@
 import { Unlink } from "lucide-react";
 import Link from "next/link";
-import { bold } from "#components/Fonts";
 import { Button } from "#ui/Button";
 
 export default function Page() {
@@ -11,7 +10,7 @@ export default function Page() {
           <div className="rounded-lg border border-default-700 p-6">
             <Unlink className="size-10" />
           </div>
-          <h1 className={`${bold.className} text-center text-xl`}>This page could not be found</h1>
+          <h1 className="text-center font-extrabold text-xl">This page could not be found</h1>
           <Button asChild={true} variant="outline">
             <Link target="_self" href="/" aria-label="Go to Main Page">
               Go to Main Page

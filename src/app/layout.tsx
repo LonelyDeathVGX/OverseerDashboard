@@ -1,9 +1,9 @@
 import "./Global.css";
+import "@fontsource-variable/montserrat";
 
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { AdSenseComponent } from "#components/AdSense";
-import { medium } from "#components/Fonts";
 import { layout } from "#metadata";
 import { Toaster } from "#ui/Toaster";
 
@@ -23,7 +23,10 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en" className={`${medium.className} bg-black text-white antialiased`}>
+    <html
+      lang="en"
+      className="bg-black font-medium font-montserrat text-white leading-relaxed tracking-wide antialiased"
+    >
       <head>
         <AdSenseComponent />
       </head>

@@ -1,5 +1,4 @@
 import { CircleAlert, CircleX } from "lucide-react";
-import { bold } from "#components/Fonts";
 import { fetchUserGuilds } from "#lib/Requests";
 import { type Session, fetchSession } from "#lib/Server";
 import { Alert, AlertDescription } from "#ui/Alert";
@@ -21,7 +20,7 @@ export async function GuildListComponent() {
       <CircleAlert className="size-5" />
       <AlertDescription>
         You do not have servers with the
-        <code className={`${bold.className} rounded-lg bg-amber-900/25 p-1`}>Manage Server</code>
+        <code className="rounded-lg bg-amber-900/25 p-1 font-extrabold">Manage Server</code>
         permission.
       </AlertDescription>
     </Alert>
