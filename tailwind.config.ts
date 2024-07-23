@@ -17,6 +17,9 @@ const config: Config = {
       },
     },
     extend: {
+      fontFamily: {
+        montserrat: ["Montserrat Variable"],
+      },
       screens: {
         xs: "512px",
         "full-screen": {

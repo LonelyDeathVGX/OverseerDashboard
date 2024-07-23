@@ -10,6 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fontsource-variable/montserrat": "5.0.19",
     "@radix-ui/react-accordion": "1.2.0",
     "@radix-ui/react-avatar": "1.1.0",
     "@radix-ui/react-dialog": "1.1.1",
@@ -19,7 +20,7 @@
     "@radix-ui/react-separator": "1.1.0",
     "@radix-ui/react-slot": "1.1.0",
     "@radix-ui/react-toast": "1.2.1",
-    "@sapphire/utilities": "3.16.2",
+    "@sapphire/utilities": "3.17.0",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
     "crypto-js": "4.2.0",
@@ -37,11 +38,11 @@
   },
   "devDependencies": {
     "@types/crypto-js": "4.2.2",
-    "@types/node": "20.14.11",
+    "@types/node": "20.14.12",
     "@types/react": "18.3.3",
     "postcss": "8.4.39",
     "tailwindcss": "3.4.6",
-    "typescript": "5.5.3"
+    "typescript": "5.5.4"
   },
   "packageManager": "pnpm@9.6.0+sha256.dae0f7e822c56b20979bb5965e3b73b8bdabb6b8b8ef121da6d857508599ca35"
 }
