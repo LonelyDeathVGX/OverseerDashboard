@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Plus Jakarta Sans Variable";
+  font-display: swap;
+  src: url("/fonts/PlusJakartaSansVariable.ttf") format("truetype");
+}
+
 * {
   scrollbar-color: #0f0f12 #000000;
 }

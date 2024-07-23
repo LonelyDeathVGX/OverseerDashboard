@@ -1,5 +1,4 @@
 import "./Global.css";
-import "@fontsource-variable/montserrat";
 
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
@@ -25,7 +24,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="bg-black font-medium font-montserrat text-white leading-relaxed tracking-wide antialiased"
+      className="bg-black font-medium font-plus-jakarta-sans text-white leading-relaxed tracking-wide antialiased"
     >
       <head>
         <AdSenseComponent />

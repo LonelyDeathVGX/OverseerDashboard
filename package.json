@@ -11,7 +11,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@fontsource-variable/montserrat": "5.0.19",
     "@radix-ui/react-accordion": "1.2.0",
     "@radix-ui/react-avatar": "1.1.0",
     "@radix-ui/react-dialog": "1.1.1",

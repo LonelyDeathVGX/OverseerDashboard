@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config: Config = {
   darkMode: ["class"],
@@ -18,7 +19,7 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        montserrat: ["Montserrat Variable"],
+        "plus-jakarta-sans": ["Plus Jakarta Sans Variable", ...fontFamily.sans],
       },
       screens: {
         xs: "512px",
