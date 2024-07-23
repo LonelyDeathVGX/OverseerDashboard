@@ -1,12 +1,20 @@
-import Image from "next/image";
 import Link from "next/link";
-import { bold } from "#components/Fonts";
+import { Overseer } from "#components/Icons";
+import { UseMediaQueryComponent } from "#components/UseMediaQuery";
 
-export function NavbarLogoComponent() {
+export function NavbarLogoComponent({
+  shouldHideText,
+}: {
+  shouldHideText: boolean;
+}) {
   return (
-    <Link href="/" aria-label="Overseer Main Page" className={`${bold.className} flex items-center gap-2 text-xl`}>
-      <Image src="/assets/Transparent.webp" alt="Overseer Logo" width={500} height={500} className="size-10" />
-      <span className="xs:block hidden">Overseer</span>
+    <Link href="/" aria-label="Overseer Main Page" className="flex items-center gap-2 font-extrabold text-xl">
+      <Overseer className="size-7" />
+      {shouldHideText ? (
+        <UseMediaQueryComponent mediaQuery="(min-width: 512px)">Overseer</UseMediaQueryComponent>
+      ) : (
+        "Overseer"
+      )}
     </Link>
   );
 }
