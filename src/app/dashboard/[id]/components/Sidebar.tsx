@@ -58,7 +58,7 @@ const Categories: (guildID: string) => Category[] = (guildID: string) => [
 
 export function SidebarComponent({ guild }: { guild: APIGuild }) {
   return (
-    <aside className="fixed top-16 hidden h-screen w-80 flex-col border-default-700 border-r md:flex">
+    <aside className="fixed top-16 flex h-screen w-80 flex-col border-default-700 border-r">
       <div className="flex flex-col gap-4 p-8">
         {Categories(guild.id).map((category) => (
           <SidebarAccordionComponent
