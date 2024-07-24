@@ -8,8 +8,8 @@ export default function Page() {
     <main>
       <NavbarComponent isDashboard={false} />
       <div className="flex full-screen:h-[calc(650px_-_64px)] h-[calc(100dvh_-_64px)] flex-col items-center justify-center gap-6 px-8">
-        <div className="rounded-full border border-amber-400 p-2 text-amber-400 text-xs">
-          Overseer is in Alpha Stage
+        <div className="rounded-full bg-amber-900 p-2 text-amber-300 text-xs">
+          Overseer is in Alpha phase. There may be bugs
         </div>
         <h1 className="max-w-xl text-center font-extrabold text-5xl">
           A better way to manage <br />
