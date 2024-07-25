@@ -14,7 +14,7 @@ export function generateViewport(): Viewport {
     themeColor: "#2b2d31",
   };
 }
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 export default function RootLayout({
   children,
