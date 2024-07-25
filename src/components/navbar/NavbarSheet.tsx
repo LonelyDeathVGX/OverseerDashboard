@@ -18,7 +18,7 @@ export function NavbarSheetComponent({
   return (
     <Sheet>
       <SheetTrigger asChild={true}>
-        <Button variant="outline">
+        <Button variant="outline" size="icon">
           <Menu className="size-5" />
         </Button>
       </SheetTrigger>
@@ -35,7 +35,7 @@ export function NavbarSheetComponent({
               <ul>
                 {Items.map((item) => (
                   <li key={item.name}>
-                    <Button asChild={true} variant="link" className="justify-start">
+                    <Button asChild={true} variant="ghost" className="justify-start">
                       <Link
                         target={item.target}
                         href={item.href}
