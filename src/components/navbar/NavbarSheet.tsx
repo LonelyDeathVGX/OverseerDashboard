@@ -1,13 +1,14 @@
 import type { Nullish } from "@sapphire/utilities";
 import { Menu } from "lucide-react";
 import Link from "next/link";
+import { LogoComponent } from "#components/Logo";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "#components/ui/Accordion";
 import { Button } from "#components/ui/Button";
+import { Separator } from "#components/ui/Separator";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "#components/ui/Sheet";
 import type { Session } from "#lib/Server";
 import { Items } from "./Navbar";
 import { NavbarLoginComponent } from "./NavbarLogin";
-import { NavbarLogoComponent } from "./NavbarLogo";
 import { NavbarLogoutComponent } from "./NavbarLogout";
 
 export function NavbarSheetComponent({
@@ -23,17 +24,18 @@ export function NavbarSheetComponent({
         </Button>
       </SheetTrigger>
       <SheetContent side="top">
-        <SheetHeader>
-          <SheetTitle className="flex items-center gap-2">
-            <NavbarLogoComponent shouldHideText={false} />
+        <SheetHeader className="px-3">
+          <SheetTitle>
+            <LogoComponent />
           </SheetTitle>
         </SheetHeader>
+        <Separator />
         <Accordion collapsible={true} type="single" defaultValue="Links">
           <AccordionItem value="Links">
-            <AccordionTrigger className="font-extrabold">{"Useful Links".toUpperCase()}</AccordionTrigger>
+            <AccordionTrigger className="px-3 font-extrabold text-xs">{"Useful Links".toUpperCase()}</AccordionTrigger>
             <AccordionContent>
               <ul>
-                {Items.map((item) => (
+                {Items(true).map((item) => (
                   <li key={item.name}>
                     <Button asChild={true} variant="ghost" className="justify-start">
                       <Link
@@ -52,7 +54,8 @@ export function NavbarSheetComponent({
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-        <SheetFooter>{session ? <NavbarLogoutComponent /> : <NavbarLoginComponent />}</SheetFooter>
+        <Separator />
+        <SheetFooter className="px-3">{session ? <NavbarLogoutComponent /> : <NavbarLoginComponent />}</SheetFooter>
       </SheetContent>
     </Sheet>
   );

@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { UseMediaQueryComponent } from "#components/UseMediaQuery";
 import { NavbarComponent } from "#components/navbar/Navbar";
+import { SidebarComponent } from "#components/sidebar/Sidebar";
 import { fetchClientGuild } from "#lib/Requests";
-import { SidebarComponent } from "./components/Sidebar";
 
 export function generateMetadata(): Metadata {
   return {
@@ -27,7 +27,7 @@ export default async function Layout({
 
   return (
     <div>
-      <NavbarComponent isDashboard={true} />
+      <NavbarComponent isDashboard={true} guild={guild as APIGuild} />
       <>
         <UseMediaQueryComponent mediaQuery="(min-width: 768px)">
           <SidebarComponent guild={guild as APIGuild} />

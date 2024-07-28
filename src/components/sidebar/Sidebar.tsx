@@ -4,7 +4,7 @@ import type { ReactElement } from "react";
 import { Badge } from "#ui/Badge";
 import { SidebarAccordionComponent } from "./SidebarAccordion";
 
-const Categories: (guildID: string) => Category[] = (guildID: string) => [
+export const Categories: (guildID: string) => Category[] = (guildID) => [
   {
     name: "General",
     items: [

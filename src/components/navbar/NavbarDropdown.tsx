@@ -15,11 +15,7 @@ import {
 } from "#ui/DropdownMenu";
 import { NavbarDropdownLogoutComponent } from "./NavbarDropdownLogout";
 
-const Items: {
-  name: string;
-  href: string;
-  target: HTMLAttributeAnchorTarget;
-}[] = [
+const Items: Item[] = [
   {
     name: "Add to Discord",
     href: ADD_TO_DISCORD_URL,
@@ -86,4 +82,10 @@ export function NavbarDropdownComponent({ session }: { session: Session }) {
       </DropdownMenuContent>
     </DropdownMenu>
   );
+}
+
+interface Item {
+  name: string;
+  href: string;
+  target: HTMLAttributeAnchorTarget;
 }
