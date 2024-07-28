@@ -4,8 +4,7 @@ import { LogoComponent } from "#components/Logo";
 import { Button } from "#components/ui/Button";
 import { Separator } from "#components/ui/Separator";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "#components/ui/Sheet";
-import { Categories } from "./Sidebar";
-import { SidebarAccordionComponent } from "./SidebarAccordion";
+import { SidebarContentComponent } from "./SidebarContent";
 
 export function SidebarSheetComponent({
   guild,
@@ -28,14 +27,7 @@ export function SidebarSheetComponent({
         <Separator />
         <div className="overflow-y-auto">
           <div className="flex flex-col gap-4">
-            {Categories(guild.id).map((category) => (
-              <SidebarAccordionComponent
-                key={category.name}
-                data={{
-                  ...category,
-                }}
-              />
-            ))}
+            <SidebarContentComponent guild={guild} />
           </div>
         </div>
       </SheetContent>
