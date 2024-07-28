@@ -1,14 +1,19 @@
-import { LogOut } from "lucide-react";
-import Link from "next/link";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { Button } from "#components/ui/Button";
+import { deleteSession } from "#lib/Server";
 
 export function NavbarLogoutComponent() {
+  const router = useRouter();
+  const handleLogout = async () => {
+    await deleteSession();
+    router.refresh();
+  };
+
   return (
-    <Button asChild={true} variant="rose">
-      <Link href={"/api/auth/logout"} aria-label="Login with Discord" className="flex items-center gap-2">
-        <LogOut className="size-5" />
-        Logout
-      </Link>
+    <Button variant="rose" onClick={handleLogout}>
+      Logout
     </Button>
   );
 }

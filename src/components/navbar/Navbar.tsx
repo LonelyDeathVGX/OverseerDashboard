@@ -1,5 +1,5 @@
 import type { APIGuild } from "discord-api-types/v10";
-import { CirclePlus, LayoutGrid, LifeBuoy } from "lucide-react";
+import { CirclePlus, LayoutDashboard, LifeBuoy } from "lucide-react";
 import Link from "next/link";
 import type { HTMLAttributeAnchorTarget, ReactElement } from "react";
 import { LogoComponent } from "#components/Logo";
@@ -29,7 +29,7 @@ export const Items: (useLongText?: boolean) => Item[] = (useLongText) => [
     name: useLongText ? "Manage Servers" : "Dashboard",
     href: "/dashboard",
     target: "_self",
-    icon: <LayoutGrid className="size-5 text-default-400" />,
+    icon: <LayoutDashboard className="size-5 text-default-400" />,
   },
 ];
 
