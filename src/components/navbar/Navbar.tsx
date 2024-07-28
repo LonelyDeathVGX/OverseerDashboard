@@ -53,7 +53,7 @@ export async function NavbarComponent({
             <ul className="flex gap-4">
               {Items(false).map((item) => (
                 <li key={item.name} className="text-sm">
-                  <Button asChild={true} variant="link">
+                  <Button asChild={true} variant="ghost">
                     <Link
                       target={item.target}
                       href={item.href}

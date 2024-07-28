@@ -10,7 +10,7 @@ export function GuildListSkeletonComponent() {
         style={{
           backgroundImage: `url("/assets/Discord.webp")`,
         }}
-        className="relative h-48 w-full select-none overflow-hidden bg-center bg-cover bg-no-repeat"
+        className="relative h-48 w-full select-none overflow-hidden bg-center bg-cover bg-no-repeat p-0"
       >
         <CardContent className="absolute top-0 flex h-full w-full flex-col items-center justify-center gap-4 p-4 backdrop-blur-xl">
           <div className="size-24 rounded-full bg-default-950/50 p-2 backdrop-blur-sm">

@@ -2,12 +2,12 @@ import { type HTMLAttributes, forwardRef } from "react";
 import { cn } from "../Util";
 
 const Card = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("rounded-lg bg-default-950", className)} {...props} />
+  <div ref={ref} className={cn("flex flex-col gap-4 rounded-lg bg-default-950 p-6", className)} {...props} />
 ));
 Card.displayName = "Card";
 
 const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("flex flex-col p-6", className)} {...props} />
+  <div ref={ref} className={cn("flex flex-col", className)} {...props} />
 ));
 CardHeader.displayName = "CardHeader";
 
@@ -17,7 +17,7 @@ const CardTitle = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLHeadingEle
 CardTitle.displayName = "CardTitle";
 
 const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6", className)} {...props} />
+  <div ref={ref} className={cn(className)} {...props} />
 ));
 CardContent.displayName = "CardContent";
 
