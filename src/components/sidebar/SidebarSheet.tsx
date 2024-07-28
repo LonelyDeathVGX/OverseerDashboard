@@ -26,15 +26,17 @@ export function SidebarSheetComponent({
           </SheetTitle>
         </SheetHeader>
         <Separator />
-        <div className="flex flex-col gap-4">
-          {Categories(guild.id).map((category) => (
-            <SidebarAccordionComponent
-              key={category.name}
-              data={{
-                ...category,
-              }}
-            />
-          ))}
+        <div className="overflow-y-auto">
+          <div className="flex flex-col gap-4">
+            {Categories(guild.id).map((category) => (
+              <SidebarAccordionComponent
+                key={category.name}
+                data={{
+                  ...category,
+                }}
+              />
+            ))}
+          </div>
         </div>
       </SheetContent>
     </Sheet>
