@@ -15,7 +15,7 @@ const Categories: (guildID: string) => Category[] = (guildID) => [
       },
       {
         name: "Configuration",
-        href: `/dashboard/${guildID}/configuration`,
+        href: `/dashboard/${guildID}/general/configuration`,
         icon: <Bolt className="size-5 text-default-400" />,
         badge: <Badge variant="emerald">New</Badge>,
       },
@@ -26,19 +26,19 @@ const Categories: (guildID: string) => Category[] = (guildID) => [
     items: [
       {
         name: "Suggestions",
-        href: `/dashboard/${guildID}/suggestions`,
+        href: `/dashboard/${guildID}/management/suggestions`,
         icon: <Mailbox className="size-5 text-default-400" />,
         badge: <Badge variant="fuchsia">Soon</Badge>,
       },
       {
         name: "Automations",
-        href: `/dashboard/${guildID}/automations`,
+        href: `/dashboard/${guildID}/management/automations`,
         icon: <CircuitBoard className="size-5 text-default-400" />,
         badge: <Badge variant="fuchsia">Soon</Badge>,
       },
       {
         name: "Forms",
-        href: `/dashboard/${guildID}/forms`,
+        href: `/dashboard/${guildID}/management/forms`,
         icon: <NotepadText className="size-5 text-default-400" />,
         badge: <Badge variant="fuchsia">Soon</Badge>,
       },
@@ -49,13 +49,13 @@ const Categories: (guildID: string) => Category[] = (guildID) => [
     items: [
       {
         name: "Embed Messages",
-        href: `/dashboard/${guildID}/embeds-messages`,
+        href: `/dashboard/${guildID}/components/embed-messages`,
         icon: <MessageSquareCode className="size-5 text-default-400" />,
         badge: <Badge variant="fuchsia">Soon</Badge>,
       },
       {
         name: "Buttons",
-        href: `/dashboard/${guildID}/buttons`,
+        href: `/dashboard/${guildID}/components/buttons`,
         icon: <SquareMousePointer className="size-5 text-default-400" />,
         badge: <Badge variant="fuchsia">Soon</Badge>,
       },
