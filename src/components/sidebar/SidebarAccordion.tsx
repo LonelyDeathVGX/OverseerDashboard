@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "#ui/Accordion";
 import { Button } from "#ui/Button";
-import type { Category } from "./Sidebar";
+import type { Category } from "./SidebarContent";
 
 export function SidebarAccordionComponent({
   data,
