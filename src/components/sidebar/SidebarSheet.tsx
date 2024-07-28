@@ -19,7 +19,7 @@ export function SidebarSheetComponent({
         </Button>
       </SheetTrigger>
       <SheetContent side="left">
-        <SheetHeader>
+        <SheetHeader className="px-3">
           <SheetTitle>
             <LogoComponent />
           </SheetTitle>
