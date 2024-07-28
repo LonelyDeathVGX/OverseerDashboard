@@ -64,7 +64,7 @@ export function PremiumRevokeComponent({
         </DialogHeader>
         <DialogFooter>
           <DialogClose asChild={true}>
-            <Button variant="link">Cancel</Button>
+            <Button variant="outline">Cancel</Button>
           </DialogClose>
           <Button disabled={loading} onClick={handleRevoke} className="gap-2">
             {loading && <Loader2 className="size-5 animate-spin" />}
