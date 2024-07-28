@@ -1,5 +1,5 @@
 import type { APIGuild } from "discord-api-types/v10";
-import { Bolt, CircuitBoard, Construction, Home, Mailbox, Sparkles } from "lucide-react";
+import { Bolt, Box, CircuitBoard, Home, Mailbox, NotepadText } from "lucide-react";
 import type { ReactElement } from "react";
 import { Badge } from "#ui/Badge";
 import { SidebarAccordionComponent } from "./SidebarAccordion";
@@ -17,12 +17,7 @@ const Categories: (guildID: string) => Category[] = (guildID: string) => [
         name: "Configuration",
         href: `/dashboard/${guildID}/configuration`,
         icon: <Bolt className="size-5 text-default-400" />,
-        badge: (
-          <Badge variant="emerald">
-            <Sparkles className="size-3" />
-            New
-          </Badge>
-        ),
+        badge: <Badge variant="emerald">New</Badge>,
       },
     ],
   },
@@ -33,24 +28,25 @@ const Categories: (guildID: string) => Category[] = (guildID: string) => [
         name: "Suggestions",
         href: `/dashboard/${guildID}/suggestions`,
         icon: <Mailbox className="size-5 text-default-400" />,
-        badge: (
-          <Badge variant="cyan">
-            <Construction className="size-3" />
-            Soon
-          </Badge>
-        ),
-        disabled: true,
+        badge: <Badge variant="fuchsia">Soon</Badge>,
       },
       {
         name: "Automations",
         href: `/dashboard/${guildID}/automations`,
         icon: <CircuitBoard className="size-5 text-default-400" />,
-        badge: (
-          <Badge variant="cyan">
-            <Construction className="size-3" />
-            Soon
-          </Badge>
-        ),
+        badge: <Badge variant="fuchsia">Soon</Badge>,
+      },
+      {
+        name: "Forms",
+        href: `/dashboard/${guildID}/forms`,
+        icon: <NotepadText className="size-5 text-default-400" />,
+        badge: <Badge variant="fuchsia">Soon</Badge>,
+      },
+      {
+        name: "Components",
+        href: `/dashboard/${guildID}/components`,
+        icon: <Box className="size-5 text-default-400" />,
+        badge: <Badge variant="fuchsia">Soon</Badge>,
       },
     ],
   },
