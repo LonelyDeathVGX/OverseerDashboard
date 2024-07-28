@@ -3,7 +3,7 @@ import type { HTMLAttributes } from "react";
 import { cn } from "../Util";
 
 const badgeVariants = cva(
-  "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs uppercase transition-colors",
+  "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 font-extrabold text-xs uppercase transition-colors",
   {
     variants: {
       variant: {
@@ -12,7 +12,6 @@ const badgeVariants = cva(
         emerald: "bg-emerald-950 text-emerald-400",
         fuchsia: "bg-fuchsia-950 text-fuchsia-400",
         rose: "bg-rose-950 text-rose-400",
-        white: "bg-white text-black",
       },
     },
     defaultVariants: {

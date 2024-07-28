@@ -1,5 +1,5 @@
 import type { APIGuild } from "discord-api-types/v10";
-import { Bolt, Box, CircuitBoard, Home, Mailbox, NotepadText } from "lucide-react";
+import { Bolt, CircuitBoard, Home, Mailbox, MessageSquareCode, NotepadText } from "lucide-react";
 import type { ReactElement } from "react";
 import { Badge } from "#ui/Badge";
 import { SidebarAccordionComponent } from "./SidebarAccordion";
@@ -42,10 +42,15 @@ const Categories: (guildID: string) => Category[] = (guildID: string) => [
         icon: <NotepadText className="size-5 text-default-400" />,
         badge: <Badge variant="fuchsia">Soon</Badge>,
       },
+    ],
+  },
+  {
+    name: "Components",
+    items: [
       {
-        name: "Components",
-        href: `/dashboard/${guildID}/components`,
-        icon: <Box className="size-5 text-default-400" />,
+        name: "Embed Messages",
+        href: `/dashboard/${guildID}/embeds-messages`,
+        icon: <MessageSquareCode className="size-5 text-default-400" />,
         badge: <Badge variant="fuchsia">Soon</Badge>,
       },
     ],

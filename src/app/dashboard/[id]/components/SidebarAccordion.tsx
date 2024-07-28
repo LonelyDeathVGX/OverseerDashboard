@@ -1,5 +1,6 @@
 "use client";
 
+import { cutText } from "@sapphire/utilities";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "#ui/Accordion";
@@ -27,7 +28,7 @@ export function SidebarAccordionComponent({
             >
               <Link href={item.href} aria-label={`${item.name} Page`} className="flex items-center gap-2">
                 {item.icon}
-                {item.name}
+                {cutText(item.name, 17)}
                 {item.badge && <span className="flex w-full justify-end">{item.badge}</span>}
               </Link>
             </Button>
