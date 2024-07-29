@@ -1,7 +1,7 @@
 import { PermissionFlagsBits } from "discord-api-types/v10";
 import type { NextRequest } from "next/server";
 import { BitField } from "#lib/BitField";
-import { ADD_TO_DISCORD_WITH_GUILD_ID_URL } from "#lib/Constants";
+import { ADD_TO_DISCORD_WITH_GUILD_ID_URL, OAUTH2_URL } from "#lib/Constants";
 import { fetchClientGuild } from "#lib/Requests";
 import { NextResponseNext, NextResponseRedirect } from "#lib/Responses";
 import { fetchSession } from "#lib/Server";
@@ -13,7 +13,7 @@ export async function DashboardMiddleware(request: NextRequest) {
 
   if (!session) {
     return NextResponseRedirect({
-      url: origin,
+      url: OAUTH2_URL,
     });
   }
 

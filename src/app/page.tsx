@@ -1,12 +1,9 @@
 import Link from "next/link";
 import { NavbarComponent } from "#components/navbar/Navbar";
 import { Button } from "#components/ui/Button";
-import { ADD_TO_DISCORD_URL, OAUTH2_URL } from "#lib/Constants";
-import { fetchSession } from "#lib/Server";
+import { ADD_TO_DISCORD_URL } from "#lib/Constants";
 
-export default async function Page() {
-  const session = await fetchSession();
-
+export default function Page() {
   return (
     <main>
       <NavbarComponent isDashboard={false} />
@@ -29,12 +26,8 @@ export default async function Page() {
             </Link>
           </Button>
           <Button variant="outline" asChild={true}>
-            <Link
-              target="_self"
-              href={session ? "/dashboard" : OAUTH2_URL}
-              aria-label={session ? "Manage Servers Link" : "Login with Discord Link"}
-            >
-              {session ? "Manage Servers" : "Login with Discord"}
+            <Link target="_self" href="/dashboard" aria-label="Manage Servers Link">
+              Manage Servers
             </Link>
           </Button>
         </div>

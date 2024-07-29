@@ -71,7 +71,7 @@ export async function GET(request: NextRequest) {
     });
 
     return NextResponseRedirect({
-      url: origin,
+      url: `${origin}/dashboard`,
     });
   } catch (error) {
     console.error(error);
