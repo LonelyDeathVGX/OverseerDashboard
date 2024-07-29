@@ -4,7 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent } from "#ui/Card";
 
-export function GuildComponent({ guild }: { guild: RESTAPIPartialCurrentUserGuild }) {
+export function GuildComponent({
+  guild,
+}: {
+  guild: RESTAPIPartialCurrentUserGuild;
+}) {
   return (
     <Link href={`/dashboard/${guild.id}`} aria-label={`${guild.name} Dashboard Page`}>
       <Card

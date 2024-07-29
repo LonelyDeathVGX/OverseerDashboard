@@ -3,11 +3,25 @@ import "./Global.css";
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { AdSenseComponent } from "#components/AdSense";
-import { layout } from "#metadata";
+import { BASE_URL } from "#lib/Constants";
+import { metadata } from "#metadata";
 import { Toaster } from "#ui/Toaster";
 
 export function generateMetadata(): Metadata {
-  return layout;
+  return metadata({
+    canonical: BASE_URL,
+    description:
+      "Overseer is a Discord bot created with the purpose of being robust and manage Discord Servers in a better and easy way.",
+    robots: {
+      follow: true,
+      googleBot: {
+        follow: true,
+        index: true,
+      },
+      index: true,
+    },
+    title: "Overseer - A better way to manage Discord Servers",
+  });
 }
 export function generateViewport(): Viewport {
   return {

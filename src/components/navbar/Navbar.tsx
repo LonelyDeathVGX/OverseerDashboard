@@ -14,22 +14,22 @@ import { NavbarSheetComponent } from "./NavbarSheet";
 
 export const Items: (useLongText?: boolean) => Item[] = (useLongText) => [
   {
-    name: useLongText ? "Add to Discord" : "Invite",
     href: ADD_TO_DISCORD_URL,
-    target: "_blank",
     icon: <CirclePlus className="size-5 text-default-400" />,
-  },
-  {
-    name: useLongText ? "Support Server" : "Discord",
-    href: SUPPORT_SERVER_URL,
+    name: useLongText ? "Add to Discord" : "Invite",
     target: "_blank",
-    icon: <LifeBuoy className="size-5 text-default-400" />,
   },
   {
-    name: useLongText ? "Manage Servers" : "Dashboard",
+    href: SUPPORT_SERVER_URL,
+    icon: <LifeBuoy className="size-5 text-default-400" />,
+    name: useLongText ? "Support Server" : "Discord",
+    target: "_blank",
+  },
+  {
     href: "/dashboard",
-    target: "_self",
     icon: <LayoutDashboard className="size-5 text-default-400" />,
+    name: useLongText ? "Manage Servers" : "Dashboard",
+    target: "_self",
   },
 ];
 
@@ -86,8 +86,8 @@ export async function NavbarComponent({
 }
 
 interface Item {
-  name: string;
   href: string;
   icon: ReactElement;
+  name: string;
   target: HTMLAttributeAnchorTarget;
 }

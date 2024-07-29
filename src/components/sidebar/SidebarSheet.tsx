@@ -19,14 +19,14 @@ export function SidebarSheetComponent({
         </Button>
       </SheetTrigger>
       <SheetContent side="left">
-        <SheetHeader className="px-3">
-          <SheetTitle>
-            <LogoComponent />
-          </SheetTitle>
-        </SheetHeader>
-        <Separator />
         <div className="overflow-y-auto">
           <div className="flex flex-col gap-4">
+            <SheetHeader className="px-3">
+              <SheetTitle>
+                <LogoComponent />
+              </SheetTitle>
+            </SheetHeader>
+            <Separator />
             <SidebarContentComponent guild={guild} />
           </div>
         </div>

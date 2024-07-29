@@ -6,60 +6,60 @@ import { SidebarAccordionComponent } from "./SidebarAccordion";
 
 const Categories: (guildID: string) => Category[] = (guildID) => [
   {
-    name: "General",
     items: [
       {
-        name: "Dashboard",
         href: `/dashboard/${guildID}`,
         icon: <Home className="size-5 text-default-400" />,
+        name: "Dashboard",
       },
       {
-        name: "Configuration",
+        badge: <Badge variant="emerald">New</Badge>,
         href: `/dashboard/${guildID}/general/configuration`,
         icon: <Bolt className="size-5 text-default-400" />,
-        badge: <Badge variant="emerald">New</Badge>,
+        name: "Configuration",
       },
     ],
+    name: "General",
   },
   {
-    name: "Management",
     items: [
       {
-        name: "Suggestions",
+        badge: <Badge variant="fuchsia">Soon</Badge>,
         href: `/dashboard/${guildID}/management/suggestions`,
         icon: <Mailbox className="size-5 text-default-400" />,
-        badge: <Badge variant="fuchsia">Soon</Badge>,
+        name: "Suggestions",
       },
       {
-        name: "Automations",
+        badge: <Badge variant="fuchsia">Soon</Badge>,
         href: `/dashboard/${guildID}/management/automations`,
         icon: <CircuitBoard className="size-5 text-default-400" />,
-        badge: <Badge variant="fuchsia">Soon</Badge>,
+        name: "Automations",
       },
       {
-        name: "Forms",
+        badge: <Badge variant="fuchsia">Soon</Badge>,
         href: `/dashboard/${guildID}/management/forms`,
         icon: <NotepadText className="size-5 text-default-400" />,
-        badge: <Badge variant="fuchsia">Soon</Badge>,
+        name: "Forms",
       },
     ],
+    name: "Management",
   },
   {
-    name: "Components",
     items: [
       {
-        name: "Embed Messages",
+        badge: <Badge variant="fuchsia">Soon</Badge>,
         href: `/dashboard/${guildID}/components/embed-messages`,
         icon: <MessageSquareCode className="size-5 text-default-400" />,
-        badge: <Badge variant="fuchsia">Soon</Badge>,
+        name: "Embed Messages",
       },
       {
-        name: "Buttons",
+        badge: <Badge variant="fuchsia">Soon</Badge>,
         href: `/dashboard/${guildID}/components/buttons`,
         icon: <SquareMousePointer className="size-5 text-default-400" />,
-        badge: <Badge variant="fuchsia">Soon</Badge>,
+        name: "Buttons",
       },
     ],
+    name: "Components",
   },
 ];
 
@@ -79,13 +79,13 @@ export function SidebarContentComponent({
 }
 
 export interface Category {
-  name: string;
   items: CategoryItem[];
+  name: string;
 }
 
 export interface CategoryItem {
-  name: string;
+  badge?: ReactElement;
   href: string;
   icon: ReactElement;
-  badge?: ReactElement;
+  name: string;
 }

@@ -1,75 +1,60 @@
 import type { Metadata } from "next";
+import type { Robots } from "next/dist/lib/metadata/types/metadata-types";
 import { BASE_URL } from "#lib/Constants";
 
-const metadataBase: Metadata = {
-  applicationName: "Overseer",
-  authors: [
-    {
+export const metadata = ({
+  canonical,
+  description,
+  robots,
+  title,
+}: {
+  canonical: string;
+  description: string;
+  robots: Robots;
+  title: string;
+}): Metadata => {
+  return {
+    alternates: {
+      canonical,
+    },
+    applicationName: "Overseer",
+    authors: {
       name: "FancyStudio",
     },
-  ],
-  creator: "FancyStudio",
-  keywords: ["Overseer", "FancyStudio", "Discord", "Bot", "Discord Bot", "Overseer Bot"],
-  openGraph: {
-    siteName: "Overseer",
-    authors: ["FancyStudio"],
-    creators: ["FancyStudio"],
-  },
-};
-
-export const layout: Metadata = {
-  ...metadataBase,
-  title: "Overseer - A better way to manage Discord Servers",
-  description:
-    "Overseer is a Discord bot created with the purpose of being robust and manage Discord Servers in a better and easy way.",
-  alternates: {
-    canonical: BASE_URL,
-  },
-  openGraph: {
-    title: "Overseer - A better way to manage Discord Servers",
-    description:
-      "Overseer is a Discord bot created with the purpose of being robust and manage Discord Servers in a better and easy way.",
-  },
-  robots: {
-    index: true,
-  },
-};
-
-export const privacy: Metadata = {
-  ...metadataBase,
-  title: "Privacy Policy - Overseer",
-  description: "This Privacy Policy indicates how we collect, use and protect users' personal information.",
-  alternates: {
-    canonical: `${BASE_URL}/privacy`,
-  },
-  openGraph: {
-    title: "Privacy Policy - Overseer",
-    description: "This Privacy Policy indicates how we collect, use and protect users' personal information.",
-  },
-};
-
-export const terms: Metadata = {
-  ...metadataBase,
-  title: "Terms of Service - Overseer",
-  description: "These Terms of Service indicate the rights and obligations of users with the use of our services.",
-  alternates: {
-    canonical: `${BASE_URL}/terms`,
-  },
-  openGraph: {
-    title: "Terms of Service - Overseer",
-    description: "These Terms of Service indicate the rights and obligations of users with the use of our services.",
-  },
-};
-
-export const team: Metadata = {
-  ...metadataBase,
-  title: "Meet the Team - Overseer",
-  description: "Meet the core team behind Overseer, the Discord bot that enhances server management.",
-  alternates: {
-    canonical: `${BASE_URL}/team`,
-  },
-  openGraph: {
-    title: "Meet the Team - Overseer",
-    description: "Meet the core team behind Overseer, the Discord bot that enhances server management.",
-  },
+    creator: "FancyStudio",
+    description,
+    keywords: [
+      "Bot",
+      "Discord Bot",
+      "Discord",
+      "FancyStudio",
+      "Fancycord Bot",
+      "Fancycord",
+      "Overseer Bot",
+      "Overseer",
+    ],
+    openGraph: {
+      description,
+      images: {
+        url: `${BASE_URL}/assets/Overseer.webp`,
+      },
+      locale: "en_US",
+      siteName: "Overseer",
+      title,
+      type: "website",
+      url: canonical,
+    },
+    robots,
+    title,
+    twitter: {
+      card: "summary_large_image",
+      creator: "@FancyStudio",
+      description,
+      images: {
+        url: `${BASE_URL}/assets/Overseer.webp`,
+      },
+      site: "@Overseer",
+      title,
+    },
+  };
 };

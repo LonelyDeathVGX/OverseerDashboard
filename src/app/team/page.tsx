@@ -1,59 +1,58 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { NavbarComponent } from "#components/navbar/Navbar";
-import { Badge } from "#components/ui/Badge";
-import { Card, CardContent, CardHeader, CardTitle } from "#components/ui/Card";
+import { BASE_URL } from "#lib/Constants";
+import { metadata } from "#metadata";
+import { MemberComponent } from "./components/Member";
 
 export function generateMetadata(): Metadata {
-  return {
-    title: "Team - Overseer",
-    description: "Meet the core team behind Overseer.",
-  };
+  return metadata({
+    canonical: `${BASE_URL}/team`,
+    description: "Meet the core team behind Overseer, the Discord bot that enhances server management.",
+    robots: {
+      follow: true,
+      googleBot: {
+        follow: true,
+        index: true,
+      },
+      index: true,
+    },
+    title: "Meet the Team - Overseer",
+  });
 }
 
-export default function TeamPage() {
-  const coreTeamMembers = [
-    {
-      id: "945029082314338407",
-      username: "lonelydeath",
-      avatarUrl: "/assets/lonelydeath.png",
-    },
-    {
-      id: "749895975694499930",
-      username: "dymidless",
-      avatarUrl: "/assets/dymidless.png",
-    },
-  ];
+const CoreTeamMembers: Member[] = [
+  {
+    id: "945029082314338407",
+    name: "LonelyDeath",
+    roles: ["Founder", "Main Developer"],
+  },
+  {
+    id: "749895975694499930",
+    name: "Dymidless",
+    roles: ["Developer"],
+  },
+];
 
+export default function Page() {
   return (
     <main className="flex min-h-screen flex-col">
       <NavbarComponent isDashboard={false} />
-      <div className="flex flex-grow flex-col items-center px-4 py-8">
-        <h1 className="mb-6 text-center font-extrabold text-4xl">Meet the Core Team</h1>
-        <div className="flex max-w-screen-xl flex-wrap justify-center gap-8">
-          {coreTeamMembers.map((member) => (
-            <Card key={member.id} className="mx-2 mb-6 max-w-xs sm:max-w-sm">
-              <CardHeader className="mb-4 flex justify-center">
-                <div className="h-32 w-32">
-                  <Image
-                    src={member.avatarUrl}
-                    alt={`${member.username}'s avatar`}
-                    width={128}
-                    height={128}
-                    className="rounded-full object-cover"
-                  />
-                </div>
-              </CardHeader>
-              <CardContent className="flex flex-col items-center">
-                <CardTitle className="mb-2 text-center">{member.username}</CardTitle>
-                <Badge variant="cyan" className="px-4 py-1">
-                  Core Team
-                </Badge>
-              </CardContent>
-            </Card>
-          ))}
+      <div className="flex items-center justify-center py-8">
+        <div className="flex w-full max-w-5xl flex-col gap-6 px-8">
+          <h1 className="font-extrabold text-3xl">Core Team</h1>
+          <div className="grid grid-cols-1 xs:grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
+            {CoreTeamMembers.map((member) => (
+              <MemberComponent key={member.id} member={member} />
+            ))}
+          </div>
         </div>
       </div>
     </main>
   );
+}
+
+export interface Member {
+  id: string;
+  name: string;
+  roles: string[];
 }
