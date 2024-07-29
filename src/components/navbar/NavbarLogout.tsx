@@ -1,14 +1,20 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "#components/ui/Button";
 import { deleteSession } from "#lib/Server";
 
 export function NavbarLogoutComponent() {
   const router = useRouter();
+  const pathname = usePathname();
   const handleLogout = async () => {
     await deleteSession();
-    router.refresh();
+
+    if (pathname.startsWith("/dashboard")) {
+      return router.replace("/");
+    }
+
+    return router.refresh();
   };
 
   return (

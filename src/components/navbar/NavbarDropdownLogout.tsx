@@ -1,15 +1,21 @@
 "use client";
 
 import { LogOut } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { deleteSession } from "#lib/Server";
 import { DropdownMenuItem } from "#ui/DropdownMenu";
 
 export function NavbarDropdownLogoutComponent() {
   const router = useRouter();
+  const pathname = usePathname();
   const handleLogout = async () => {
     await deleteSession();
-    router.refresh();
+
+    if (pathname.startsWith("/dashboard")) {
+      return router.replace("/");
+    }
+
+    return router.refresh();
   };
 
   return (
