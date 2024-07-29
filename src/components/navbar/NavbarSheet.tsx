@@ -22,7 +22,7 @@ const SheetItems: SheetItem[] = [
   {
     href: "/privacy",
     icon: <LockKeyhole className="size-5 text-default-400" />,
-    name: "Privicy Policy",
+    name: "Privacy Policy",
     target: "_self",
   },
   {
