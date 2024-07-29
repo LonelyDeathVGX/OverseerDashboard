@@ -10,13 +10,27 @@ import {
   RouteBases,
   Routes,
 } from "discord-api-types/v10";
-import { unstable_cache } from "next/cache";
 import { BitField } from "./BitField";
+import { cache } from "./Cache";
 import { decrypt } from "./Util";
 
-export const fetchUserGuilds = unstable_cache((accessToken: string) => internalFetchUserGuilds(accessToken), [], {
+/*export const fetchUserGuilds = unstable_cache((accessToken: string) => internalFetchUserGuilds(accessToken), [], {
   revalidate: 5,
-});
+});*/
+
+export const fetchUserGuilds = async (accessToken: string) => {
+  if (cache.has(accessToken)) {
+    console.log("cache hit");
+    return await cache.get(accessToken);
+  }
+
+  console.log("fetchUserGuilds");
+
+  const data = internalFetchUserGuilds(accessToken);
+
+  cache.set(accessToken, data);
+  return data;
+};
 
 export async function internalFetchUserGuilds(accessToken: string): Promise<FetchUserGuildsResponse> {
   const decryptedAccessToken = decrypt(accessToken);
