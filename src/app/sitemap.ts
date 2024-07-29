@@ -15,5 +15,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/terms`,
       changeFrequency: "weekly",
     },
+    {
+      url: `${BASE_URL}/team`,
+      changeFrequency: "weekly",
+    },
   ];
 }
