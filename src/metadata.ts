@@ -60,3 +60,16 @@ export const terms: Metadata = {
     description: "These Terms of Service indicate the rights and obligations of users with the use of our services.",
   },
 };
+
+export const team: Metadata = {
+  ...metadataBase,
+  title: "Meet the Team - Overseer",
+  description: "Meet the core team behind Overseer, the Discord bot that enhances server management.",
+  alternates: {
+    canonical: `${BASE_URL}/team`,
+  },
+  openGraph: {
+    title: "Meet the Team - Overseer",
+    description: "Meet the core team behind Overseer, the Discord bot that enhances server management.",
+  },
+};
