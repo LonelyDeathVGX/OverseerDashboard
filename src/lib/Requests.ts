@@ -19,12 +19,11 @@ import { decrypt } from "./Util";
 });*/
 
 export const fetchUserGuilds = async (accessToken: string) => {
-  if (cache.has(accessToken)) {
-    console.log("cache hit");
-    return (await cache.get(accessToken)) as FetchUserGuildsResponse;
-  }
+  const cachedData = await cache.get(accessToken);
 
-  console.log("fetchUserGuilds");
+  if (cachedData) {
+    return cachedData as FetchUserGuildsResponse;
+  }
 
   const data = internalFetchUserGuilds(accessToken);
 
