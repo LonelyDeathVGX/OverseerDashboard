@@ -11,7 +11,7 @@ export default function Page() {
         <div className="rounded-full bg-amber-950 p-3 text-center text-amber-400 text-xs">
           Overseer is in Alpha phase. There may be bugs
         </div>
-        <h1 className="max-w-xl text-center font-extrabold text-5xl">
+        <h1 className="max-w-xl text-center font-bold text-5xl">
           A better way to manage <br />
           Discord Servers
         </h1>

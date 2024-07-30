@@ -56,9 +56,7 @@ export function NavbarSheetComponent({
             <Separator />
             <Accordion collapsible={true} type="single" defaultValue="Useful_Links">
               <AccordionItem value="Useful_Links">
-                <AccordionTrigger className="px-3 font-extrabold text-xs">
-                  {"Useful Links".toUpperCase()}
-                </AccordionTrigger>
+                <AccordionTrigger className="px-3 font-bold text-xs">{"Useful Links".toUpperCase()}</AccordionTrigger>
                 <AccordionContent>
                   <ul>
                     {Items(true).map((item) => (
@@ -82,7 +80,7 @@ export function NavbarSheetComponent({
             </Accordion>
             <Accordion collapsible={true} type="single" defaultValue="About_Us">
               <AccordionItem value="About_Us">
-                <AccordionTrigger className="px-3 font-extrabold text-xs">{"About Us".toUpperCase()}</AccordionTrigger>
+                <AccordionTrigger className="px-3 font-bold text-xs">{"About Us".toUpperCase()}</AccordionTrigger>
                 <AccordionContent>
                   <ul>
                     {SheetItems.map((item) => (

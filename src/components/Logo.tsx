@@ -7,7 +7,7 @@ export function LogoComponent({
   shouldHideLogo?: boolean;
 }) {
   return (
-    <div className="flex items-center gap-2 font-extrabold text-xl">
+    <div className="flex items-center gap-2 font-bold text-xl">
       {shouldHideLogo ? (
         <UseMediaQueryComponent mediaQuery="(min-width: 512px)">
           <Overseer className="size-7" />

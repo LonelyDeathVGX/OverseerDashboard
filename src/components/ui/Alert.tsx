@@ -24,7 +24,7 @@ const Alert = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement> & Varian
 Alert.displayName = "Alert";
 
 const AlertTitle = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLHeadingElement>>(
-  ({ className, ...props }, ref) => <h5 ref={ref} className={cn("font-extrabold", className)} {...props} />,
+  ({ className, ...props }, ref) => <h5 ref={ref} className={cn("font-bold", className)} {...props} />,
 );
 AlertTitle.displayName = "AlertTitle";
 

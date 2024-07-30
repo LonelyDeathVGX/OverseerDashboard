@@ -17,7 +17,7 @@ export function SidebarAccordionComponent({
   return (
     <Accordion collapsible={true} type="single" defaultValue={data.name}>
       <AccordionItem value={data.name}>
-        <AccordionTrigger className="px-3 font-extrabold text-xs">{data.name.toUpperCase()}</AccordionTrigger>
+        <AccordionTrigger className="px-3 font-bold text-xs">{data.name.toUpperCase()}</AccordionTrigger>
         <AccordionContent>
           {data.items.map((item, _) => (
             <Button

@@ -1,4 +1,6 @@
 import "./Global.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/700.css";
 
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
@@ -36,10 +38,7 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className="bg-black font-medium font-plus-jakarta-sans text-white leading-relaxed tracking-wide antialiased"
-    >
+    <html lang="en" className="bg-black font-medium font-poppins text-white leading-relaxed tracking-wide antialiased">
       <head>
         <AdSenseComponent />
       </head>

@@ -56,7 +56,7 @@ export function NavbarDropdownComponent({ session }: { session: Session }) {
               <AvatarFallback>{session.name}</AvatarFallback>
             </Avatar>
             <span className="flex flex-col">
-              <h1 className="font-extrabold text-sm">@{session.username}</h1>
+              <h1 className="font-bold text-sm">@{session.username}</h1>
               <p className="text-default-400 text-xs">{session.userID}</p>
             </span>
           </DropdownMenuLabel>

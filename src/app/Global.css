@@ -2,10 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Plus Jakarta Sans Variable";
-  font-display: swap;
-  src: url("/fonts/PlusJakartaSansVariable.ttf") format("truetype");
+body {
+  font-family: "Poppins", sans-serif;
 }
 
 * {
