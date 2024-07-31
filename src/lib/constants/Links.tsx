@@ -6,7 +6,7 @@ export const Links: ({
   useLongText,
 }: {
   useLongText: boolean;
-}) => Record<"useful_links" | "about_us", Link[]> = (useLongText) => ({
+}) => Record<"useful_links" | "about_us", Link[]> = ({ useLongText }) => ({
   useful_links: [
     {
       href: ADD_TO_DISCORD_URL,
