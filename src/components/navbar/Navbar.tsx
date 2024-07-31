@@ -3,9 +3,9 @@ import Link from "next/link";
 import { LogoComponent } from "#components/Logo";
 import { fetchSession } from "#lib/Server";
 import { UseMediaQueryComponent } from "../UseMediaQuery";
+import { LoginComponent } from "../buttons/Login";
 import { SidebarSheetComponent } from "../sidebar/SidebarSheet";
 import { NavbarLinksComponent } from "./NavbarLinks";
-import { NavbarLoginComponent } from "./NavbarLogin";
 import { NavbarDropdownComponent } from "./dropdown/NavbarDropdown";
 import { NavbarSheetComponent } from "./sheet/NavbarSheet";
 
@@ -27,7 +27,7 @@ export async function NavbarComponent({
         <NavbarLinksComponent isDashboard={isDashboard} />
         <div className="flex items-center gap-2">
           <UseMediaQueryComponent mediaQuery="(min-width: 512px)">
-            {session ? <NavbarDropdownComponent session={session} /> : <NavbarLoginComponent />}
+            {session ? <NavbarDropdownComponent session={session} /> : <LoginComponent />}
           </UseMediaQueryComponent>
           <UseMediaQueryComponent mediaQuery="(max-width: 512px)">
             <NavbarSheetComponent session={session} />

@@ -5,8 +5,8 @@ import { Button } from "#components/ui/Button";
 import { Separator } from "#components/ui/Separator";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "#components/ui/Sheet";
 import type { Session } from "#lib/Server";
-import { NavbarLoginComponent } from "../NavbarLogin";
-import { NavbarLogoutComponent } from "../NavbarLogout";
+import { LoginComponent } from "../../buttons/Login";
+import { LogoutComponent } from "../../buttons/Logout";
 import { NavbarSheetLinksComponent } from "./NavbarSheetLinks";
 
 export function NavbarSheetComponent({
@@ -17,7 +17,7 @@ export function NavbarSheetComponent({
   return (
     <Sheet>
       <SheetTrigger asChild={true}>
-        <Button variant="outline" size="icon">
+        <Button size="icon" variant="outline">
           <Menu className="size-5" />
         </Button>
       </SheetTrigger>
@@ -32,7 +32,7 @@ export function NavbarSheetComponent({
             <Separator />
             <NavbarSheetLinksComponent />
             <Separator />
-            <SheetFooter className="px-3">{session ? <NavbarLogoutComponent /> : <NavbarLoginComponent />}</SheetFooter>
+            <SheetFooter className="px-3">{session ? <LogoutComponent /> : <LoginComponent />}</SheetFooter>
           </div>
         </div>
       </SheetContent>

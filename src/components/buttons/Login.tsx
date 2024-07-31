@@ -2,10 +2,10 @@ import Link from "next/link";
 import { Button } from "#components/ui/Button";
 import { OAUTH2_URL } from "#lib/Constants";
 
-export function NavbarLoginComponent() {
+export function LoginComponent() {
   return (
     <Button asChild={true} variant="default">
-      <Link href={OAUTH2_URL} aria-label="Login with Discord" className="flex items-center gap-2">
+      <Link aria-label="Login with Discord Button" className="flex items-center gap-2" href={OAUTH2_URL}>
         Login with Discord
       </Link>
     </Button>

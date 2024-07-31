@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "#components/ui/Button";
 import { deleteSession } from "#lib/Server";
 
-export function NavbarLogoutComponent() {
+export function LogoutComponent() {
   const router = useRouter();
   const handleLogout = async () => {
     await deleteSession();
@@ -12,7 +12,7 @@ export function NavbarLogoutComponent() {
   };
 
   return (
-    <Button variant="rose" onClick={handleLogout}>
+    <Button aria-label="Logout Button" onClick={handleLogout} variant="rose">
       Logout
     </Button>
   );
