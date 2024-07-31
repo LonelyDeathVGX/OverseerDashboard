@@ -10,7 +10,11 @@ export function MemberComponent({
   member: Member;
 }) {
   return (
-    <Link href={`https://discord.com/users/${member.id}`} aria-label={`${member.name} Discord Profile Link`}>
+    <Link
+      href={`https://discord.com/users/${member.id}`}
+      target="_blank"
+      aria-label={`${member.name}'s Discord Profile Link`}
+    >
       <Card
         style={{
           backgroundImage: `url(/assets/team/core/${member.id}.webp)`,
