@@ -18,11 +18,7 @@ export function NavbarLinksComponent({
             })[group].map((link) => (
               <li className="text-sm" key={link.name}>
                 <Button asChild={true} variant="ghost">
-                  <Link
-                    aria-label={`${link.name} ${link.target === "_self" ? "Page" : "Link"}`}
-                    href={link.href}
-                    target={link.target}
-                  >
+                  <Link aria-label={link.ariaLabel} href={link.href} target={link.target}>
                     {link.name}
                   </Link>
                 </Button>

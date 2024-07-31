@@ -18,7 +18,7 @@ export function NavbarSheetLinksComponent() {
               <li key={link.name}>
                 <Button asChild={true} className="justify-start" variant="ghost">
                   <Link
-                    aria-label={`${link.name} ${link.target === "_self" ? "Page" : "Link"}`}
+                    aria-label={link.ariaLabel}
                     className="flex w-full items-center gap-2"
                     href={link.href}
                     target={link.target}

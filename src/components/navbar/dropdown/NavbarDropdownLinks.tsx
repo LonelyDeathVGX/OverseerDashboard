@@ -12,12 +12,7 @@ export function NavbarDropdownLinksComponent() {
           useLongText: true,
         })[group].map((link) => (
           <DropdownMenuItem asChild={true} key={link.name}>
-            <Link
-              aria-label={`${link.name} ${link.target === "_self" ? "Page" : "Link"}`}
-              className="flex items-center gap-2"
-              href={link.href}
-              target={link.target}
-            >
+            <Link aria-label={link.ariaLabel} className="flex items-center gap-2" href={link.href} target={link.target}>
               {link.icon}
               {link.name}
             </Link>
