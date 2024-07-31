@@ -8,9 +8,9 @@ import { fetchSession } from "#lib/Server";
 import { Button } from "#ui/Button";
 import { UseMediaQueryComponent } from "../UseMediaQuery";
 import { SidebarSheetComponent } from "../sidebar/SidebarSheet";
-import { NavbarDropdownComponent } from "./NavbarDropdown";
 import { NavbarLoginComponent } from "./NavbarLogin";
 import { NavbarSheetComponent } from "./NavbarSheet";
+import { NavbarDropdownComponent } from "./dropdown/NavbarDropdown";
 
 export const Items: (useLongText?: boolean) => Item[] = (useLongText) => [
   {

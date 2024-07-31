@@ -14,7 +14,7 @@ export function NavbarDropdownLogoutComponent() {
 
   return (
     <DropdownMenuGroup>
-      <DropdownMenuItem onClick={handleLogout} className="flex items-center gap-2 text-rose-400 focus:bg-rose-950/75">
+      <DropdownMenuItem className="flex items-center gap-2 text-rose-400 focus:bg-rose-950/75" onClick={handleLogout}>
         <LogOut className="size-5" />
         Logout
       </DropdownMenuItem>

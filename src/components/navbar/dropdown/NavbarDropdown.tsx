@@ -14,7 +14,7 @@ export function NavbarDropdownComponent({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild={true}>
-        <Avatar className="size-10 cursor-pointer rounded-full ring ring-default-700">
+        <Avatar className="size-10 cursor-pointer rounded-full">
           <AvatarImage
             alt={`${session.username}'s Avatar`}
             src={`${`${RouteBases.cdn}/avatars/${session.userID}/${session.avatarHash}.webp`}`}

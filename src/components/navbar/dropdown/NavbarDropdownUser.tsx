@@ -13,10 +13,10 @@ export function NavbarDropdownUserComponent({
     <DropdownMenuGroup>
       <DropdownMenuItem asChild={true} className="h-auto">
         <Link
-          href={`https://discord.com/users/${session.userID}`}
-          target="_blank"
           aria-label={`${session.username}'s Discord Profile Link`}
           className="flex items-center gap-2"
+          href={`https://discord.com/users/${session.userID}`}
+          target="_blank"
         >
           <Avatar className="size-8 rounded-lg">
             <AvatarImage
