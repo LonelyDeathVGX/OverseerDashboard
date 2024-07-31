@@ -2,7 +2,11 @@ import { CirclePlus, Gavel, LayoutDashboard, LifeBuoy, LockKeyhole, Users } from
 import type { HTMLAttributeAnchorTarget, ReactElement } from "react";
 import { ADD_TO_DISCORD_URL, SUPPORT_SERVER_URL } from "#lib/Constants";
 
-export const Links: (useLongText: boolean) => Record<"useful_links" | "about_us", Link[]> = (useLongText) => ({
+export const Links: ({
+  useLongText,
+}: {
+  useLongText: boolean;
+}) => Record<"useful_links" | "about_us", Link[]> = (useLongText) => ({
   useful_links: [
     {
       href: ADD_TO_DISCORD_URL,

@@ -8,7 +8,9 @@ export function NavbarDropdownLinksComponent() {
     <Fragment key={group}>
       {!!index && <DropdownMenuSeparator />}
       <DropdownMenuGroup>
-        {Links(true)[group].map((link) => (
+        {Links({
+          useLongText: true,
+        })[group].map((link) => (
           <DropdownMenuItem asChild={true} key={link.name}>
             <Link
               aria-label={`${link.name} ${link.target === "_self" ? "Page" : "Link"}`}
