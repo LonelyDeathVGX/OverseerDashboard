@@ -4,8 +4,8 @@ import { RateLimiterMemory, RateLimiterRes } from "rate-limiter-flexible";
 import { BitField } from "#lib/BitField";
 import { fetchClientGuild } from "#lib/Requests";
 import { NextResponseJSON, NextResponseNext } from "#lib/Responses";
-import { type Session, fetchSession } from "#lib/Server";
-import { decryptJWT, memberPermissions } from "#lib/Util";
+import { fetchSession } from "#lib/Server";
+import { memberPermissions } from "#lib/Util";
 
 const rateLimiter = new RateLimiterMemory({
   points: 5,
@@ -17,20 +17,13 @@ export async function APIDashboardMiddleware(request: NextRequest) {
   try {
     await rateLimiter.consume(request.headers.get("x-forwarded-for") ?? "127.0.0.1");
 
-    let session = await fetchSession();
+    const session = await fetchSession();
 
     if (!session) {
-      const authorization = request.headers.get("authorization") ?? "";
-      const payload = await decryptJWT(authorization);
-
-      if (!payload) {
-        return NextResponseJSON({
-          data: "Unauthorized",
-          status: 401,
-        });
-      }
-
-      session = payload as Session;
+      return NextResponseJSON({
+        data: "Unauthorized",
+        status: 401,
+      });
     }
 
     const { pathname } = request.nextUrl;
