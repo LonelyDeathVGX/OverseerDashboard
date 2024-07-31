@@ -1,44 +1,20 @@
 import type { APIGuild } from "discord-api-types/v10";
-import { CirclePlus, LayoutDashboard, LifeBuoy } from "lucide-react";
 import Link from "next/link";
-import type { HTMLAttributeAnchorTarget, ReactElement } from "react";
 import { LogoComponent } from "#components/Logo";
-import { ADD_TO_DISCORD_URL, SUPPORT_SERVER_URL } from "#lib/Constants";
 import { fetchSession } from "#lib/Server";
-import { Button } from "#ui/Button";
 import { UseMediaQueryComponent } from "../UseMediaQuery";
 import { SidebarSheetComponent } from "../sidebar/SidebarSheet";
+import { NavbarLinksComponent } from "./NavbarLinks";
 import { NavbarLoginComponent } from "./NavbarLogin";
-import { NavbarSheetComponent } from "./NavbarSheet";
 import { NavbarDropdownComponent } from "./dropdown/NavbarDropdown";
-
-export const Items: (useLongText?: boolean) => Item[] = (useLongText) => [
-  {
-    href: ADD_TO_DISCORD_URL,
-    icon: <CirclePlus className="size-5 text-default-400" />,
-    name: useLongText ? "Add to Discord" : "Invite",
-    target: "_blank",
-  },
-  {
-    href: SUPPORT_SERVER_URL,
-    icon: <LifeBuoy className="size-5 text-default-400" />,
-    name: useLongText ? "Support Server" : "Discord",
-    target: "_blank",
-  },
-  {
-    href: "/dashboard",
-    icon: <LayoutDashboard className="size-5 text-default-400" />,
-    name: useLongText ? "Manage Servers" : "Dashboard",
-    target: "_self",
-  },
-];
+import { NavbarSheetComponent } from "./sheet/NavbarSheet";
 
 export async function NavbarComponent({
-  isDashboard,
   guild,
+  isDashboard,
 }: {
-  isDashboard: boolean;
   guild?: APIGuild;
+  isDashboard: boolean;
 }) {
   const session = await fetchSession();
 
@@ -48,25 +24,7 @@ export async function NavbarComponent({
         <Link href="/" aria-label="Overseer Main Page">
           <LogoComponent shouldHideLogo={true} />
         </Link>
-        <UseMediaQueryComponent mediaQuery="(min-width: 768px)">
-          {!isDashboard && (
-            <ul className="flex gap-4">
-              {Items(false).map((item) => (
-                <li key={item.name} className="text-sm">
-                  <Button asChild={true} variant="ghost">
-                    <Link
-                      target={item.target}
-                      href={item.href}
-                      aria-label={`${item.name} ${item.target === "_self" ? "Page" : "Link"}`}
-                    >
-                      {item.name}
-                    </Link>
-                  </Button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </UseMediaQueryComponent>
+        <NavbarLinksComponent isDashboard={isDashboard} />
         <div className="flex items-center gap-2">
           <UseMediaQueryComponent mediaQuery="(min-width: 512px)">
             {session ? <NavbarDropdownComponent session={session} /> : <NavbarLoginComponent />}
@@ -83,11 +41,4 @@ export async function NavbarComponent({
       </header>
     </nav>
   );
-}
-
-interface Item {
-  href: string;
-  icon: ReactElement;
-  name: string;
-  target: HTMLAttributeAnchorTarget;
 }
