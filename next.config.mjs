@@ -1,15 +1,16 @@
 /** @type {import("next").NextConfig} */
 
 const config = {
-  reactStrictMode: false,
   images: {
     remotePatterns: [
       {
-        protocol: "https",
         hostname: "cdn.discordapp.com",
+        protocol: "https",
       },
     ],
   },
+  poweredByHeader: false,
+  reactStrictMode: false,
 };
 
 export default config;
