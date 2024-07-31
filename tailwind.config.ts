@@ -1,12 +1,9 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  content: ["./src/app/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}"],
   darkMode: ["class"],
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  plugins: [require("tailwindcss-animate")],
   prefix: "",
   theme: {
     container: {
@@ -17,14 +14,10 @@ const config: Config = {
       },
     },
     extend: {
-      fontFamily: {
-        poppins: "Poppins",
-      },
-      screens: {
-        xs: "512px",
-        "full-screen": {
-          raw: "(max-height: 650px)",
-        },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        gradient: "gradient 3s ease infinite",
       },
       colors: {
         default: {
@@ -40,6 +33,9 @@ const config: Config = {
           900: "#18181b",
           950: "#0f0f12",
         },
+      },
+      fontFamily: {
+        poppins: "Poppins",
       },
       keyframes: {
         "accordion-down": {
@@ -70,14 +66,14 @@ const config: Config = {
           },
         },
       },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        gradient: "gradient 3s ease infinite",
+      screens: {
+        "full-screen": {
+          raw: "(max-height: 650px)",
+        },
+        xs: "512px",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
 };
 
 export default config;
