@@ -13,7 +13,7 @@ export function NavbarDropdownLogoutComponent() {
   };
 
   return (
-    <DropdownMenuItem onClick={handleLogout} className="flex items-center gap-2 text-rose-400">
+    <DropdownMenuItem onClick={handleLogout} className="flex items-center gap-2 text-rose-400 focus:bg-rose-950/75">
       <LogOut className="size-5" />
       Logout
     </DropdownMenuItem>
