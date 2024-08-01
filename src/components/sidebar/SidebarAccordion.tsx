@@ -3,30 +3,35 @@
 import { cutText } from "@sapphire/utilities";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import type { Category } from "#lib/constants/SidebarCategories";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "#ui/Accordion";
 import { Button } from "#ui/Button";
-import type { Category } from "./SidebarContent";
 
 export function SidebarAccordionComponent({
-  data,
+  category,
 }: {
-  data: Category;
+  category: Category;
 }) {
   const pathname = usePathname();
 
   return (
-    <Accordion collapsible={true} type="single" defaultValue={data.name}>
-      <AccordionItem value={data.name}>
-        <AccordionTrigger className="px-3 font-bold text-xs">{data.name.toUpperCase()}</AccordionTrigger>
+    <Accordion collapsible={true} defaultValue={category.name} type="single">
+      <AccordionItem value={category.name}>
+        <AccordionTrigger className="px-3 font-bold text-xs">{category.name.toUpperCase()}</AccordionTrigger>
         <AccordionContent>
-          {data.items.map((item, _) => (
+          {category.items.map((item, _) => (
             <Button
-              key={item.name}
               asChild={true}
-              variant={pathname === item.href ? "default" : "ghost"}
               className="flex w-full justify-start"
+              key={item.name}
+              variant={pathname === item.href ? "default" : "ghost"}
             >
-              <Link href={item.href} aria-label={`${item.name} Page`} className="flex items-center gap-2">
+              <Link
+                aria-label={item.ariaLabel}
+                className="flex items-center gap-2"
+                href={item.href}
+                target={item.target}
+              >
                 {item.icon}
                 {cutText(item.name, 17)}
                 {item.badge && <span className="flex w-full justify-end">{item.badge}</span>}
