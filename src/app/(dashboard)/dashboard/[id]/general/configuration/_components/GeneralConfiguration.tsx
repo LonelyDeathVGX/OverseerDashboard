@@ -38,7 +38,7 @@ export function GeneralConfigurationComponent({
   const handleChanges = async () => {
     setLoading(true);
 
-    await fetch(`/api/dashboard/${guildID}/configuration`, {
+    await fetch(`/api/dashboard/${guildID}/general/configuration`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
