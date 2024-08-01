@@ -11,7 +11,8 @@ import {
   Routes,
 } from "discord-api-types/v10";
 import { BitField } from "./BitField";
-import { createCache, decrypt } from "./Util";
+import { createCache } from "./Cache";
+import { decrypt } from "./Util";
 
 const userGuildsCache = createCache<FetchUserGuildsResponse>({
   timeToLive: 10000,
