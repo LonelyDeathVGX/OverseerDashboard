@@ -1,9 +1,10 @@
 "use client";
 
 import { DialogClose } from "@radix-ui/react-dialog";
+import { useMutation } from "@tanstack/react-query";
+import ky from "ky";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { Button } from "#components/ui/Button";
 import {
   Dialog,
@@ -14,6 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "#components/ui/Dialog";
+import { afterResponseHook } from "#lib/Client";
 import { useToast } from "#ui/useToast";
 
 export function PremiumRevokeComponent({
@@ -21,33 +23,28 @@ export function PremiumRevokeComponent({
 }: {
   guildID: string;
 }) {
-  const [loading, setLoading] = useState<boolean>(false);
   const { toast } = useToast();
   const router = useRouter();
-  const handleRevoke = async () => {
-    setLoading(true);
-
-    await fetch(`/api/dashboard/${guildID}/configuration/premium`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    })
-      .then(async (response) => {
-        if (response.ok) {
-          router.refresh();
-        } else {
-          const { data } = await response.json();
-
-          toast({
-            description: data,
-            variant: "rose",
-          });
-        }
-      })
-      .finally(() => setLoading(false));
-  };
+  const { mutate, isPending } = useMutation({
+    mutationFn: async () => {
+      await ky.delete(`/api/dashboard/${guildID}/general/configuration/premium`, {
+        hooks: {
+          afterResponse: [afterResponseHook],
+        },
+        retry: 0,
+      });
+    },
+    onError: (error) => {
+      toast({
+        description: error.message,
+        title: "Request Error",
+        variant: "rose",
+      });
+    },
+    onSuccess: () => {
+      router.refresh();
+    },
+  });
 
   return (
     <Dialog>
@@ -66,8 +63,8 @@ export function PremiumRevokeComponent({
           <DialogClose asChild={true}>
             <Button variant="outline">Cancel</Button>
           </DialogClose>
-          <Button disabled={loading} onClick={handleRevoke} className="gap-2">
-            {loading && <Loader2 className="size-5 animate-spin" />}
+          <Button className="gap-2" disabled={isPending} onClick={() => mutate()}>
+            {isPending && <Loader2 className="size-5 animate-spin" />}
             Revoke
           </Button>
         </DialogFooter>

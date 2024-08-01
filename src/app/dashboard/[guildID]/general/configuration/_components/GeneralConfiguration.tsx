@@ -1,8 +1,11 @@
 "use client";
 
+import { useMutation } from "@tanstack/react-query";
+import ky from "ky";
 import { Loader2 } from "lucide-react";
 import { type ReactElement, useState } from "react";
 import { CircleFlag } from "react-circle-flags";
+import { afterResponseHook } from "#lib/Client";
 import { Button } from "#ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "#ui/Card";
 import { Label } from "#ui/Label";
@@ -32,38 +35,34 @@ export function GeneralConfigurationComponent({
   };
   guildID: string;
 }) {
-  const [loading, setLoading] = useState<boolean>(false);
   const [locale, setLocale] = useState<string>(data.locale);
   const { toast } = useToast();
-  const handleChanges = async () => {
-    setLoading(true);
-
-    await fetch(`/api/dashboard/${guildID}/general/configuration`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        locale,
-      }),
-    })
-      .then(async (response) => {
-        if (response.ok) {
-          toast({
-            description: "The changes have been saved",
-          });
-        } else {
-          const { data } = await response.json();
-
-          toast({
-            description: data,
-            variant: "rose",
-          });
-        }
-      })
-      .finally(() => setLoading(false));
-  };
+  const { mutate, isPending } = useMutation({
+    mutationFn: async () => {
+      await ky.put(`/api/dashboard/${guildID}/general/configuration`, {
+        hooks: {
+          afterResponse: [afterResponseHook],
+        },
+        json: {
+          locale,
+        },
+        retry: 0,
+      });
+    },
+    onError: (error) => {
+      toast({
+        description: error.message,
+        title: "Request Error",
+        variant: "rose",
+      });
+    },
+    onSuccess: () => {
+      toast({
+        description: "The changes have been saved",
+        title: "Request Success",
+      });
+    },
+  });
 
   return (
     <Card>
@@ -92,8 +91,8 @@ export function GeneralConfigurationComponent({
             </SelectContent>
           </Select>
         </div>
-        <Button disabled={loading} onClick={handleChanges} className="gap-2">
-          {loading && <Loader2 className="size-5 animate-spin" />}
+        <Button className="gap-2" disabled={isPending} onClick={() => mutate()}>
+          {isPending && <Loader2 className="size-5 animate-spin" />}
           Save Changes
         </Button>
       </CardContent>
