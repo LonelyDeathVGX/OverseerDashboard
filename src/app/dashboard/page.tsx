@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { NavbarComponent } from "#components/navbar/Navbar";
-import { GuildListComponent } from "./components/GuildList";
-import { GuildListSkeletonComponent } from "./components/GuildListSkeleton";
+import { GuildListComponent } from "./_components/GuildList";
+import { GuildListSkeletonComponent } from "./_components/GuildListSkeleton";
 
 export default function Page() {
   return (
