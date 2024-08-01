@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { NavbarComponent } from "#components/navbar/Navbar";
 import { BASE_URL } from "#lib/Constants";
 import { metadata } from "#metadata";
-import { MemberComponent } from "./components/Member";
+import { MemberComponent } from "./_components/Member";
 
 export function generateMetadata(): Metadata {
   return metadata({
