@@ -1,6 +1,5 @@
 import type { KyRequest, KyResponse, NormalizedOptions } from "ky";
 import ky from "ky";
-import type { MakeRequestMethods } from "#types";
 
 export const makeClientRequest = async (
   url: string,
@@ -32,3 +31,5 @@ const afterResponseHook = async (_request: KyRequest, _options: NormalizedOption
     );
   }
 };
+
+type MakeRequestMethods = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";

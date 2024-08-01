@@ -25,11 +25,10 @@ export function PremiumRevokeComponent({
   const { toast } = useToast();
   const router = useRouter();
   const { mutate, isPending } = useMutation({
-    mutationFn: async () => {
+    mutationFn: async () =>
       await makeClientRequest(`/api/dashboard/${guildID}/general/configuration/premium`, {
         method: "DELETE",
-      });
-    },
+      }),
     onError: (error) => {
       toast({
         description: error.message,

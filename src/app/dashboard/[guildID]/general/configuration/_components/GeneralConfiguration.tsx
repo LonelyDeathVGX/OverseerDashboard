@@ -37,14 +37,13 @@ export function GeneralConfigurationComponent({
   const [locale, setLocale] = useState<string>(data.locale);
   const { toast } = useToast();
   const { mutate, isPending } = useMutation({
-    mutationFn: async () => {
+    mutationFn: async () =>
       await makeClientRequest(`/api/dashboard/${guildID}/general/configuration`, {
         json: {
           locale,
         },
         method: "PUT",
-      });
-    },
+      }),
     onError: (error) => {
       toast({
         description: error.message,
