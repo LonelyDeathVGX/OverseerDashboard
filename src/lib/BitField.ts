@@ -1,3 +1,5 @@
+import "server-only";
+
 export class BitField {
   value: number;
 

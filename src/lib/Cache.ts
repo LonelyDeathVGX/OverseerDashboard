@@ -1,6 +1,13 @@
+import "server-only";
+
 import TTLCache from "@isaacs/ttlcache";
 
-export const cache = new TTLCache({
-  max: 100,
-  ttl: 10000,
-});
+export const createCache = ({
+  timeToLive = 5000,
+}: {
+  timeToLive: number;
+}) =>
+  new TTLCache({
+    max: 100,
+    ttl: timeToLive,
+  });

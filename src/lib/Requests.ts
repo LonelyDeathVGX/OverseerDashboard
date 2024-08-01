@@ -11,24 +11,29 @@ import {
   Routes,
 } from "discord-api-types/v10";
 import { BitField } from "./BitField";
-import { cache } from "./Cache";
+import { createCache } from "./Cache";
 import { decrypt } from "./Util";
 
-/*export const fetchUserGuilds = unstable_cache((accessToken: string) => internalFetchUserGuilds(accessToken), [], {
-  revalidate: 5,
-});*/
+const userGuildsCache = createCache({
+  timeToLive: 10000,
+});
 
 export const fetchUserGuilds = async (accessToken: string) => {
-  const cachedData = await cache.get(accessToken);
+  const hasCachedData = userGuildsCache.has(accessToken);
 
-  if (cachedData) {
-    return cachedData as FetchUserGuildsResponse;
+  if (hasCachedData) {
+    const cachedData = (await userGuildsCache.get(accessToken)) as FetchUserGuildsResponse;
+
+    return cachedData;
   }
 
-  const data = internalFetchUserGuilds(accessToken);
+  const fetchedGuilds = await internalFetchUserGuilds(accessToken);
 
-  cache.set(accessToken, data);
-  return data;
+  if (!fetchedGuilds.rateLimited) {
+    userGuildsCache.set(accessToken, fetchedGuilds);
+  }
+
+  return fetchedGuilds;
 };
 
 export async function internalFetchUserGuilds(accessToken: string): Promise<FetchUserGuildsResponse> {
