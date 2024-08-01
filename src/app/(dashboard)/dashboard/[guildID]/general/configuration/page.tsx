@@ -6,11 +6,11 @@ export default async function Page({
   params,
 }: {
   params: {
-    id: string;
+    guildID: string;
   };
 }) {
   const guildConfiguration = await GuildConfigurationManager.findOne({
-    guildID: params.id,
+    guildID: params.guildID,
   });
 
   return (
@@ -19,9 +19,9 @@ export default async function Page({
         data={{
           locale: guildConfiguration?.general.locale.toLowerCase() ?? "en",
         }}
-        guildID={params.id}
+        guildID={params.guildID}
       />
-      <PremiumComponent data={guildConfiguration?.premium ?? {}} guildID={params.id} />
+      <PremiumComponent data={guildConfiguration?.premium ?? {}} guildID={params.guildID} />
     </div>
   );
 }

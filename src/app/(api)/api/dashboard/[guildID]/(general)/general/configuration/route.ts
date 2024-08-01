@@ -17,7 +17,7 @@ export async function PUT(
     params,
   }: {
     params: {
-      id: string;
+      guildID: string;
     };
   },
 ) {
@@ -42,7 +42,7 @@ export async function PUT(
 
     await GuildConfigurationManager.upsert(
       {
-        guildID: params.id,
+        guildID: params.guildID,
       },
       {
         general: {
@@ -50,7 +50,7 @@ export async function PUT(
         },
       },
       {
-        guildID: params.id,
+        guildID: params.guildID,
         general: {
           locale: data.locale.toUpperCase(),
           timezone: "UTC",

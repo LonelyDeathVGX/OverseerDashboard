@@ -24,7 +24,7 @@ export async function POST(
     params,
   }: {
     params: {
-      id: string;
+      guildID: string;
     };
   },
 ) {
@@ -61,7 +61,7 @@ export async function POST(
     const expiresAt = clientVoucher.general.type === "MONTH" ? Date.now() + 2592000000 : 0;
     await GuildConfigurationManager.upsert(
       {
-        guildID: params.id,
+        guildID: params.guildID,
       },
       {
         premium: {
@@ -70,7 +70,7 @@ export async function POST(
         },
       },
       {
-        guildID: params.id,
+        guildID: params.guildID,
         general: {
           locale: "EN",
           timezone: "UTC",
@@ -109,13 +109,13 @@ export async function DELETE(
     params,
   }: {
     params: {
-      id: string;
+      guildID: string;
     };
   },
 ) {
   try {
     const guildConfiguration = await GuildConfigurationManager.findOne({
-      guildID: params.id,
+      guildID: params.guildID,
     });
 
     if (!guildConfiguration?.premium.enabled) {
@@ -126,7 +126,7 @@ export async function DELETE(
     }
 
     const session = (await fetchSession()) as Session;
-    const { guild } = await fetchClientGuild(params.id);
+    const { guild } = await fetchClientGuild(params.guildID);
 
     if (session?.userID !== guild?.owner_id) {
       return NextResponseJSON({
@@ -137,7 +137,7 @@ export async function DELETE(
 
     await GuildConfigurationManager.updateOne(
       {
-        guildID: params.id,
+        guildID: params.guildID,
       },
       {
         premium: {

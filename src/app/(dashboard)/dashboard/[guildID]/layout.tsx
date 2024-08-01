@@ -20,10 +20,10 @@ export default async function Layout({
 }: {
   children: ReactNode;
   params: {
-    id: string;
+    guildID: string;
   };
 }) {
-  const { guild } = await fetchClientGuild(params.id);
+  const { guild } = await fetchClientGuild(params.guildID);
 
   return (
     <div>

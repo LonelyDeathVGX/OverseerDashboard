@@ -5,10 +5,10 @@ export default async function Page({
   params,
 }: {
   params: {
-    id: string;
+    guildID: string;
   };
 }) {
-  const { guild } = await fetchClientGuild(params.id);
+  const { guild } = await fetchClientGuild(params.guildID);
 
   return (
     <div className="flex flex-col gap-6">
