@@ -38,7 +38,10 @@ export async function decryptJWT(token: string): Promise<Session | Nullish> {
 }
 
 export async function memberPermissions(guild: APIGuild, memberID: string): Promise<bigint> {
-  const ALL_PERMISSIONS = Object.values(PermissionFlagsBits).reduce((a, b) => a | b, BigInt(0));
+  const ALL_PERMISSIONS = Object.values(PermissionFlagsBits).reduce(
+    (previousPermissions, permission) => previousPermissions | permission,
+    BigInt(0),
+  );
 
   if (guild.owner_id === memberID) {
     return ALL_PERMISSIONS;

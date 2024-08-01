@@ -5,6 +5,7 @@ import "@fontsource/poppins/700.css";
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { AdSenseComponent } from "#components/AdSense";
+import { DevToolsComponent } from "#components/DevTools";
 import { BASE_URL } from "#lib/Constants";
 import { metadata } from "#metadata";
 import { Toaster } from "#ui/Toaster";
@@ -45,6 +46,7 @@ export default function RootLayout({
       <body>
         {children}
         <Toaster />
+        <DevToolsComponent />
       </body>
     </html>
   );

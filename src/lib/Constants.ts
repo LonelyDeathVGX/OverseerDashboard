@@ -1,4 +1,4 @@
-export const CLIENT_ID = String(process.env.CLIENT_ID);
+export const CLIENT_ID = String(process.env.NEXT_PUBLIC_CLIENT_ID);
 
 export const BASE_URL =
   process.env.NODE_ENV === "production" ? "https://overseerbot.pages.dev" : "http://localhost:3000";
