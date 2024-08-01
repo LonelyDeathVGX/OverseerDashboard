@@ -9,6 +9,7 @@ import { DevToolsComponent } from "#components/DevTools";
 import { BASE_URL } from "#lib/Constants";
 import { metadata } from "#metadata";
 import { Toaster } from "#ui/Toaster";
+import { TanStackQueryProvider } from "../providers/TanStackQuery";
 
 export function generateMetadata(): Metadata {
   return metadata({
@@ -39,14 +40,16 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-black font-medium font-poppins text-white leading-relaxed tracking-wide antialiased">
+    <html className="bg-black font-medium font-poppins text-white leading-relaxed tracking-wide antialiased" lang="en">
       <head>
         <AdSenseComponent />
       </head>
       <body>
-        {children}
-        <Toaster />
-        <DevToolsComponent />
+        <TanStackQueryProvider>
+          {children}
+          <Toaster />
+          <DevToolsComponent />
+        </TanStackQueryProvider>
       </body>
     </html>
   );
