@@ -22,6 +22,7 @@
       "#database/*": ["./src/lib/database/managers/*"],
       "#lib/*": ["./src/lib/*"],
       "#metadata": ["./src/metadata.ts"],
+      "#types": ["./src/Types.d.ts"],
       "#ui/*": ["./src/components/ui/*"]
     }
   },

@@ -1,11 +1,10 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import ky from "ky";
 import { Loader2 } from "lucide-react";
 import { type ReactElement, useState } from "react";
 import { CircleFlag } from "react-circle-flags";
-import { afterResponseHook } from "#lib/Client";
+import { makeClientRequest } from "#lib/Client";
 import { Button } from "#ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "#ui/Card";
 import { Label } from "#ui/Label";
@@ -39,14 +38,11 @@ export function GeneralConfigurationComponent({
   const { toast } = useToast();
   const { mutate, isPending } = useMutation({
     mutationFn: async () => {
-      await ky.put(`/api/dashboard/${guildID}/general/configuration`, {
-        hooks: {
-          afterResponse: [afterResponseHook],
-        },
+      await makeClientRequest(`/api/dashboard/${guildID}/general/configuration`, {
         json: {
           locale,
         },
-        retry: 0,
+        method: "PUT",
       });
     },
     onError: (error) => {

@@ -1,11 +1,10 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import ky from "ky";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { afterResponseHook } from "#lib/Client";
+import { makeClientRequest } from "#lib/Client";
 import { Button } from "#ui/Button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "#ui/Dialog";
 import { Input } from "#ui/Input";
@@ -18,14 +17,11 @@ export function PremiumReedemComponent({ guildID }: { guildID: string }) {
   const router = useRouter();
   const { mutate, isPending } = useMutation({
     mutationFn: async () => {
-      await ky.post(`/api/dashboard/${guildID}/general/configuration/premium`, {
-        hooks: {
-          afterResponse: [afterResponseHook],
-        },
+      await makeClientRequest(`/api/dashboard/${guildID}/general/configuration/premium`, {
         json: {
           voucher,
         },
-        retry: 0,
+        method: "POST",
       });
     },
     onError: (error) => {

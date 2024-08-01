@@ -2,7 +2,6 @@
 
 import { DialogClose } from "@radix-ui/react-dialog";
 import { useMutation } from "@tanstack/react-query";
-import ky from "ky";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "#components/ui/Button";
@@ -15,7 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "#components/ui/Dialog";
-import { afterResponseHook } from "#lib/Client";
+import { makeClientRequest } from "#lib/Client";
 import { useToast } from "#ui/useToast";
 
 export function PremiumRevokeComponent({
@@ -27,11 +26,8 @@ export function PremiumRevokeComponent({
   const router = useRouter();
   const { mutate, isPending } = useMutation({
     mutationFn: async () => {
-      await ky.delete(`/api/dashboard/${guildID}/general/configuration/premium`, {
-        hooks: {
-          afterResponse: [afterResponseHook],
-        },
-        retry: 0,
+      await makeClientRequest(`/api/dashboard/${guildID}/general/configuration/premium`, {
+        method: "DELETE",
       });
     },
     onError: (error) => {
