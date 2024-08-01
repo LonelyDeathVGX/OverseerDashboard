@@ -1,5 +1,6 @@
 import "server-only";
 
+import TTLCache from "@isaacs/ttlcache";
 import type { Nullish } from "@sapphire/utilities";
 import Crypto from "crypto-js";
 import { type APIGuild, type APIRole, PermissionFlagsBits } from "discord-api-types/v10";
@@ -88,5 +89,17 @@ export async function makeRequest<T>({
 
   return (await request.json()) as T;
 }
+
+export const createCache = <V>({
+  maxItems = 100,
+  timeToLive = 5000,
+}: {
+  maxItems?: number;
+  timeToLive?: number;
+}) =>
+  new TTLCache<string, V>({
+    max: maxItems,
+    ttl: timeToLive,
+  });
 
 type MakeRequestMethods = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";

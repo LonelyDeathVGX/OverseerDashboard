@@ -11,19 +11,16 @@ import {
   Routes,
 } from "discord-api-types/v10";
 import { BitField } from "./BitField";
-import { createCache } from "./Cache";
-import { decrypt } from "./Util";
+import { createCache, decrypt } from "./Util";
 
-const userGuildsCache = createCache({
+const userGuildsCache = createCache<FetchUserGuildsResponse>({
   timeToLive: 10000,
 });
 
 export const fetchUserGuilds = async (accessToken: string) => {
-  const hasCachedData = userGuildsCache.has(accessToken);
+  const cachedData = userGuildsCache.get(accessToken);
 
-  if (hasCachedData) {
-    const cachedData = (await userGuildsCache.get(accessToken)) as FetchUserGuildsResponse;
-
+  if (cachedData) {
     return cachedData;
   }
 
