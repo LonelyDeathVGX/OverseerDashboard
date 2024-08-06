@@ -1,6 +1,9 @@
 /** @type {import("next").NextConfig} */
 
 const config = {
+  experimental: {
+    ppr: "incremental",
+  },
   images: {
     remotePatterns: [
       {
