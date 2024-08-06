@@ -1,5 +1,3 @@
-"use client";
-
 import { Info } from "lucide-react";
 import { Alert, AlertDescription } from "#ui/Alert";
 import { Card, CardContent, CardHeader, CardTitle } from "#ui/Card";
