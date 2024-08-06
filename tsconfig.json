@@ -18,6 +18,7 @@
       }
     ],
     "paths": {
+      "#actions/*": ["./src/lib/actions/actions/*"],
       "#components/*": ["./src/components/*"],
       "#database/*": ["./src/lib/database/managers/*"],
       "#lib/*": ["./src/lib/*"],
