@@ -64,7 +64,7 @@ export function GeneralConfigurationComponent({
                 <SelectValue placeholder="Select a language" />
               </SelectTrigger>
               <SelectContent>
-                <SelectGroup className="p-2">
+                <SelectGroup className="p-3">
                   {Items.map((item) => (
                     <SelectItem key={item.id} value={item.id}>
                       <span className="flex items-center gap-2">
