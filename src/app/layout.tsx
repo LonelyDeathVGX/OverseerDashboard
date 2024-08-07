@@ -9,7 +9,6 @@ import { DevToolsComponent } from "#components/DevTools";
 import { BASE_URL } from "#lib/Constants";
 import { metadata } from "#metadata";
 import { Toaster } from "#ui/Toaster";
-import { TanStackQueryProvider } from "../providers/TanStackQuery";
 
 export function generateMetadata(): Metadata {
   return metadata({
@@ -32,7 +31,7 @@ export function generateViewport(): Viewport {
     themeColor: "#2b2d31",
   };
 }
-// export const runtime = "edge";
+export const runtime = "edge";
 
 export default function RootLayout({
   children,
@@ -45,11 +44,9 @@ export default function RootLayout({
         <AdSenseComponent />
       </head>
       <body>
-        <TanStackQueryProvider>
-          {children}
-          <Toaster />
-          <DevToolsComponent />
-        </TanStackQueryProvider>
+        {children}
+        <Toaster />
+        <DevToolsComponent />
       </body>
     </html>
   );
