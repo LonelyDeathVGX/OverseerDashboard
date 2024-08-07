@@ -1,6 +1,6 @@
 import { GuildConfigurationManager } from "#lib/database/managers/GuildConfiguration";
-import { GeneralConfigurationComponent } from "./_components/GeneralConfiguration";
-import { PremiumComponent } from "./_components/Premium";
+import { GeneralConfigurationComponent } from "../_lib/components/GeneralConfiguration";
+import { PremiumComponent } from "../_lib/components/Premium";
 
 export default async function Page({
   params,
