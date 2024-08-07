@@ -10,15 +10,20 @@ import {
   RouteBases,
   Routes,
 } from "discord-api-types/v10";
+import { unstable_cache as cache } from "next/cache";
 import { BitField } from "./BitField";
-import { createCache } from "./Cache";
+// import { createCache } from "./Cache";
 import { decrypt } from "./Util";
 
-const userGuildsCache = createCache<FetchUserGuildsResponse>({
+/*const userGuildsCache = createCache<FetchUserGuildsResponse>({
   timeToLive: 10000,
+});*/
+
+export const fetchUserGuilds = cache(async (accessToken: string) => internalFetchUserGuilds(accessToken), [], {
+  revalidate: 10,
 });
 
-export const fetchUserGuilds = async (accessToken: string) => {
+/*export const fetchUserGuilds = async (accessToken: string) => {
   const cachedData = userGuildsCache.get(accessToken);
 
   if (cachedData) {
@@ -32,7 +37,7 @@ export const fetchUserGuilds = async (accessToken: string) => {
   }
 
   return fetchedGuilds;
-};
+};*/
 
 export async function internalFetchUserGuilds(accessToken: string): Promise<FetchUserGuildsResponse> {
   const decryptedAccessToken = decrypt(accessToken);
