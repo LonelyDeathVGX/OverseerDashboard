@@ -1,9 +1,8 @@
 "use client";
 
 import { DialogClose } from "@radix-ui/react-dialog";
-import { useMutation } from "@tanstack/react-query";
-import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { revokePremiumVoucher } from "#actions/Configuration";
 import { Button } from "#components/ui/Button";
 import {
   Dialog,
@@ -14,8 +13,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "#components/ui/Dialog";
-import { makeClientRequest } from "#lib/Client";
 import { useToast } from "#ui/useToast";
+import { PremiumRevokeSubmitComponent } from "./PremiumRevokeSubmit";
 
 export function PremiumRevokeComponent({
   guildID,
@@ -23,23 +22,19 @@ export function PremiumRevokeComponent({
   guildID: string;
 }) {
   const { toast } = useToast();
-  const router = useRouter();
-  const { mutate, isPending } = useMutation({
-    mutationFn: async () =>
-      await makeClientRequest(`/api/dashboard/${guildID}/general/configuration/premium`, {
-        method: "DELETE",
-      }),
-    onError: (error) => {
+  const { refresh } = useRouter();
+  const handleAction = async (formData: FormData) => {
+    const { message, success } = await revokePremiumVoucher(formData);
+
+    if (success) {
+      refresh();
+    } else {
       toast({
-        description: error.message,
-        title: "Request Error",
+        description: message,
         variant: "rose",
       });
-    },
-    onSuccess: () => {
-      router.refresh();
-    },
-  });
+    }
+  };
 
   return (
     <Dialog>
@@ -47,22 +42,22 @@ export function PremiumRevokeComponent({
         <Button variant="rose">Revoke Membership</Button>
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Revoke Server Membership</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This action will make the server no longer able to enjoy the benefits of
-            membership
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <DialogClose asChild={true}>
-            <Button variant="outline">Cancel</Button>
-          </DialogClose>
-          <Button className="gap-2" disabled={isPending} onClick={() => mutate()}>
-            {isPending && <Loader2 className="size-5 animate-spin" />}
-            Revoke
-          </Button>
-        </DialogFooter>
+        <form action={handleAction} className="flex flex-col gap-4">
+          <input type="hidden" name="guildID" value={guildID} />
+          <DialogHeader>
+            <DialogTitle>Revoke Server Membership</DialogTitle>
+            <DialogDescription>
+              This action cannot be undone. This action will make the server no longer able to enjoy the benefits of
+              membership
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <DialogClose asChild={true}>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <PremiumRevokeSubmitComponent />
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );

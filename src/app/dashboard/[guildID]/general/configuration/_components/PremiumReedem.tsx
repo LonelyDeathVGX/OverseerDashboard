@@ -1,39 +1,33 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
-import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { makeClientRequest } from "#lib/Client";
+import { reedemPremiumVoucher } from "#actions/Configuration";
 import { Button } from "#ui/Button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "#ui/Dialog";
 import { Input } from "#ui/Input";
 import { Label } from "#ui/Label";
 import { useToast } from "#ui/useToast";
+import { PremiumReedemSubmitComponent } from "./PremiumReedemSubmit";
 
-export function PremiumReedemComponent({ guildID }: { guildID: string }) {
-  const [voucher, setVoucher] = useState<string>("");
+export function PremiumReedemComponent({
+  guildID,
+}: {
+  guildID: string;
+}) {
   const { toast } = useToast();
-  const router = useRouter();
-  const { mutate, isPending } = useMutation({
-    mutationFn: async () =>
-      await makeClientRequest(`/api/dashboard/${guildID}/general/configuration/premium`, {
-        json: {
-          voucher,
-        },
-        method: "POST",
-      }),
-    onError: (error) => {
+  const { refresh } = useRouter();
+  const handleAction = async (formData: FormData) => {
+    const { message, success } = await reedemPremiumVoucher(formData);
+
+    if (success) {
+      refresh();
+    } else {
       toast({
-        description: error.message,
-        title: "Request Error",
+        description: message,
         variant: "rose",
       });
-    },
-    onSuccess: () => {
-      router.refresh();
-    },
-  });
+    }
+  };
 
   return (
     <Dialog>
@@ -41,25 +35,25 @@ export function PremiumReedemComponent({ guildID }: { guildID: string }) {
         <Button>Redeem Voucher</Button>
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Redeem your Voucher</DialogTitle>
-        </DialogHeader>
-        <div className="flex flex-col gap-2">
-          <Label>Enter your Voucher</Label>
-          <Input
-            maxLength={36}
-            minLength={36}
-            onChange={(element) => setVoucher(element.target.value)}
-            placeholder="########-####-####-####-############"
-            type="text"
-          />
-        </div>
-        <DialogFooter>
-          <Button className="gap-2" disabled={isPending} onClick={() => mutate()}>
-            {isPending && <Loader2 className="size-5 animate-spin" />}
-            Reedem Voucher
-          </Button>
-        </DialogFooter>
+        <form action={handleAction} className="flex flex-col gap-4">
+          <input type="hidden" name="guildID" value={guildID} />
+          <DialogHeader>
+            <DialogTitle>Redeem your Voucher</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col gap-2">
+            <Label>Enter your Voucher</Label>
+            <Input
+              maxLength={36}
+              minLength={36}
+              name="voucher"
+              placeholder="########-####-####-####-############"
+              type="text"
+            />
+          </div>
+          <DialogFooter>
+            <PremiumReedemSubmitComponent />
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );

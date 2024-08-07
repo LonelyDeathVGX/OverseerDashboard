@@ -1,8 +1,7 @@
 "use client";
 
-import { type ReactElement, useEffect } from "react";
+import type { ReactElement } from "react";
 import { CircleFlag } from "react-circle-flags";
-import { useFormState } from "react-dom";
 import { updateGeneralConfiguration } from "#actions/Configuration";
 import { useToast } from "#components/ui/useToast";
 import { Card, CardContent, CardHeader, CardTitle } from "#ui/Card";
@@ -34,19 +33,14 @@ export function GeneralConfigurationComponent({
   guildID: string;
 }) {
   const { toast } = useToast();
-  const [state, formAction] = useFormState(updateGeneralConfiguration, {
-    message: "",
-    success: false,
-  });
-
-  useEffect(() => {
-    const { message, success } = state;
+  const handleAction = async (formData: FormData) => {
+    const { message, success } = await updateGeneralConfiguration(formData);
 
     toast({
       description: message,
       variant: success ? "emerald" : "rose",
     });
-  }, [toast, state]);
+  };
 
   return (
     <Card>
@@ -55,7 +49,7 @@ export function GeneralConfigurationComponent({
       </CardHeader>
       <Separator />
       <CardContent>
-        <form action={formAction} className="flex flex-col gap-4">
+        <form action={handleAction} className="flex flex-col gap-4">
           <input type="hidden" name="guildID" value={guildID} />
           <div className="flex flex-col gap-2">
             <Label>Language</Label>
