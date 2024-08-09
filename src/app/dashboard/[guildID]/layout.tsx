@@ -14,7 +14,7 @@ export function generateMetadata(): Metadata {
   };
 }
 
-export default async function Layout({
+export default async ({
   children,
   params,
 }: {
@@ -22,7 +22,7 @@ export default async function Layout({
   params: {
     guildID: string;
   };
-}) {
+}) => {
   const { guild } = await fetchClientGuild(params.guildID);
 
   return (
@@ -36,4 +36,4 @@ export default async function Layout({
       </>
     </div>
   );
-}
+};

@@ -15,7 +15,7 @@ export function NextResponseRedirect({
   });
 }
 
-export function NextResponseJSON({
+export function NextJSONResponse({
   data,
   init,
   status,
