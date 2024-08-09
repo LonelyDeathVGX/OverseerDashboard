@@ -3,7 +3,7 @@ import { NextResponseNext } from "#lib/Responses";
 import { APIDashboardMiddleware } from "./middlewares/APIDashboard";
 import { DashboardMiddleware } from "./middlewares/Dashboard";
 
-export async function middleware(request: NextRequest) {
+export const middleware = async (request: NextRequest) => {
   const { pathname } = request.nextUrl;
 
   if (pathname.startsWith("/api/dashboard")) {
@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
   }
 
   return NextResponseNext({});
-}
+};
 
 export const config: MiddlewareConfig = {
   matcher: ["/dashboard/:path*", "/api/dashboard/:path*"],
