@@ -1,11 +1,7 @@
-"use client";
-
-import type { Nullish } from "@sapphire/utilities";
 import type { APIGuild } from "discord-api-types/v10";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { LogoComponent } from "#components/Logo";
-import { type Session, fetchSession } from "#lib/Server";
+import { fetchSession } from "#lib/Server";
 import { UseMediaQueryComponent } from "../UseMediaQuery";
 import { LoginComponent } from "../buttons/Login";
 import { SidebarSheetComponent } from "../sidebar/SidebarSheet";
@@ -13,22 +9,14 @@ import { NavbarLinksComponent } from "./NavbarLinks";
 import { NavbarDropdownComponent } from "./dropdown/NavbarDropdown";
 import { NavbarSheetComponent } from "./sheet/NavbarSheet";
 
-export function NavbarComponent({
+export const NavbarComponent = async ({
   guild,
   isDashboard,
 }: {
   guild?: APIGuild;
   isDashboard: boolean;
-}) {
-  const [session, setSession] = useState<Session | Nullish>(null);
-
-  useEffect(() => {
-    (async () => {
-      const fetchedSession = await fetchSession();
-
-      setSession(fetchedSession);
-    })();
-  }, []);
+}) => {
+  const session = await fetchSession();
 
   return (
     <nav className="sticky top-0 z-50 flex h-16 w-full items-center justify-center border-default-700 border-b bg-black/50 backdrop-blur-xl">
@@ -53,4 +41,4 @@ export function NavbarComponent({
       </header>
     </nav>
   );
-}
+};
