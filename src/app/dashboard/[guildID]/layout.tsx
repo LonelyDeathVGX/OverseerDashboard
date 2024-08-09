@@ -6,13 +6,12 @@ import { NavbarComponent } from "#components/navbar/Navbar";
 import { SidebarComponent } from "#components/sidebar/Sidebar";
 import { fetchClientGuild } from "#lib/Requests";
 
-export function generateMetadata(): Metadata {
-  return {
-    robots: {
-      index: false,
-    },
-  };
-}
+export const metadata: Metadata = {
+  robots: {
+    follow: false,
+    index: false,
+  },
+};
 
 export default async ({
   children,

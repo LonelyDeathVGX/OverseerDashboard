@@ -1,25 +1,23 @@
 import type { Metadata } from "next";
 import { NavbarComponent } from "#components/navbar/Navbar";
 import { BASE_URL } from "#lib/Constants";
-import { metadata } from "#metadata";
+import { createMetadata } from "#metadata";
 
-export function generateMetadata(): Metadata {
-  return metadata({
-    canonical: `${BASE_URL}/terms`,
-    description: "These Terms of Service indicate the rights and obligations of users with the use of our services.",
-    robots: {
+export const metadata: Metadata = createMetadata({
+  canonical: `${BASE_URL}/terms`,
+  description: "These Terms of Service indicate the rights and obligations of users with the use of our services.",
+  robots: {
+    follow: true,
+    googleBot: {
       follow: true,
-      googleBot: {
-        follow: true,
-        index: true,
-      },
       index: true,
     },
-    title: "Terms of Service - Overseer",
-  });
-}
+    index: true,
+  },
+  title: "Terms of Service - Overseer",
+});
 
-export default function Page() {
+export default () => {
   return (
     <main>
       <NavbarComponent isDashboard={false} />
@@ -105,4 +103,4 @@ export default function Page() {
       </div>
     </main>
   );
-}
+};

@@ -1,25 +1,23 @@
 import type { Metadata } from "next";
 import { NavbarComponent } from "#components/navbar/Navbar";
 import { BASE_URL } from "#lib/Constants";
-import { metadata } from "#metadata";
+import { createMetadata } from "#metadata";
 
-export function generateMetadata(): Metadata {
-  return metadata({
-    canonical: `${BASE_URL}/privacy`,
-    description: "This Privacy Policy indicates how we collect, use and protect users' personal information.",
-    robots: {
+export const metadata: Metadata = createMetadata({
+  canonical: `${BASE_URL}/privacy`,
+  description: "This Privacy Policy indicates how we collect, use and protect users' personal information.",
+  robots: {
+    follow: true,
+    googleBot: {
       follow: true,
-      googleBot: {
-        follow: true,
-        index: true,
-      },
       index: true,
     },
-    title: "Privacy Policy - Overseer",
-  });
-}
+    index: true,
+  },
+  title: "Privacy Policy - Overseer",
+});
 
-export default function Page() {
+export default () => {
   return (
     <main>
       <NavbarComponent isDashboard={false} />
@@ -110,4 +108,4 @@ export default function Page() {
       </div>
     </main>
   );
-}
+};
