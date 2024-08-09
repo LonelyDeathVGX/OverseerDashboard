@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Robots } from "next/dist/lib/metadata/types/metadata-types";
 import { BASE_URL } from "#lib/Constants";
 
-export const metadata = ({
+export const createMetadata = ({
   canonical,
   description,
   robots,
