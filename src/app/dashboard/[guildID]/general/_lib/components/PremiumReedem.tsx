@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { reedemPremiumVoucher } from "#actions/Configuration";
+import { reedemPremiumVoucher } from "#lib/actions/configuration/reedemPremiumVoucher";
 import { Button } from "#ui/Button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "#ui/Dialog";
 import { Input } from "#ui/Input";

@@ -2,7 +2,6 @@
 
 import { DialogClose } from "@radix-ui/react-dialog";
 import { useRouter } from "next/navigation";
-import { revokePremiumVoucher } from "#actions/Configuration";
 import { Button } from "#components/ui/Button";
 import {
   Dialog,
@@ -13,6 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "#components/ui/Dialog";
+import { revokePremiumMembership } from "#lib/actions/configuration/revokePremiumMembership";
 import { useToast } from "#ui/useToast";
 import { PremiumRevokeSubmitComponent } from "./PremiumRevokeSubmit";
 
@@ -24,7 +24,7 @@ export function PremiumRevokeComponent({
   const { toast } = useToast();
   const { refresh } = useRouter();
   const handleAction = async (formData: FormData) => {
-    const { message, success } = await revokePremiumVoucher(formData);
+    const { message, success } = await revokePremiumMembership(formData);
 
     if (success) {
       refresh();
