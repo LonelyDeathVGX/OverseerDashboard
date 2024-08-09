@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { RateLimiterMemory, RateLimiterRes } from "rate-limiter-flexible";
 import { BitField } from "#lib/BitField";
 import { fetchClientGuild } from "#lib/Requests";
-import { NextResponseJSON, NextResponseNext } from "#lib/Responses";
+import { NextJSONResponse, NextMiddlewareResponse } from "#lib/Responses";
 import { fetchSession } from "#lib/Server";
 import { memberPermissions } from "#lib/Util";
 
@@ -13,14 +13,14 @@ const rateLimiter = new RateLimiterMemory({
   blockDuration: 7,
 });
 
-export async function APIDashboardMiddleware(request: NextRequest) {
+export const APIDashboardMiddleware = async (request: NextRequest) => {
   try {
     await rateLimiter.consume(request.headers.get("x-forwarded-for") ?? "127.0.0.1");
 
     const session = await fetchSession();
 
     if (!session) {
-      return NextResponseJSON({
+      return NextJSONResponse({
         data: "Unauthorized",
         status: 401,
       });
@@ -31,7 +31,7 @@ export async function APIDashboardMiddleware(request: NextRequest) {
     const { found, error, guild } = await fetchClientGuild(id);
 
     if (!found || error || !guild) {
-      return NextResponseJSON({
+      return NextJSONResponse({
         data: "Not Found",
         status: 404,
       });
@@ -41,24 +41,24 @@ export async function APIDashboardMiddleware(request: NextRequest) {
     const bitField = new BitField(Number.parseInt(permissions.toString()));
 
     if (!bitField.has(Number.parseInt(PermissionFlagsBits.ManageGuild.toString()))) {
-      return NextResponseJSON({
+      return NextJSONResponse({
         data: "Forbidden",
         status: 403,
       });
     }
 
-    return NextResponseNext({});
+    return NextMiddlewareResponse({});
   } catch (rateLimit) {
     if (rateLimit instanceof RateLimiterRes) {
-      return NextResponseJSON({
+      return NextJSONResponse({
         data: `Too Many Requests. Resets in ${(rateLimit.msBeforeNext / 1000).toFixed()} seconds`,
         status: 429,
       });
     }
 
-    return NextResponseJSON({
+    return NextJSONResponse({
       data: "Internal Server Error",
       status: 500,
     });
   }
-}
+};

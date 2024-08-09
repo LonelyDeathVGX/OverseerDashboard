@@ -2,13 +2,7 @@ import "server-only";
 
 import { NextResponse as ServerNextResponse } from "next/server";
 
-export function NextResponseRedirect({
-  init,
-  url,
-}: {
-  init?: ResponseInit;
-  url: string;
-}) {
+export function NextRedirectResponse(url: string, init?: ResponseInit) {
   return ServerNextResponse.redirect(url, {
     ...init,
     status: 302,
@@ -36,11 +30,7 @@ export function NextJSONResponse({
   );
 }
 
-export function NextResponseNext({
-  init,
-}: {
-  init?: ResponseInit;
-}) {
+export function NextMiddlewareResponse(init?: ResponseInit) {
   return ServerNextResponse.next({
     ...init,
     status: 200,

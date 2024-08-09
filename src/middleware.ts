@@ -1,5 +1,5 @@
 import type { MiddlewareConfig, NextRequest } from "next/server";
-import { NextResponseNext } from "#lib/Responses";
+import { NextMiddlewareResponse } from "#lib/Responses";
 import { APIDashboardMiddleware } from "./middlewares/APIDashboard";
 import { DashboardMiddleware } from "./middlewares/Dashboard";
 
@@ -14,7 +14,7 @@ export const middleware = async (request: NextRequest) => {
     return await DashboardMiddleware(request);
   }
 
-  return NextResponseNext({});
+  return NextMiddlewareResponse({});
 };
 
 export const config: MiddlewareConfig = {
