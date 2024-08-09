@@ -3,11 +3,11 @@
 import type { ReactElement } from "react";
 import { CircleFlag } from "react-circle-flags";
 import { useToast } from "#components/ui/useToast";
+import { updateGeneralConfiguration } from "#lib/actions/configuration/updateGeneralConfiguration";
 import { Card, CardContent, CardHeader, CardTitle } from "#ui/Card";
 import { Label } from "#ui/Label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "#ui/Select";
 import { Separator } from "#ui/Separator";
-import { updateGeneralConfiguration } from "../actions/updateGeneralConfiguration";
 import { GeneralConfigurationSubmitComponent } from "./GeneralConfigurationSubmit";
 
 const Items: Item[] = [
