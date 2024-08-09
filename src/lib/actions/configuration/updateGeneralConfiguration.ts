@@ -1,3 +1,5 @@
+"use server";
+
 import { z } from "zod";
 import { GuildConfigurationManager } from "#database/GuildConfiguration";
 import { getGuildID, middleware } from "#lib/actions/Util";
