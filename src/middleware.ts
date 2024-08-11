@@ -14,7 +14,7 @@ export const middleware = async (request: NextRequest) => {
     return await DashboardMiddleware(request);
   }
 
-  return NextMiddlewareResponse({});
+  return NextMiddlewareResponse();
 };
 
 export const config: MiddlewareConfig = {

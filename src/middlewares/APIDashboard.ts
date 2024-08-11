@@ -47,7 +47,7 @@ export const APIDashboardMiddleware = async (request: NextRequest) => {
       });
     }
 
-    return NextMiddlewareResponse({});
+    return NextMiddlewareResponse();
   } catch (rateLimit) {
     if (rateLimit instanceof RateLimiterRes) {
       return NextJSONResponse({

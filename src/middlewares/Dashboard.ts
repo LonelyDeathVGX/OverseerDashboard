@@ -36,5 +36,5 @@ export const DashboardMiddleware = async (request: NextRequest) => {
     }
   }
 
-  return NextMiddlewareResponse;
+  return NextMiddlewareResponse();
 };
