@@ -1,7 +1,7 @@
 import { CircleAlert } from "lucide-react";
 import { Alert, AlertDescription } from "#ui/Alert";
 
-export default function Page() {
+export default () => {
   return (
     <div className="flex flex-col gap-6">
       <Alert variant="amber">
@@ -10,4 +10,4 @@ export default function Page() {
       </Alert>
     </div>
   );
-}
+};
