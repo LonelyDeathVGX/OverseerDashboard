@@ -2,14 +2,13 @@
 <div align="center">
   <img alt="Overseer Isotype" src="./public/assets/Overseer.webp" width="120">
   <h1 align="center">Overseer Dashboard</h1>
-  <p align="center">Overseer is a Discord bot created with the purpose of being robust and manage Discord Servers in a better and easy way.</p>
 </div>
 <!-- markdownlint-restore -->
 
 > [!WARNING]
 > This project is still in **alpha version**. There may be bugs and Breaking Changes
 
-## Our Stack
+## 📦 Our Stack
 
 [![Next.js][NextJSBadgeURL]][NextJSURL]
 [![Tailwind CSS][TailwindCSSBadgeURL]][TailwindCSSURL]
@@ -19,10 +18,15 @@
 [![Biome][BiomeBadgeURL]][BiomeURL]
 [![PNPM][PNPMBadgeURL]][PNPMURL]
 
-## Security
+## 📄 License
+
+This project is licensed under the [BSD-3-Clause][BSD3ClauseURL] license.
+
+## 💻 Security
 
 If you believe you have found a security vulnerability, please DO NOT make a public issue, instead, go to our Support Server and contact the developers privately.
 
+[BSD3ClauseURL]: https://opensource.org/license/bsd-3-clause/
 [BiomeBadgeURL]: https://img.shields.io/badge/Biome-60A5FA?style=for-the-badge&logo=biome&color=2D3748
 [BiomeURL]: https://biomejs.dev/
 [DiscordAPITypesBadgeURL]: https://img.shields.io/badge/Discord%20API%20Types-337FE5?style=for-the-badge&logo=discord&color=2D3748
