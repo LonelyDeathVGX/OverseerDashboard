@@ -26,7 +26,7 @@ export default async ({
 
   return (
     <div>
-      <NavbarComponent isDashboard={true} guild={guild as APIGuild} />
+      <NavbarComponent guild={guild as APIGuild} isDashboard={true} />
       <>
         <UseMediaQueryComponent mediaQuery="(min-width: 768px)">
           <SidebarComponent guild={guild as APIGuild} />
