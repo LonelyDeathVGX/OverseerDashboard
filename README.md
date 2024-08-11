@@ -1,9 +1,7 @@
 <div align="center">
-
-# Overseer Dashboard
-
-Overseer is a Discord bot created with the purpose of being robust and manage Discord Servers in a better and easy way
-
+  <img alt="Overseer Iso" src="./public/assets/Overseer.webp" width="120">
+  <h1 align="center">Overseer Dashboard</h1>
+  <p align="center">Overseer is a Discord bot created with the purpose of being robust and manage Discord Servers in a better and easy way.</p>
 </div>
 
 > [!WARNING]
@@ -21,7 +19,7 @@ Overseer is a Discord bot created with the purpose of being robust and manage Di
 
 ## Security
 
-If you find a security breach, **do not make a public issue**. Instead, go to our support server and privately contact the developers.
+If you believe you have found a security vulnerability, please DO NOT make a public issue, instead, go to our Support Server and contact the developers privately.
 
 [BiomeBadgeURL]: https://img.shields.io/badge/Biome-60A5FA?style=for-the-badge&logo=biome&color=2D3748
 [BiomeURL]: https://biomejs.dev/
