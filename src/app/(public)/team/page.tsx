@@ -1,39 +1,37 @@
 import type { Metadata } from "next";
 import { NavbarComponent } from "#components/navbar/Navbar";
 import { BASE_URL } from "#lib/Constants";
-import { metadata } from "#metadata";
-import { MemberComponent } from "./_components/Member";
+import { createMetadata } from "#metadata";
+import { MemberComponent } from "./_lib/components/Member";
 
-export function generateMetadata(): Metadata {
-  return metadata({
-    canonical: `${BASE_URL}/team`,
-    description: "Meet the core team behind Overseer, the Discord bot that enhances server management.",
-    robots: {
+export const metadata: Metadata = createMetadata({
+  canonical: `${BASE_URL}/team`,
+  description: "Meet the core team behind Overseer, the Discord bot that enhances server management.",
+  robots: {
+    follow: true,
+    googleBot: {
       follow: true,
-      googleBot: {
-        follow: true,
-        index: true,
-      },
       index: true,
     },
-    title: "Meet the Team - Overseer",
-  });
-}
+    index: true,
+  },
+  title: "Meet the Team - Overseer",
+});
 
 const CoreTeamMembers: Member[] = [
   {
-    id: "945029082314338407",
     name: "LonelyDeath",
     roles: ["Founder", "Main Developer"],
+    userID: "945029082314338407",
   },
   {
-    id: "749895975694499930",
     name: "Dymidless",
     roles: ["Developer"],
+    userID: "749895975694499930",
   },
 ];
 
-export default function Page() {
+export default () => {
   return (
     <main className="flex min-h-screen flex-col">
       <NavbarComponent isDashboard={false} />
@@ -42,17 +40,17 @@ export default function Page() {
           <h1 className="font-bold text-3xl">Core Team</h1>
           <div className="grid grid-cols-1 xs:grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
             {CoreTeamMembers.map((member) => (
-              <MemberComponent key={member.id} member={member} />
+              <MemberComponent key={member.userID} member={member} />
             ))}
           </div>
         </div>
       </div>
     </main>
   );
-}
+};
 
 export interface Member {
-  id: string;
   name: string;
   roles: string[];
+  userID: string;
 }
