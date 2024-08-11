@@ -1,8 +1,10 @@
+<!-- markdownlint-disable -->
 <div align="center">
-  <img alt="Overseer Iso" src="./public/assets/Overseer.webp" width="120">
+  <img alt="Overseer Isotype" src="./public/assets/Overseer.webp" width="120">
   <h1 align="center">Overseer Dashboard</h1>
   <p align="center">Overseer is a Discord bot created with the purpose of being robust and manage Discord Servers in a better and easy way.</p>
 </div>
+<!-- markdownlint-restore -->
 
 > [!WARNING]
 > This project is still in **alpha version**. There may be bugs and Breaking Changes
