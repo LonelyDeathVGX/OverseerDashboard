@@ -1,13 +1,13 @@
 import { fetchClientGuild } from "#lib/Requests";
 import { Card, CardHeader, CardTitle } from "#ui/Card";
 
-export default async function Page({
+export default async ({
   params,
 }: {
   params: {
     guildID: string;
   };
-}) {
+}) => {
   const { guild } = await fetchClientGuild(params.guildID);
 
   return (
@@ -19,4 +19,4 @@ export default async function Page({
       </Card>
     </div>
   );
-}
+};
