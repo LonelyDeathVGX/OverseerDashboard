@@ -3,7 +3,7 @@ import { NavbarComponent } from "#components/navbar/Navbar";
 import { Button } from "#components/ui/Button";
 import { ADD_TO_DISCORD_URL } from "#lib/Constants";
 
-export default function Page() {
+export default () => {
   return (
     <main>
       <NavbarComponent isDashboard={false} />
@@ -20,13 +20,13 @@ export default function Page() {
           easy way
         </p>
         <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center sm:justify-center">
-          <Button variant="white" asChild={true}>
-            <Link target="_self" href={ADD_TO_DISCORD_URL} aria-label="Add to Discord Link">
+          <Button asChild={true} variant="white">
+            <Link aria-label="Add to Discord Link" href={ADD_TO_DISCORD_URL} target="_self">
               Add to Discord
             </Link>
           </Button>
-          <Button variant="outline" asChild={true}>
-            <Link target="_self" href="/dashboard" aria-label="Manage Servers Link">
+          <Button asChild={true} variant="outline">
+            <Link aria-label="Manage Servers Link" href="/dashboard" target="_self">
               Manage Servers
             </Link>
           </Button>
@@ -34,4 +34,4 @@ export default function Page() {
       </div>
     </main>
   );
-}
+};

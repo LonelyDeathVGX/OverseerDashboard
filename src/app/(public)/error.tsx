@@ -6,13 +6,13 @@ import { useEffect } from "react";
 import { SUPPORT_SERVER_URL } from "#lib/Constants";
 import { Button } from "#ui/Button";
 
-export default function Page({
+export default ({
   error,
 }: {
   error: Error & {
     digest?: string;
   };
-}) {
+}) => {
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -26,7 +26,7 @@ export default function Page({
           </div>
           <h1 className="text-center font-bold text-xl">Something went wrong</h1>
           <Button asChild={true} variant="outline">
-            <Link target="_self" href={SUPPORT_SERVER_URL} aria-label="Support Server Link">
+            <Link aria-label="Support Server Link" href={SUPPORT_SERVER_URL} target="_self">
               Support Server
             </Link>
           </Button>
@@ -34,4 +34,4 @@ export default function Page({
       </div>
     </main>
   );
-}
+};

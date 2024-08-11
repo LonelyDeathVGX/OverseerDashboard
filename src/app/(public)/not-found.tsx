@@ -2,7 +2,7 @@ import { Unlink } from "lucide-react";
 import Link from "next/link";
 import { Button } from "#ui/Button";
 
-export default function Page() {
+export default () => {
   return (
     <main>
       <div className="flex full-screen:h-[650px] h-dvh items-center justify-center py-8">
@@ -12,7 +12,7 @@ export default function Page() {
           </div>
           <h1 className="text-center font-bold text-xl">This page could not be found</h1>
           <Button asChild={true} variant="outline">
-            <Link target="_self" href="/" aria-label="Go to Main Page">
+            <Link aria-label="Go to Main Page" href="/" target="_self">
               Go to Main Page
             </Link>
           </Button>
@@ -20,4 +20,4 @@ export default function Page() {
       </div>
     </main>
   );
-}
+};
