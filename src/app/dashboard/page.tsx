@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { NavbarComponent } from "#components/navbar/Navbar";
-import { GuildListComponent } from "./_components/GuildList";
-import { GuildListSkeletonComponent } from "./_components/GuildListSkeleton";
+import { GuildListComponent } from "./_lib/components/GuildList";
+import { GuildListSkeletonComponent } from "./_lib/components/GuildListSkeleton";
 
-export default function Page() {
+export default () => {
   return (
     <main>
       <NavbarComponent isDashboard={false} />
@@ -19,4 +19,4 @@ export default function Page() {
       </div>
     </main>
   );
-}
+};
