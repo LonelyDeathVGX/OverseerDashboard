@@ -1,5 +1,4 @@
-import type { KyRequest, KyResponse, NormalizedOptions } from "ky";
-import ky from "ky";
+import ky, { type KyRequest, type KyResponse, type NormalizedOptions } from "ky";
 
 export const makeClientRequest = async (
   url: string,
@@ -22,13 +21,12 @@ export const makeClientRequest = async (
 
 const afterResponseHook = async (_request: KyRequest, _options: NormalizedOptions, response: KyResponse) => {
   if (!response.ok) {
-    throw new Error(
-      (
-        (await response.json()) as {
-          data: string;
-        }
-      ).data,
-    );
+    const dataResponse = (await response.json()) as {
+      data: unknown;
+      success: boolean;
+    };
+
+    throw new Error(String(dataResponse.data));
   }
 };
 
