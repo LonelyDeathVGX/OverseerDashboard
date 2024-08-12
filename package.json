@@ -31,14 +31,15 @@
     "react-circle-flags": "0.0.20",
     "react-dom": "18.3.1",
     "swr": "2.2.5",
-    "tailwind-merge": "2.4.0",
+    "tailwind-merge": "2.5.0",
     "tailwindcss-animate": "1.0.7",
     "usehooks-ts": "3.1.0",
     "zod": "3.23.8"
   },
+  "description": "Overseer's Dashboard repository",
   "devDependencies": {
     "@types/crypto-js": "4.2.2",
-    "@types/node": "22.1.0",
+    "@types/node": "22.2.0",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "husky": "9.1.4",
@@ -58,9 +59,8 @@
     "biome": "biome check --write --config-path=\"./biome.json\" .",
     "build": "next build",
     "dev": "next dev",
-    "lint": "next lint",
     "prepare": "husky",
     "start": "next start"
   },
-  "version": "0.1.0"
+  "version": "0.0.1"
 }
