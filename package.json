@@ -36,8 +36,9 @@
     "usehooks-ts": "3.1.0",
     "zod": "3.23.8"
   },
-  "description": "Overseer's Dashboard repository",
+  "description": "Overseer Dashboard Repository",
   "devDependencies": {
+    "@biomejs/biome": "1.8.3",
     "@types/crypto-js": "4.2.2",
     "@types/node": "22.2.0",
     "@types/react": "18.3.3",
