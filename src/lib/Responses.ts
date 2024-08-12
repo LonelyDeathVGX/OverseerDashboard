@@ -1,15 +1,13 @@
 import "server-only";
-
 import { NextResponse as ServerNextResponse } from "next/server";
 
-export function NextRedirectResponse(url: string, init?: ResponseInit) {
-  return ServerNextResponse.redirect(url, {
+export const NextRedirectResponse = (url: string, init?: ResponseInit) =>
+  ServerNextResponse.redirect(url, {
     ...init,
     status: 302,
   });
-}
 
-export function NextJSONResponse({
+export const NextJSONResponse = ({
   data,
   init,
   status,
@@ -17,8 +15,8 @@ export function NextJSONResponse({
   data: unknown;
   init?: ResponseInit;
   status: number;
-}) {
-  return ServerNextResponse.json(
+}) =>
+  ServerNextResponse.json(
     {
       data,
       success: status === 200,
@@ -28,11 +26,9 @@ export function NextJSONResponse({
       status,
     },
   );
-}
 
-export function NextMiddlewareResponse(init?: ResponseInit) {
-  return ServerNextResponse.next({
+export const NextMiddlewareResponse = (init?: ResponseInit) =>
+  ServerNextResponse.next({
     ...init,
     status: 200,
   });
-}

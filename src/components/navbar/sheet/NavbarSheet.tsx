@@ -9,11 +9,11 @@ import { LoginComponent } from "../../buttons/Login";
 import { LogoutComponent } from "../../buttons/Logout";
 import { NavbarSheetLinksComponent } from "./NavbarSheetLinks";
 
-export function NavbarSheetComponent({
+export const NavbarSheetComponent = ({
   session,
 }: {
   session: Session | Nullish;
-}) {
+}) => {
   return (
     <Sheet>
       <SheetTrigger asChild={true}>
@@ -38,4 +38,4 @@ export function NavbarSheetComponent({
       </SheetContent>
     </Sheet>
   );
-}
+};

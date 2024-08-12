@@ -3,11 +3,11 @@ import { UseMediaQueryComponent } from "#components/UseMediaQuery";
 import { Button } from "#components/ui/Button";
 import { Links } from "#lib/constants/Links";
 
-export function NavbarLinksComponent({
+export const NavbarLinksComponent = ({
   isDashboard,
 }: {
   isDashboard: boolean;
-}) {
+}) => {
   return (
     !isDashboard && (
       <UseMediaQueryComponent mediaQuery="(min-width: 768px)">
@@ -29,4 +29,4 @@ export function NavbarLinksComponent({
       </UseMediaQueryComponent>
     )
   );
-}
+};

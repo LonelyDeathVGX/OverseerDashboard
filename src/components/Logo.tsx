@@ -1,11 +1,11 @@
 import { Overseer } from "./Icons";
 import { UseMediaQueryComponent } from "./UseMediaQuery";
 
-export function LogoComponent({
+export const LogoComponent = ({
   shouldHideLogo,
 }: {
   shouldHideLogo?: boolean;
-}) {
+}) => {
   return (
     <div className="flex items-center gap-2 font-bold text-xl">
       {shouldHideLogo ? (
@@ -18,4 +18,4 @@ export function LogoComponent({
       Overseer
     </div>
   );
-}
+};

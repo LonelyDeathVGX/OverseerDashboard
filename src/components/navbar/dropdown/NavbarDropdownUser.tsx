@@ -4,11 +4,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "#components/ui/Avatar";
 import { DropdownMenuGroup, DropdownMenuItem } from "#components/ui/DropdownMenu";
 import type { Session } from "#lib/Server";
 
-export function NavbarDropdownUserComponent({
+export const NavbarDropdownUserComponent = ({
   session,
 }: {
   session: Session;
-}) {
+}) => {
   return (
     <DropdownMenuGroup>
       <DropdownMenuItem asChild={true} className="h-auto">
@@ -33,4 +33,4 @@ export function NavbarDropdownUserComponent({
       </DropdownMenuItem>
     </DropdownMenuGroup>
   );
-}
+};

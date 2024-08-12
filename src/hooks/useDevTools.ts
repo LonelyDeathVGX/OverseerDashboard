@@ -28,7 +28,7 @@ export const useDevTools = ({
             "color: white; font-family: 'Lucida Console', monospace; font-size: 3rem; font-weight: 700; line-height: 1;",
           ],
           [
-            "%cThis function should only be used by Developers. If someone has told you that you have to copy/paste something here, you are probably being scammed and they will get your Discord token",
+            "%cThis feature should only be used by Developers. If someone has told you that you have to copy/paste something here, you are probably being scammed and they will get your Discord token",
             "background-color: #4c0519; border-radius: 0.5rem; color: #fb7185; font-family: 'Lucida Console', monospace; font-weight: 500; padding: 1.5rem; width: 100%;",
           ],
           [

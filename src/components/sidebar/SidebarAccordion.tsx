@@ -7,11 +7,11 @@ import type { Category } from "#lib/constants/SidebarCategories";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "#ui/Accordion";
 import { Button } from "#ui/Button";
 
-export function SidebarAccordionComponent({
+export const SidebarAccordionComponent = ({
   category,
 }: {
   category: Category;
-}) {
+}) => {
   const pathname = usePathname();
 
   return (
@@ -42,4 +42,4 @@ export function SidebarAccordionComponent({
       </AccordionItem>
     </Accordion>
   );
-}
+};

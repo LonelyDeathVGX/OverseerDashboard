@@ -3,7 +3,7 @@
 import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from "./Toast";
 import { useToast } from "./useToast";
 
-export function Toaster() {
+export const Toaster = () => {
   const { toasts } = useToast();
 
   return (
@@ -20,4 +20,4 @@ export function Toaster() {
       <ToastViewport />
     </ToastProvider>
   );
-}
+};

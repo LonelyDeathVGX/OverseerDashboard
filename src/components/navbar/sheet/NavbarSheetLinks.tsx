@@ -3,7 +3,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "#c
 import { Button } from "#components/ui/Button";
 import { Links } from "#lib/constants/Links";
 
-export function NavbarSheetLinksComponent() {
+export const NavbarSheetLinksComponent = () => {
   return (["useful_links", "about_us"] as const).map((group) => (
     <Accordion collapsible={true} defaultValue={group} key={group} type="single">
       <AccordionItem value={group}>
@@ -34,4 +34,4 @@ export function NavbarSheetLinksComponent() {
       </AccordionItem>
     </Accordion>
   ));
-}
+};

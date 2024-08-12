@@ -6,11 +6,11 @@ import { NavbarDropdownLinksComponent } from "./NavbarDropdownLinks";
 import { NavbarDropdownLogoutComponent } from "./NavbarDropdownLogout";
 import { NavbarDropdownUserComponent } from "./NavbarDropdownUser";
 
-export function NavbarDropdownComponent({
+export const NavbarDropdownComponent = ({
   session,
 }: {
   session: Session;
-}) {
+}) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild={true}>
@@ -31,4 +31,4 @@ export function NavbarDropdownComponent({
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};

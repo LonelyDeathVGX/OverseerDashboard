@@ -1,7 +1,6 @@
 import "./Global.css";
 import "@fontsource/poppins/500.css";
 import "@fontsource/poppins/700.css";
-
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { AdSenseComponent } from "#components/AdSense";

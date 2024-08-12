@@ -1,5 +1,4 @@
 import "server-only";
-
 import {
   type APIGuild,
   type APIGuildMember,
@@ -10,20 +9,45 @@ import {
   RouteBases,
   Routes,
 } from "discord-api-types/v10";
-import { unstable_cache as cache } from "next/cache";
 import { BitField } from "./BitField";
-// import { createCache } from "./Cache";
+import { createCache } from "./Cache";
 import { decrypt } from "./Util";
 
-/*const userGuildsCache = createCache<FetchUserGuildsResponse>({
+const userGuildsCache = createCache<FetchUserGuildsResponse>({
   timeToLive: 10000,
-});*/
-
-export const fetchUserGuilds = cache(async (accessToken: string) => internalFetchUserGuilds(accessToken), [], {
-  revalidate: 10,
 });
 
-/*export const fetchUserGuilds = async (accessToken: string) => {
+const internalFetchUserGuilds = async (accessToken: string): Promise<FetchUserGuildsResponse> => {
+  const decryptedAccessToken = decrypt(accessToken);
+  const guildsRequest = await fetch(`${RouteBases.api}/${Routes.userGuilds()}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${decryptedAccessToken}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!guildsRequest.ok) {
+    return {
+      rateLimited: guildsRequest.status === 429,
+      guilds: [],
+    };
+  }
+
+  const guildsResponse = (await guildsRequest.json()) as RESTGetAPICurrentUserGuildsResult;
+  const filteredGuilds = guildsResponse.filter((partialGuild) =>
+    new BitField(Number.parseInt(partialGuild.permissions)).has(
+      Number.parseInt(PermissionFlagsBits.ManageGuild.toString()),
+    ),
+  );
+
+  return {
+    rateLimited: false,
+    guilds: filteredGuilds,
+  };
+};
+
+export const fetchUserGuilds = async (accessToken: string) => {
   const cachedData = userGuildsCache.get(accessToken);
 
   if (cachedData) {
@@ -37,48 +61,14 @@ export const fetchUserGuilds = cache(async (accessToken: string) => internalFetc
   }
 
   return fetchedGuilds;
-};*/
+};
 
-export async function internalFetchUserGuilds(accessToken: string): Promise<FetchUserGuildsResponse> {
-  const decryptedAccessToken = decrypt(accessToken);
-  const guildsRequest = await fetch(`${RouteBases.api}/${Routes.userGuilds()}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${decryptedAccessToken}`,
-      "Content-Type": "application/json",
-    },
-    next: {
-      revalidate: 5,
-    },
-  });
-
-  if (!guildsRequest.ok) {
-    return {
-      rateLimited: guildsRequest.status === 429,
-      guilds: [],
-    };
-  }
-
-  const guildsResponse = (await guildsRequest.json()) as RESTGetAPICurrentUserGuildsResult;
-  const filteredGuilds = guildsResponse.filter((guild) =>
-    new BitField(Number.parseInt(guild.permissions)).has(Number.parseInt(PermissionFlagsBits.ManageGuild.toString())),
-  );
-
-  return {
-    rateLimited: false,
-    guilds: filteredGuilds,
-  };
-}
-
-export async function fetchClientGuild(guildID: string): Promise<FetchClientGuildResponse> {
+export const fetchClientGuild = async (guildID: string): Promise<FetchClientGuildResponse> => {
   const guildRequest = await fetch(`${RouteBases.api}/${Routes.guild(guildID)}`, {
     method: "GET",
     headers: {
       Authorization: `Bot ${process.env.CLIENT_TOKEN}`,
       "Content-Type": "application/json",
-    },
-    next: {
-      revalidate: 5,
     },
   });
   const guildResponse = await guildRequest.json();
@@ -102,17 +92,14 @@ export async function fetchClientGuild(guildID: string): Promise<FetchClientGuil
     error: false,
     guild: guildResponse,
   };
-}
+};
 
-export async function fetchGuildMember(guildID: string, memberID: string): Promise<FetchGuildMemberResponse> {
+export const fetchGuildMember = async (guildID: string, memberID: string): Promise<FetchGuildMemberResponse> => {
   const memberRequest = await fetch(`${RouteBases.api}/${Routes.guildMember(guildID, memberID)}`, {
     method: "GET",
     headers: {
       Authorization: `Bot ${process.env.CLIENT_TOKEN}`,
       "Content-Type": "application/json",
-    },
-    next: {
-      revalidate: 5,
     },
   });
   const memberResponse = await memberRequest.json();
@@ -136,7 +123,7 @@ export async function fetchGuildMember(guildID: string, memberID: string): Promi
     error: false,
     member: memberResponse,
   };
-}
+};
 
 interface FetchUserGuildsResponse {
   rateLimited: boolean;

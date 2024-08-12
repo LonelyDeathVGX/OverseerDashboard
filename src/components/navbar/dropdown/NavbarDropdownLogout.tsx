@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import { deleteSession } from "#lib/Server";
 import { DropdownMenuGroup, DropdownMenuItem } from "#ui/DropdownMenu";
 
-export function NavbarDropdownLogoutComponent() {
-  const router = useRouter();
+export const NavbarDropdownLogoutComponent = () => {
+  const { replace } = useRouter();
   const handleLogout = async () => {
     await deleteSession();
-    return router.replace("/");
+    return replace("/");
   };
 
   return (
@@ -20,4 +20,4 @@ export function NavbarDropdownLogoutComponent() {
       </DropdownMenuItem>
     </DropdownMenuGroup>
   );
-}
+};

@@ -5,17 +5,17 @@ import type { JWTPayload } from "jose";
 import { cookies } from "next/headers";
 import { decryptJWT } from "./Util";
 
-export async function fetchSession(): Promise<Session | Nullish> {
+export const fetchSession = async (): Promise<Session | null> => {
   const authorization = cookies().get("authorization")?.value ?? "";
   const payload = await decryptJWT(authorization);
 
   return typeof payload === "object" ? (payload as Session) : null;
-}
+};
 
 // biome-ignore lint/suspicious/useAwait:
-export async function deleteSession(): Promise<void> {
+export const deleteSession = async (): Promise<void> => {
   cookies().delete("authorization");
-}
+};
 
 export type Session = {
   userID: string;

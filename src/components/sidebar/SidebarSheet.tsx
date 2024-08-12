@@ -6,15 +6,15 @@ import { Separator } from "#components/ui/Separator";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "#components/ui/Sheet";
 import { SidebarContentComponent } from "./SidebarContent";
 
-export function SidebarSheetComponent({
+export const SidebarSheetComponent = ({
   guild,
 }: {
   guild: APIGuild;
-}) {
+}) => {
   return (
     <Sheet>
       <SheetTrigger asChild={true}>
-        <Button variant="outline" size="icon">
+        <Button size="icon" variant="outline">
           <SquareChevronRight className="size-5" />
         </Button>
       </SheetTrigger>
@@ -33,4 +33,4 @@ export function SidebarSheetComponent({
       </SheetContent>
     </Sheet>
   );
-}
+};

@@ -4,11 +4,11 @@ import { useRouter } from "next/navigation";
 import { Button } from "#components/ui/Button";
 import { deleteSession } from "#lib/Server";
 
-export function LogoutComponent() {
-  const router = useRouter();
+export const LogoutComponent = () => {
+  const { replace } = useRouter();
   const handleLogout = async () => {
     await deleteSession();
-    return router.replace("/");
+    return replace("/");
   };
 
   return (
@@ -16,4 +16,4 @@ export function LogoutComponent() {
       Logout
     </Button>
   );
-}
+};

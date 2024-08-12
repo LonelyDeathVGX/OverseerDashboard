@@ -20,11 +20,11 @@ const actionTypes = {
 } as const;
 let count = 0;
 
-function genId() {
+const genID = () => {
   count = (count + 1) % Number.MAX_SAFE_INTEGER;
 
   return count.toString();
-}
+};
 
 type ActionType = typeof actionTypes;
 
@@ -124,18 +124,18 @@ export const reducer = (state: State, action: Action): State => {
 const listeners: Array<(state: State) => void> = [];
 let memoryState: State = { toasts: [] };
 
-function dispatch(action: Action) {
+const dispatch = (action: Action) => {
   memoryState = reducer(memoryState, action);
 
   for (const listener of listeners) {
     listener(memoryState);
   }
-}
+};
 
 type Toast = Omit<ToasterToast, "id">;
 
-function toast({ ...props }: Toast) {
-  const id = genId();
+const toast = ({ ...props }: Toast) => {
+  const id = genID();
   const update = (props: ToasterToast) =>
     dispatch({
       type: "UPDATE_TOAST",
@@ -162,9 +162,9 @@ function toast({ ...props }: Toast) {
     dismiss,
     update,
   };
-}
+};
 
-function useToast() {
+const useToast = () => {
   const [state, setState] = useState<State>(memoryState);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies:
@@ -185,6 +185,6 @@ function useToast() {
     toast,
     dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
   };
-}
+};
 
 export { useToast, toast };

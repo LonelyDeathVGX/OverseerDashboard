@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useDevTools } from "../hooks/useDevTools";
 
-export function DevToolsComponent() {
+export const DevToolsComponent = () => {
   const [_, setDevToolsStatus] = useState<"open" | "closed">("closed");
 
   useDevTools({
@@ -12,4 +12,4 @@ export function DevToolsComponent() {
   });
 
   return <></>;
-}
+};

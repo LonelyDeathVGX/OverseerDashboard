@@ -7,15 +7,15 @@ import { type JWTPayload, SignJWT, jwtVerify } from "jose";
 import { fetchGuildMember } from "./Requests";
 import type { Session } from "./Server";
 
-export function encrypt(data: string): string {
+export const encrypt = (data: string): string => {
   return Crypto.AES.encrypt(data, process.env.ENCRYPT_KEY ?? "").toString();
-}
+};
 
-export function decrypt(data: string): string {
+export const decrypt = (data: string): string => {
   return Crypto.AES.decrypt(data, process.env.ENCRYPT_KEY ?? "").toString(Crypto.enc.Utf8);
-}
+};
 
-export async function encryptJWT(payload: JWTPayload): Promise<string> {
+export const encryptJWT = async (payload: JWTPayload): Promise<string> => {
   return await new SignJWT(payload)
     .setProtectedHeader({
       alg: "HS256",
@@ -23,21 +23,21 @@ export async function encryptJWT(payload: JWTPayload): Promise<string> {
     .setIssuedAt()
     .setExpirationTime("7 days")
     .sign(new TextEncoder().encode(process.env.JWT_KEY));
-}
+};
 
-export async function decryptJWT(token: string): Promise<Session | Nullish> {
+export const decryptJWT = async (token: string): Promise<Session | Nullish> => {
   try {
     const { payload } = await jwtVerify(token, new TextEncoder().encode(process.env.JWT_KEY), {
       algorithms: ["HS256"],
     });
 
-    return <Session>payload;
+    return payload as Session;
   } catch {
     return null;
   }
-}
+};
 
-export async function memberPermissions(guild: APIGuild, memberID: string): Promise<bigint> {
+export const memberPermissions = async (guild: APIGuild, memberID: string): Promise<bigint> => {
   const ALL_PERMISSIONS = Object.values(PermissionFlagsBits).reduce(
     (previousPermissions, permission) => previousPermissions | permission,
     BigInt(0),
@@ -75,21 +75,21 @@ export async function memberPermissions(guild: APIGuild, memberID: string): Prom
   }
 
   return BigInt(permissions);
-}
+};
 
-export async function makeRequest<T>({
+export const makeRequest = async <T>({
   path,
   method,
 }: {
   path: string;
   method: MakeRequestMethods;
-}): Promise<T> {
+}): Promise<T> => {
   const request = await fetch(path, {
     method,
     credentials: "include",
   });
 
   return (await request.json()) as T;
-}
+};
 
 type MakeRequestMethods = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";

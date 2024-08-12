@@ -13,18 +13,17 @@ import {
 } from "#components/ui/Dialog";
 import { PremiumRevokeSubmitComponent } from "./PremiumRevokeComponents";
 
-export function PremiumRevokeComponent({
+export const PremiumRevokeComponent = ({
   guildID,
 }: {
   guildID: string;
-}) {
+}) => {
   return (
     <Dialog>
       <DialogTrigger asChild={true}>
         <Button variant="rose">Revoke Membership</Button>
       </DialogTrigger>
       <DialogContent>
-        <input type="hidden" name="guildID" value={guildID} />
         <DialogHeader>
           <DialogTitle>Revoke Server Membership</DialogTitle>
           <DialogDescription>
@@ -41,4 +40,4 @@ export function PremiumRevokeComponent({
       </DialogContent>
     </Dialog>
   );
-}
+};

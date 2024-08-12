@@ -1,3 +1,4 @@
+import "server-only";
 import TTLCache from "@isaacs/ttlcache";
 
 export const createCache = <V>({
