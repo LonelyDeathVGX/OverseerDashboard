@@ -2,20 +2,18 @@ import { type APIUser, type RESTPostOAuth2AccessTokenResult, RouteBases, Routes 
 import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
 import { CALLBACK_URL, CLIENT_ID } from "#lib/Constants";
-import { NextResponseJSON, NextResponseRedirect } from "#lib/Responses";
+import { NextJSONResponse, NextRedirectResponse } from "#lib/Responses";
 import { encrypt, encryptJWT } from "#lib/Util";
 
-export const dynamic = "force-dynamic";
+export const dynamic: "auto" | "force-dynamic" | "error" | "force-static" = "force-dynamic";
 
-export async function GET(request: NextRequest) {
+export const GET = async (request: NextRequest) => {
   try {
     const { searchParams, origin } = request.nextUrl;
     const code = searchParams.get("code");
 
     if (!code) {
-      return NextResponseRedirect({
-        url: origin,
-      });
+      return NextRedirectResponse(origin);
     }
 
     const exchangeCodeRequest = await fetch(`${RouteBases.api}/${Routes.oauth2TokenExchange()}`, {
@@ -34,9 +32,7 @@ export async function GET(request: NextRequest) {
     });
 
     if (!exchangeCodeRequest.ok) {
-      return NextResponseRedirect({
-        url: origin,
-      });
+      return NextRedirectResponse(origin);
     }
 
     const exchangeCodeResponse = (await exchangeCodeRequest.json()) as RESTPostOAuth2AccessTokenResult;
@@ -49,9 +45,7 @@ export async function GET(request: NextRequest) {
     });
 
     if (!userRequest.ok) {
-      return NextResponseRedirect({
-        url: origin,
-      });
+      return NextRedirectResponse(origin);
     }
 
     const userResponse = (await userRequest.json()) as APIUser;
@@ -70,15 +64,13 @@ export async function GET(request: NextRequest) {
       maxAge: 604_800,
     });
 
-    return NextResponseRedirect({
-      url: `${origin}/dashboard`,
-    });
+    return NextRedirectResponse(`${origin}/dashboard`);
   } catch (error) {
     console.error(error);
 
-    return NextResponseJSON({
-      data: "Something went wrong while processing the request",
+    return NextJSONResponse({
+      data: "Internal Server Error",
       status: 500,
     });
   }
-}
+};

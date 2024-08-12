@@ -104,7 +104,7 @@ export const POST = async (
 };
 
 export const DELETE = async (
-  _request: NextRequest,
+  _: NextRequest,
   {
     params,
   }: {
