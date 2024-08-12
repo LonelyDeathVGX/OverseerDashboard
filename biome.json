@@ -1,24 +1,21 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
-  "files": {
-    "ignore": ["dist", "node_modules", ".next"]
-  },
-  "organizeImports": {
-    "enabled": true
-  },
-  "formatter": {
-    "enabled": true,
-    "indentWidth": 2,
-    "lineEnding": "crlf",
-    "lineWidth": 120,
-    "indentStyle": "space"
-  },
-  "json": {
+  "css": {
     "formatter": {
       "enabled": true
     }
   },
-  "css": {
+  "files": {
+    "ignore": ["dist", "node_modules", ".next"]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "crlf",
+    "lineWidth": 120
+  },
+  "json": {
     "formatter": {
       "enabled": true
     }
@@ -27,25 +24,28 @@
     "enabled": true,
     "rules": {
       "all": true,
-      "style": {
-        "useNamingConvention": "off",
-        "noDefaultExport": "off",
-        "noNamespaceImport": "off",
-        "useFilenamingConvention": "off"
-      },
-      "suspicious": {
-        "noConsoleLog": "off"
-      },
       "nursery": {
         "useSortedClasses": {
-          "level": "error",
           "fix": "safe",
+          "level": "error",
           "options": {
             "attributes": ["classList"],
             "functions": ["clsx", "cva", "tw"]
           }
         }
+      },
+      "style": {
+        "noDefaultExport": "off",
+        "noNamespaceImport": "off",
+        "useFilenamingConvention": "off",
+        "useNamingConvention": "off"
+      },
+      "suspicious": {
+        "noConsoleLog": "off"
       }
     }
+  },
+  "organizeImports": {
+    "enabled": true
   }
 }
