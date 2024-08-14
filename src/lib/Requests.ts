@@ -4,48 +4,40 @@ import {
   type APIGuildMember,
   PermissionFlagsBits,
   type RESTAPIPartialCurrentUserGuild,
-  type RESTGetAPICurrentUserGuildsResult,
   RESTJSONErrorCodes,
-  RouteBases,
   Routes,
 } from "discord-api-types/v10";
 import { BitField } from "./BitField";
 import { createCache } from "./Cache";
-import { decrypt } from "./Util";
+import { decrypt, rest, userRest } from "./Util";
 
-const userGuildsCache = createCache<FetchUserGuildsResponse>({
+const userGuildsCache = createCache<{
+  rateLimited: boolean;
+  guilds: RESTAPIPartialCurrentUserGuild[];
+}>({
   timeToLive: 10000,
 });
 
-const internalFetchUserGuilds = async (accessToken: string): Promise<FetchUserGuildsResponse> => {
-  const decryptedAccessToken = decrypt(accessToken);
-  const guildsRequest = await fetch(`${RouteBases.api}/${Routes.userGuilds()}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${decryptedAccessToken}`,
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (!guildsRequest.ok) {
-    return {
-      rateLimited: guildsRequest.status === 429,
+const internalFetchUserGuilds = async (
+  accessToken: string,
+): Promise<{
+  rateLimited: boolean;
+  guilds: RESTAPIPartialCurrentUserGuild[];
+}> =>
+  await userRest(decrypt(accessToken))
+    .get(Routes.userGuilds())
+    .then((response) => ({
+      rateLimited: false,
+      guilds: (response as RESTAPIPartialCurrentUserGuild[]).filter((partialGuild) =>
+        new BitField(Number.parseInt(partialGuild.permissions)).has(
+          Number.parseInt(PermissionFlagsBits.ManageGuild.toString()),
+        ),
+      ),
+    }))
+    .catch((error) => ({
+      rateLimited: error.status === 429,
       guilds: [],
-    };
-  }
-
-  const guildsResponse = (await guildsRequest.json()) as RESTGetAPICurrentUserGuildsResult;
-  const filteredGuilds = guildsResponse.filter((partialGuild) =>
-    new BitField(Number.parseInt(partialGuild.permissions)).has(
-      Number.parseInt(PermissionFlagsBits.ManageGuild.toString()),
-    ),
-  );
-
-  return {
-    rateLimited: false,
-    guilds: filteredGuilds,
-  };
-};
+    }));
 
 export const fetchUserGuilds = async (accessToken: string) => {
   const cachedData = userGuildsCache.get(accessToken);
@@ -63,81 +55,41 @@ export const fetchUserGuilds = async (accessToken: string) => {
   return fetchedGuilds;
 };
 
-export const fetchClientGuild = async (guildID: string): Promise<FetchClientGuildResponse> => {
-  const guildRequest = await fetch(`${RouteBases.api}/${Routes.guild(guildID)}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bot ${process.env.CLIENT_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-  });
-  const guildResponse = await guildRequest.json();
-
-  if ("errors" in guildResponse) {
-    return {
-      found: false,
-      error: true,
-    };
-  }
-
-  if (guildRequest.status === 404 || guildResponse.code === RESTJSONErrorCodes.UnknownGuild) {
-    return {
-      found: false,
-      error: false,
-    };
-  }
-
-  return {
-    found: true,
-    error: false,
-    guild: guildResponse,
-  };
-};
-
-export const fetchGuildMember = async (guildID: string, memberID: string): Promise<FetchGuildMemberResponse> => {
-  const memberRequest = await fetch(`${RouteBases.api}/${Routes.guildMember(guildID, memberID)}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bot ${process.env.CLIENT_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-  });
-  const memberResponse = await memberRequest.json();
-
-  if ("errors" in memberResponse) {
-    return {
-      found: false,
-      error: true,
-    };
-  }
-
-  if (memberRequest.status === 404 || memberResponse.code === RESTJSONErrorCodes.UnknownGuild) {
-    return {
-      found: false,
-      error: false,
-    };
-  }
-
-  return {
-    found: true,
-    error: false,
-    member: memberResponse,
-  };
-};
-
-interface FetchUserGuildsResponse {
-  rateLimited: boolean;
-  guilds?: RESTAPIPartialCurrentUserGuild[];
-}
-
-interface FetchClientGuildResponse {
+export const fetchClientGuild = async (
+  guildID: string,
+): Promise<{
   found: boolean;
   error: boolean;
   guild?: APIGuild;
-}
+}> =>
+  await rest
+    .get(Routes.guild(guildID))
+    .then((response) => ({
+      found: true,
+      error: false,
+      guild: response as APIGuild,
+    }))
+    .catch((error) => ({
+      found: error.status === 404 || error.rawError.code === RESTJSONErrorCodes.UnknownGuild,
+      error: error.status === 400 || "_errors" in error.rawError,
+    }));
 
-interface FetchGuildMemberResponse {
+export const fetchGuildMember = async (
+  guildID: string,
+  memberID: string,
+): Promise<{
   found: boolean;
   error: boolean;
   member?: APIGuildMember;
-}
+}> =>
+  await rest
+    .get(Routes.guildMember(guildID, memberID))
+    .then((response) => ({
+      found: true,
+      error: false,
+      member: response as APIGuildMember,
+    }))
+    .catch((error) => ({
+      found: error.status === 404 || error.rawError.code === RESTJSONErrorCodes.UnknownMember,
+      error: error.status === 400 || "_errors" in error.rawError,
+    }));

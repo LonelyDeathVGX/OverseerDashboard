@@ -1,6 +1,7 @@
 {
   "author": "FancyStudio",
   "dependencies": {
+    "@discordjs/rest": "2.3.0",
     "@fontsource/poppins": "5.0.14",
     "@isaacs/ttlcache": "1.4.1",
     "@mdx-js/loader": "3.0.1",

@@ -1,5 +1,6 @@
 import "server-only";
 
+import { REST } from "@discordjs/rest";
 import type { Nullish } from "@sapphire/utilities";
 import Crypto from "crypto-js";
 import { type APIGuild, type APIRole, PermissionFlagsBits } from "discord-api-types/v10";
@@ -93,3 +94,17 @@ export const makeRequest = async <T>({
 };
 
 type MakeRequestMethods = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";
+
+export const rest = new REST({
+  // @ts-expect-error
+  makeRequest: fetch,
+  version: "10",
+}).setToken(String(process.env.CLIENT_TOKEN));
+
+export const userRest = (accessToken: string) =>
+  new REST({
+    authPrefix: "Bearer",
+    // @ts-expect-error
+    makeRequest: fetch,
+    version: "10",
+  }).setToken(accessToken);
