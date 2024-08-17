@@ -121,8 +121,8 @@ importers:
         specifier: 4.2.2
         version: 4.2.2
       '@types/node':
-        specifier: 22.2.0
-        version: 22.2.0
+        specifier: 22.3.0
+        version: 22.3.0
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -811,6 +811,9 @@ packages:
 
   '@types/node@22.2.0':
     resolution: {integrity: sha512-bm6EG6/pCpkxDf/0gDNDdtDILMOHgaQBVOJGdwsqClnxA3xL6jtMv76rLBc006RVMWbmaf0xbmom4Z/5o2nRkQ==}
+
+  '@types/node@22.3.0':
+    resolution: {integrity: sha512-nrWpWVaDZuaVc5X84xJ0vNrLvomM205oQyLsRt7OHNZbSHslcWsvgFR7O7hire2ZonjLrWBbedmotmIlJDVd6g==}
 
   '@types/prop-types@15.7.12':
     resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
@@ -1998,6 +2001,9 @@ packages:
   undici-types@6.13.0:
     resolution: {integrity: sha512-xtFJHudx8S2DSoujjMd1WeWvn7KKWFRESZTMeL1RptAYERu29D6jphMjjY+vn96jvN3kVPDNxU/E13VTaXj6jg==}
 
+  undici-types@6.18.2:
+    resolution: {integrity: sha512-5ruQbENj95yDYJNS3TvcaxPMshV7aizdv/hWYjGIKoANWKjhWNBsr2YEuYZKodQulB1b8l7ILOuDQep3afowQQ==}
+
   undici@6.13.0:
     resolution: {integrity: sha512-Q2rtqmZWrbP8nePMq7mOJIN98M0fYvSgV89vwl/BQRT4mDOeY2GXZngfGpcBBhtky3woM7G24wZV3Q304Bv6cw==}
     engines: {node: '>=18.0'}
@@ -2767,6 +2773,10 @@ snapshots:
   '@types/node@22.2.0':
     dependencies:
       undici-types: 6.13.0
+
+  '@types/node@22.3.0':
+    dependencies:
+      undici-types: 6.18.2
 
   '@types/prop-types@15.7.12': {}
 
@@ -4142,6 +4152,8 @@ snapshots:
   typescript@5.5.4: {}
 
   undici-types@6.13.0: {}
+
+  undici-types@6.18.2: {}
 
   undici@6.13.0: {}
 
