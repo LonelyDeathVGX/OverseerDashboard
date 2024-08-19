@@ -78,8 +78,8 @@ importers:
         specifier: 5.7.0
         version: 5.7.0
       ky:
-        specifier: 1.6.0
-        version: 1.6.0
+        specifier: 1.7.0
+        version: 1.7.0
       lucide-react:
         specifier: 0.428.0
         version: 0.428.0(react@18.3.1)
@@ -809,9 +809,6 @@ packages:
   '@types/ms@0.7.34':
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
 
-  '@types/node@22.3.0':
-    resolution: {integrity: sha512-nrWpWVaDZuaVc5X84xJ0vNrLvomM205oQyLsRt7OHNZbSHslcWsvgFR7O7hire2ZonjLrWBbedmotmIlJDVd6g==}
-
   '@types/node@22.4.1':
     resolution: {integrity: sha512-1tbpb9325+gPnKK0dMm+/LMriX0vKxf6RnB0SZUqfyVkQ4fMgUSySqhxE/y8Jvs4NyF1yHzTfG9KlnkIODxPKg==}
 
@@ -1363,8 +1360,8 @@ packages:
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
 
-  ky@1.6.0:
-    resolution: {integrity: sha512-MG7hlH26oShC4Lysk5TYzXshHLfEY52IJ0ofOeCsifquqTymbXCSTx+g4rXO30XYxoM6Y1ed5pNnpULe9Rx19A==}
+  ky@1.7.0:
+    resolution: {integrity: sha512-g+S6ZMESSMuxrrbcDioBKSjBj8Xvam2WmLso+q1Ub7TTYCGS68XbSEM+eA3VSTmXJfR1uQjsTooC2tCsC3bW6g==}
     engines: {node: '>=18'}
 
   lilconfig@2.1.0:
@@ -1997,9 +1994,6 @@ packages:
     resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
     engines: {node: '>=14.17'}
     hasBin: true
-
-  undici-types@6.18.2:
-    resolution: {integrity: sha512-5ruQbENj95yDYJNS3TvcaxPMshV7aizdv/hWYjGIKoANWKjhWNBsr2YEuYZKodQulB1b8l7ILOuDQep3afowQQ==}
 
   undici-types@6.19.6:
     resolution: {integrity: sha512-e/vggGopEfTKSvj4ihnOLTsqhrKRN3LeO6qSN/GxohhuRv8qH9bNQ4B8W7e/vFL+0XTnmHPB4/kegunZGA4Org==}
@@ -2770,10 +2764,6 @@ snapshots:
 
   '@types/ms@0.7.34': {}
 
-  '@types/node@22.3.0':
-    dependencies:
-      undici-types: 6.18.2
-
   '@types/node@22.4.1':
     dependencies:
       undici-types: 6.19.6
@@ -3310,7 +3300,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.3.0
+      '@types/node': 22.4.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -3324,7 +3314,7 @@ snapshots:
 
   json-schema-traverse@0.4.1: {}
 
-  ky@1.6.0: {}
+  ky@1.7.0: {}
 
   lilconfig@2.1.0: {}
 
@@ -4150,8 +4140,6 @@ snapshots:
   tslib@2.6.3: {}
 
   typescript@5.5.4: {}
-
-  undici-types@6.18.2: {}
 
   undici-types@6.19.6: {}
 
