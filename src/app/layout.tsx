@@ -32,17 +32,15 @@ export default ({
   children,
 }: {
   children: ReactNode;
-}) => {
-  return (
-    <html className="bg-black font-medium font-poppins text-white leading-relaxed tracking-wide antialiased" lang="en">
-      <head>
-        <AdSenseComponent />
-      </head>
-      <body>
-        {children}
-        <Toaster />
-        <DevToolsComponent />
-      </body>
-    </html>
-  );
-};
+}) => (
+  <html className="bg-black font-medium font-poppins text-white leading-relaxed tracking-wide antialiased" lang="en">
+    <head>
+      <AdSenseComponent />
+    </head>
+    <body>
+      {children}
+      <Toaster />
+      <DevToolsComponent />
+    </body>
+  </html>
+);
