@@ -78,8 +78,8 @@ importers:
         specifier: 5.7.0
         version: 5.7.0
       ky:
-        specifier: 1.7.0
-        version: 1.7.0
+        specifier: 1.7.1
+        version: 1.7.1
       lucide-react:
         specifier: 0.429.0
         version: 0.429.0(react@18.3.1)
@@ -809,9 +809,6 @@ packages:
   '@types/ms@0.7.34':
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
 
-  '@types/node@22.4.1':
-    resolution: {integrity: sha512-1tbpb9325+gPnKK0dMm+/LMriX0vKxf6RnB0SZUqfyVkQ4fMgUSySqhxE/y8Jvs4NyF1yHzTfG9KlnkIODxPKg==}
-
   '@types/node@22.4.2':
     resolution: {integrity: sha512-nAvM3Ey230/XzxtyDcJ+VjvlzpzoHwLsF7JaDRfoI0ytO0mVheerNmM45CtA0yOILXwXXxOrcUWH3wltX+7PSw==}
 
@@ -1363,8 +1360,8 @@ packages:
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
 
-  ky@1.7.0:
-    resolution: {integrity: sha512-g+S6ZMESSMuxrrbcDioBKSjBj8Xvam2WmLso+q1Ub7TTYCGS68XbSEM+eA3VSTmXJfR1uQjsTooC2tCsC3bW6g==}
+  ky@1.7.1:
+    resolution: {integrity: sha512-KJ/IXXkFhTDqxcN8wKqMXk1/UoOpc0UnOB6H7QcqlPInh/M2B5Mlj+i9exez1w4RSwJhNFmHiUDPriAYFwb5VA==}
     engines: {node: '>=18'}
 
   lilconfig@2.1.0:
@@ -2767,10 +2764,6 @@ snapshots:
 
   '@types/ms@0.7.34': {}
 
-  '@types/node@22.4.1':
-    dependencies:
-      undici-types: 6.19.8
-
   '@types/node@22.4.2':
     dependencies:
       undici-types: 6.19.8
@@ -3307,7 +3300,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 22.4.1
+      '@types/node': 22.4.2
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -3321,7 +3314,7 @@ snapshots:
 
   json-schema-traverse@0.4.1: {}
 
-  ky@1.7.0: {}
+  ky@1.7.1: {}
 
   lilconfig@2.1.0: {}
 
